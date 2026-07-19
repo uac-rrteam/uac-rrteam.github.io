@@ -9,8 +9,7 @@ date: 2026-07-19
 
 Le **LRSIA** (*Laboratoire de Recherche en Sciences Informatiques et
 Applications*) est une unité de recherche de l'**IFRI** (*Institut de
-Formation et de Recherche en Informatique*), l'une des écoles doctorales en
-informatique de l'**Université d'Abomey-Calavi (UAC)**, au Bénin.
+Formation et de Recherche en Informatique*), de l'**Université d'Abomey-Calavi (UAC)**, au Bénin.
 
 Créé en 2017, le laboratoire a pour but de mener des recherches pour le développement 
 durable dans les pays en développement, en partenariat avec d'autres laboratoires 
