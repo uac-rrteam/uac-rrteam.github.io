@@ -203,6 +203,16 @@ html {
   border: 1px solid hsl(var(--border));
 }
 
+/* Grain fin pose PAR-DESSUS la video du hero. Contrairement au grain de fond
+   (.dark body::before), celui-ci s'applique sur un calque plein cadre au-dessus
+   du media : d'ou une classe dediee, sans dependance au theme. */
+.hero-grain {
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+}
+
 /* Bascule instantanee : coupe TOUTES les transitions le temps d'un frame
    (navigateurs sans View Transitions, ou preference reduced-motion). */
 html.theme-instant,

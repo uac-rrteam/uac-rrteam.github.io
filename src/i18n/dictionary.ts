@@ -12,11 +12,16 @@ export function isLang(value: string | undefined): value is Lang {
    (voir traduire() dans lang.tsx). */
 const fr = {
   "nav.lab": "Le laboratoire",
+  "nav.lrsia": "Le LRSIA",
   "nav.team": "L'equipe",
   "nav.research": "Recherche",
   "nav.people": "Membres",
   "nav.events": "Evenements",
   "nav.blog": "Actualites",
+
+  "lab.lrsiaDesc": "Le laboratoire, sa direction et ses domaines",
+  "lab.teamDesc": "La Ratheil Research Team et ses axes",
+  "lab.researchDesc": "Nos travaux et methodes",
 
   "hero.title": "L'intelligence artificielle au service de l'impact societal",
   "hero.lead":
@@ -29,11 +34,16 @@ const fr = {
 
 const en: Partial<Record<keyof typeof fr, string>> = {
   "nav.lab": "The lab",
+  "nav.lrsia": "About LRSIA",
   "nav.team": "The team",
   "nav.research": "Research",
   "nav.people": "People",
   "nav.events": "Events",
   "nav.blog": "News",
+
+  "lab.lrsiaDesc": "The lab, its direction and fields",
+  "lab.teamDesc": "The Ratheil Research Team and its focus",
+  "lab.researchDesc": "Our work and methods",
 
   "hero.title": "Artificial Intelligence for Societal Impact",
   "hero.lead":
