@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useLang } from "@/i18n/lang";
 import { cn } from "@/lib/utils";
 import { LANGS } from "@/i18n/dictionary";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const NAV = [
   { to: "/about/lrsia", key: "nav.lab" },
@@ -50,7 +51,9 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-1 text-sm">
+        <div className="flex items-center gap-3 text-sm">
+          <ThemeToggle />
+          <div className="flex items-center gap-1">
           {LANGS.map((code) => (
             <Link
               key={code}
@@ -64,6 +67,7 @@ export function SiteHeader() {
               {code}
             </Link>
           ))}
+          </div>
         </div>
       </div>
       <div className="filet-lrsia" aria-hidden="true" />

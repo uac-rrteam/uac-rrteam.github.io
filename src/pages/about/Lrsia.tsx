@@ -18,7 +18,6 @@ export function Lrsia() {
   return (
     <>
       <PageIntro
-        eyebrow="IFRI, Universite d'Abomey-Calavi"
         title={fr ? "Le LRSIA en bref" : "About LRSIA"}
         lead={
           fr
@@ -36,10 +35,9 @@ export function Lrsia() {
           <p className="mb-3 font-medium text-foreground">
             {fr ? "Six grands domaines de l'informatique portes par l'IFRI :" : "Six major fields carried by IFRI:"}
           </p>
-          <ul className="grid gap-2 sm:grid-cols-2">
+          <ul className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
             {DOMAINES.map((d) => (
-              <li key={d} className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+              <li key={d} className="border-l border-border pl-3 text-foreground">
                 {d}
               </li>
             ))}

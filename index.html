@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr" class="dark">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +22,20 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Pose la classe .dark AVANT le premier rendu, pour eviter le flash de
+         theme clair chez un visiteur en mode sombre. Lit le meme choix que
+         le ThemeProvider (localStorage), avec repli sur la preference OS. -->
+    <script>
+      (function () {
+        try {
+          var choice = localStorage.getItem("lrsia-theme") || "system";
+          var dark =
+            choice === "dark" ||
+            (choice === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

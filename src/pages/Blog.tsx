@@ -11,7 +11,6 @@ export function Blog() {
   return (
     <>
       <PageIntro
-        eyebrow={fr ? "Actualites" : "News"}
         title={fr ? "Actualites de l'equipe" : "Team news"}
         lead={
           fr

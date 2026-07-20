@@ -19,7 +19,6 @@ export function People() {
   return (
     <>
       <PageIntro
-        eyebrow={fr ? "Membres" : "People"}
         title={fr ? "L'equipe" : "The team"}
         lead={
           fr

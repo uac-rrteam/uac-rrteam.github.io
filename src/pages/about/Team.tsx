@@ -36,7 +36,6 @@ export function Team() {
   return (
     <>
       <PageIntro
-        eyebrow="Ratheil Research Team"
         title={fr ? "L'intelligence artificielle au service de l'impact societal" : "Artificial Intelligence for Societal Impact"}
         lead={
           fr

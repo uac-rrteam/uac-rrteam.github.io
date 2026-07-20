@@ -33,14 +33,9 @@ export function Hero() {
 
   return (
     <section ref={rootRef} className="mx-auto max-w-6xl px-5 pb-24 pt-20 sm:pt-28">
-      <p data-reveal className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-        <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
-        {t("hero.eyebrow")}
-      </p>
-
       <h1
         data-reveal
-        className="mt-7 max-w-4xl text-balance font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl"
+        className="max-w-4xl text-balance font-display text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl"
       >
         {t("hero.title")}
       </h1>

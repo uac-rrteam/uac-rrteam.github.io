@@ -1,15 +1,25 @@
-import { Link } from "react-router-dom";
+import { useRef, useState, type ReactNode } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { ArrowUp } from "lucide-react";
 import { useLang } from "@/i18n/lang";
+import { LANGS } from "@/i18n/dictionary";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { cn } from "@/lib/utils";
 
 /**
  * Pied de page.
- * Structure inspiree de la reference (colonnes de liens + grand lettrage en
- * bas), mais sobre : pas de visuel criard, le grand mot "LRSIA" en filigrane
- * sert de signature, coupe par overflow.
+ * Structure reprise d'e-freeshop a l'identique : carte arrondie (rounded-3xl)
+ * qui "sort" de la page, surface inversee (bg-foreground / text-background),
+ * colonnes de liens, ligne du bas avec theme, langue et retour en haut en
+ * boutons neomorphiques.
+ * En bas, le grand mot LRSIA centre, revele par un effet torche au survol
+ * (repris du footer GemmaS).
  */
 export function SiteFooter() {
   const { t, path, lang } = useLang();
+  const location = useLocation();
   const fr = lang === "fr";
+  const pathWithoutLang = location.pathname.replace(/^\/(fr|en)/, "") || "";
 
   const columns = [
     {
@@ -31,57 +41,148 @@ export function SiteFooter() {
   ];
 
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-border bg-card">
-      <div className="filet-lrsia" aria-hidden="true" />
-      <div className="mx-auto max-w-6xl px-5 pt-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-2">
-            <img
-              src="/imgs/logos/lrsia-sans-fond.png"
-              alt="Logo du LRSIA"
-              width={130}
-              height={48}
-              className="h-10 w-auto dark:brightness-110"
-            />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              {fr
-                ? "Ratheil Research Team, LRSIA, IFRI, Universite d'Abomey-Calavi, Benin."
-                : "Ratheil Research Team, LRSIA, IFRI, University of Abomey-Calavi, Benin."}
-            </p>
-            <div className="mt-5 flex items-center gap-4">
-              <img src="/imgs/logos/logoifri.png" alt="IFRI" width={40} height={40} className="h-8 w-auto opacity-80" />
-              <img src="/imgs/logos/logouac.png" alt="UAC" width={40} height={40} className="h-8 w-auto opacity-80" />
+    <div className="px-3 pb-3 md:px-6 md:pb-6">
+      <footer className="relative overflow-hidden rounded-3xl bg-foreground text-background">
+        <div className="relative mx-auto max-w-6xl px-6 pt-16 md:px-10 md:pt-20">
+          <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+            <div className="md:col-span-5">
+              <img
+                src="/imgs/logos/lrsia-sans-fond.png"
+                alt="Logo du LRSIA"
+                width={130}
+                height={48}
+                className="h-10 w-auto brightness-0 invert"
+              />
+              <p className="mt-4 max-w-xs text-sm leading-relaxed text-background/70">
+                {fr
+                  ? "Ratheil Research Team, LRSIA, IFRI, Universite d'Abomey-Calavi, Benin."
+                  : "Ratheil Research Team, LRSIA, IFRI, University of Abomey-Calavi, Benin."}
+              </p>
+              <div className="mt-5 flex items-center gap-4">
+                <img src="/imgs/logos/logoifri.png" alt="IFRI" width={40} height={40} className="h-8 w-auto opacity-90" />
+                <img src="/imgs/logos/logouac.png" alt="UAC" width={40} height={40} className="h-8 w-auto opacity-90" />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-8 md:col-span-7 md:grid-cols-2">
+              {columns.map((col) => (
+                <nav key={col.title} aria-label={col.title}>
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-background/50">{col.title}</p>
+                  <ul className="space-y-3">
+                    {col.links.map((l) => (
+                      <li key={l.to}>
+                        <Link
+                          to={path(l.to)}
+                          className="inline-flex items-center text-sm text-background/80 transition-all duration-200 hover:translate-x-0.5 hover:text-background"
+                        >
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              ))}
             </div>
           </div>
 
-          {columns.map((col) => (
-            <nav key={col.title} aria-label={col.title}>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{col.title}</p>
-              <ul className="mt-4 space-y-2.5">
-                {col.links.map((l) => (
-                  <li key={l.to}>
-                    <Link to={path(l.to)} className="text-sm text-foreground/80 transition-colors hover:text-primary">
-                      {l.label}
-                    </Link>
-                  </li>
+          {/* Ligne du bas : credit, langue, theme, retour en haut. */}
+          <div className="mt-16 flex flex-col-reverse items-center justify-between gap-6 border-t border-background/10 pt-8 md:flex-row">
+            <p className="text-sm text-background/60">
+              &copy; {new Date().getFullYear()} LRSIA, Ratheil Research Team.
+            </p>
+
+            <div className="flex items-center gap-3 [&_[role=radiogroup]]:border-background/20 [&_[role=radiogroup]]:bg-transparent [&_button[aria-checked=true]]:bg-background [&_button[aria-checked=true]]:text-foreground [&_button[aria-checked=false]]:text-background/60 [&_button[aria-checked=false]:hover]:text-background">
+              <div className="flex items-center gap-1 text-sm">
+                {LANGS.map((code) => (
+                  <Link
+                    key={code}
+                    to={`/${code}${pathWithoutLang}`}
+                    className={cn(
+                      "rounded-sm px-2 py-1 uppercase transition-colors",
+                      code === lang ? "text-background" : "text-background/50 hover:text-background",
+                    )}
+                    aria-current={code === lang ? "true" : undefined}
+                  >
+                    {code}
+                  </Link>
                 ))}
-              </ul>
-            </nav>
-          ))}
+              </div>
+              <ThemeToggle />
+              <BackToTop label={fr ? "Retour en haut" : "Back to top"} />
+            </div>
+          </div>
         </div>
 
-        <p className="mt-14 text-xs text-muted-foreground">
-          &copy; {new Date().getFullYear()} LRSIA, Ratheil Research Team. {fr ? "Tous droits reserves." : "All rights reserved."}
-        </p>
+        {/* Grand mot LRSIA centre, revele par la torche. */}
+        <TorchWordmark word="LRSIA" />
+      </footer>
+    </div>
+  );
+}
 
-        {/* Grand lettrage signature, volontairement coupe par le bas. */}
-        <p
-          aria-hidden="true"
-          className="pointer-events-none mt-4 -mb-4 select-none whitespace-nowrap font-display text-[22vw] font-bold leading-none tracking-tighter text-foreground/[0.04]"
-        >
-          LRSIA
-        </p>
-      </div>
-    </footer>
+/* -------------------------------------------------------------------------- */
+
+function BackToTop({ label }: { label: string }) {
+  return (
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label={label}
+      className="group inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-background/15 bg-background/[0.04] text-background/80 shadow-[0_3px_0_0.5px_hsl(var(--background)/0.2)] transition-all duration-200 hover:translate-y-[2px] hover:bg-background/[0.08] hover:text-background hover:shadow-[0_1px_0_0.5px_hsl(var(--background)/0.2)]"
+    >
+      <ArrowUp className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" strokeWidth={2} />
+    </button>
+  );
+}
+
+/**
+ * Wordmark geant centre avec effet torche.
+ * Deux couches du meme mot : la basse reste faiblement visible, la haute
+ * (pleine opacite) n'apparait que sous un halo radial qui suit la souris.
+ * Rendu en texte, pas en SVG : la marque LRSIA n'a pas de logotype vectoriel
+ * pour ce mot, et Outfit en gras fait un lettrage propre.
+ */
+function TorchWordmark({ word }: { word: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState({ x: -9999, y: -9999, active: false });
+
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top, active: true });
+  };
+  const onLeave = () => setPos((p) => ({ ...p, active: false, x: -9999, y: -9999 }));
+
+  const mask = `radial-gradient(circle 300px at ${pos.x}px ${pos.y}px, black 0%, black 30%, transparent 80%)`;
+  const base: ReactNode = word;
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="relative mt-10 w-full select-none overflow-hidden"
+      aria-hidden
+    >
+      {/* Couche basse : presence constante, tres discrete. */}
+      <p className="whitespace-nowrap text-center font-display text-[26vw] font-bold leading-[0.8] tracking-tighter text-background/[0.07]">
+        {base}
+      </p>
+      {/* Couche haute : revelee par la torche. */}
+      <p
+        className={cn(
+          "absolute inset-0 whitespace-nowrap text-center font-display text-[26vw] font-bold leading-[0.8] tracking-tighter text-background transition-opacity duration-300",
+          pos.active ? "opacity-100" : "opacity-0",
+        )}
+        style={{
+          WebkitMaskImage: mask,
+          maskImage: mask,
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+        }}
+      >
+        {base}
+      </p>
+    </div>
   );
 }

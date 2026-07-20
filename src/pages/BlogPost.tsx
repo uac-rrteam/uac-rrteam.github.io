@@ -23,12 +23,10 @@ export function BlogPost() {
 
   return (
     <article>
-      <PageIntro
-        eyebrow={article.date}
-        title={article.title}
-        lead={article.summary || undefined}
-      />
+      <PageIntro title={article.title} lead={article.summary || undefined} />
       <div className="mx-auto max-w-3xl px-5 pb-24">
+        {article.date && <time className="text-sm text-muted-foreground">{article.date}</time>}
+        <div className="mt-8" />
         <Markdown>{article.body}</Markdown>
         <Link to={path("/blog")} className="mt-12 inline-block text-sm text-primary underline underline-offset-2">
           {fr ? "Retour aux actualites" : "Back to news"}

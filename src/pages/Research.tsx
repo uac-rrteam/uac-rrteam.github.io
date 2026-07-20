@@ -22,7 +22,6 @@ export function Research() {
   return (
     <>
       <PageIntro
-        eyebrow={fr ? "Recherche" : "Research"}
         title={fr ? "Nos travaux" : "Our work"}
         lead={
           fr

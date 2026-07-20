@@ -203,6 +203,29 @@ html {
   border: 1px solid hsl(var(--border));
 }
 
+/* Bascule instantanee : coupe TOUTES les transitions le temps d'un frame
+   (navigateurs sans View Transitions, ou preference reduced-motion). */
+html.theme-instant,
+html.theme-instant *,
+html.theme-instant *::before,
+html.theme-instant *::after {
+  transition: none !important;
+  animation-duration: 0s !important;
+}
+
+/* View Transitions : revelation circulaire au switch de theme. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
 /* Respect systematique de la preference d'accessibilite */
 @media (prefers-reduced-motion: reduce) {
   *,

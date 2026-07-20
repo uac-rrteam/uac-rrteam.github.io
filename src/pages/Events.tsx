@@ -32,7 +32,6 @@ export function Events() {
   return (
     <>
       <PageIntro
-        eyebrow={fr ? "Evenements" : "Events"}
         title={fr ? "Ecoles, ateliers et seminaires" : "Schools, workshops and seminars"}
         lead={
           fr

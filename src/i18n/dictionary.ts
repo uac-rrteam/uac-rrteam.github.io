@@ -18,7 +18,6 @@ const fr = {
   "nav.events": "Evenements",
   "nav.blog": "Actualites",
 
-  "hero.eyebrow": "LRSIA, IFRI, Universite d'Abomey-Calavi",
   "hero.title": "L'intelligence artificielle au service de l'impact societal",
   "hero.lead":
     "La Ratheil Research Team concoit des methodes d'intelligence artificielle et d'optimisation combinatoire pour des problemes concrets, dans un contexte de ressources limitees.",
@@ -36,7 +35,6 @@ const en: Partial<Record<keyof typeof fr, string>> = {
   "nav.events": "Events",
   "nav.blog": "News",
 
-  "hero.eyebrow": "LRSIA, IFRI, University of Abomey-Calavi",
   "hero.title": "Artificial Intelligence for Societal Impact",
   "hero.lead":
     "The Ratheil Research Team designs artificial intelligence and combinatorial optimisation methods for concrete problems, in a low-resource setting.",
