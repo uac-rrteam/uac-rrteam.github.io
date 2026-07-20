@@ -108,7 +108,7 @@ export function SiteFooter() {
                   </Link>
                 ))}
               </div>
-              <GlassSurface width={118} height={40} borderRadius={20} className="text-background">
+              <GlassSurface width={118} height={40} borderRadius={20} backgroundOpacity={0.1} className="text-background">
                 <ThemeToggle />
               </GlassSurface>
               <BackToTop label={fr ? "Retour en haut" : "Back to top"} />
@@ -135,7 +135,7 @@ function BackToTop({ label }: { label: string }) {
       aria-label={label}
       className="inline-flex transition-transform active:scale-95"
     >
-      <GlassSurface width={46} height={46} borderRadius={23} className="text-background">
+      <GlassSurface width={46} height={46} borderRadius={23} backgroundOpacity={0.12} className="text-background">
         <ArrowUp className="h-5 w-5" strokeWidth={2.2} />
       </GlassSurface>
     </button>

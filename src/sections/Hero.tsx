@@ -104,7 +104,7 @@ export function Hero() {
           {/* Droite : theme, langue, action */}
           <div className="flex items-center justify-end gap-2.5">
             <div className="hidden [&_[role=radiogroup]]:border-transparent [&_[role=radiogroup]]:bg-transparent [&_button[aria-checked=true]]:bg-white [&_button[aria-checked=true]]:text-neutral-900 [&_button[aria-checked=false]]:text-white/70 [&_button[aria-checked=false]:hover]:text-white sm:block">
-              <GlassSurface width={118} height={40} borderRadius={20} className="text-white">
+              <GlassSurface width={118} height={40} borderRadius={20} backgroundOpacity={0.08} className="text-white">
                 <ThemeToggle />
               </GlassSurface>
             </div>
@@ -123,16 +123,19 @@ export function Hero() {
                 </Link>
               ))}
             </div>
-            {/* Bouton forme micro1 : rectangle arrondi (pas un pill), boite fleche
-                a droite. Taille calee sur celle de "Get in touch". */}
+            {/* CTA en surface de verre : refracte la video derriere, ne masque
+                pas le fond. */}
             <Link
               to={path("/research")}
-              className="group inline-flex items-center gap-1.5 rounded-[10px] bg-white py-1 pl-3.5 pr-1 text-[13px] font-medium text-neutral-900"
+              aria-label={t("hero.cta")}
+              className="group inline-flex transition-transform active:scale-95"
             >
-              {t("hero.cta")}
-              <span className="flex h-7 w-7 items-center justify-center rounded-[7px] bg-neutral-900 text-white transition-transform group-hover:translate-x-0.5">
-                <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
-              </span>
+              <GlassSurface width={224} height={44} borderRadius={12} backgroundOpacity={0.08} className="text-white">
+                <span className="flex items-center gap-2 px-2 text-[13px] font-medium">
+                  {t("hero.cta")}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
+                </span>
+              </GlassSurface>
             </Link>
           </div>
         </div>
