@@ -52,7 +52,7 @@ export function SiteFooter() {
                 alt="Logo du LRSIA"
                 width={130}
                 height={48}
-                className="h-10 w-auto brightness-0 invert"
+                className="h-10 w-auto"
               />
               <p className="mt-4 max-w-xs text-sm leading-relaxed text-background/70">
                 {fr

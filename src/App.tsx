@@ -4,6 +4,7 @@ import { SmoothScroll } from "@/providers/SmoothScroll";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { CookieBanner } from "@/components/layout/CookieBanner";
 import { DEFAULT_LANG } from "@/i18n/dictionary";
 import { Home } from "@/pages/Home";
 import { Lrsia } from "@/pages/about/Lrsia";
@@ -30,6 +31,7 @@ function LangLayout() {
           <Outlet />
         </main>
         <SiteFooter />
+        <CookieBanner />
       </SmoothScroll>
     </LangProvider>
   );

@@ -52,8 +52,7 @@ export function Hero() {
         playsInline
         poster="/imgs/hero-poster.jpg"
       >
-        {/* Deposer la video ici : public/videos/hero.mp4 (montagnes + oiseaux). */}
-        <source src="/videos/hero.webm" type="video/webm" />
+        {/* Video de fond, recompressee (~3 Mo). Remplacable aux memes noms. */}
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
       {/* Voile sombre : lisibilite du texte sur la video, sans couleur ajoutee. */}
@@ -91,13 +90,16 @@ export function Hero() {
                 alt="Logo du LRSIA"
                 width={150}
                 height={55}
-                className="h-11 w-auto brightness-0 invert"
+                className="h-11 w-auto"
               />
             </Link>
           </div>
 
           {/* Droite : theme, langue, action */}
-          <div className="flex items-center justify-end gap-3">
+          <div className="flex items-center justify-end gap-2.5">
+            <div className="hidden [&_[role=radiogroup]]:border-white/20 [&_[role=radiogroup]]:bg-white/5 [&_button[aria-checked=true]]:bg-white [&_button[aria-checked=true]]:text-neutral-900 [&_button[aria-checked=false]]:text-white/60 [&_button[aria-checked=false]:hover]:text-white sm:block">
+              <ThemeToggle />
+            </div>
             <div className="hidden items-center gap-1 text-sm sm:flex">
               {LANGS.map((code) => (
                 <Link
@@ -114,14 +116,14 @@ export function Hero() {
               ))}
             </div>
             {/* Bouton forme micro1 : rectangle arrondi (pas un pill), boite fleche
-                a droite legerement arrondie. */}
+                a droite. Taille calee sur celle de "Get in touch". */}
             <Link
               to={path("/research")}
-              className="group inline-flex items-center gap-2 rounded-xl bg-white py-1.5 pl-4 pr-1.5 text-sm font-medium text-neutral-900"
+              className="group inline-flex items-center gap-1.5 rounded-[10px] bg-white py-1 pl-3.5 pr-1 text-[13px] font-medium text-neutral-900"
             >
               {t("hero.cta")}
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-neutral-900 text-white transition-transform group-hover:translate-x-0.5">
-                <ArrowRight className="h-4 w-4" strokeWidth={2} />
+              <span className="flex h-7 w-7 items-center justify-center rounded-[7px] bg-neutral-900 text-white transition-transform group-hover:translate-x-0.5">
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
               </span>
             </Link>
           </div>
@@ -132,18 +134,13 @@ export function Hero() {
       <div className="relative z-20 flex flex-1 flex-col items-center justify-center px-5 pb-24 text-center">
         <h1
           data-reveal
-          className="max-w-5xl text-balance font-display text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
+          className="max-w-4xl text-balance font-display text-[2rem] font-medium leading-[1.08] tracking-tight sm:text-4xl lg:text-5xl"
         >
           {t("hero.title")}
         </h1>
-        <p data-reveal className="mt-8 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">
+        <p data-reveal className="mt-6 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base">
           {t("hero.lead2")}
         </p>
-      </div>
-
-      {/* Theme toggle discret en bas, hors du flux du hero media. */}
-      <div className="relative z-20 flex justify-center pb-6 [&_[role=radiogroup]]:border-white/20 [&_[role=radiogroup]]:bg-white/5 [&_button[aria-checked=true]]:bg-white [&_button[aria-checked=true]]:text-neutral-900 [&_button[aria-checked=false]]:text-white/60 [&_button[aria-checked=false]:hover]:text-white">
-        <ThemeToggle />
       </div>
     </section>
   );
