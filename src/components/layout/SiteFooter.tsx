@@ -4,6 +4,7 @@ import { ArrowUp } from "lucide-react";
 import { useLang } from "@/i18n/lang";
 import { LANGS } from "@/i18n/dictionary";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { LiquidGlassButton } from "@/components/ui/apple-tahoe-liquid-glass-button";
 import { cn } from "@/lib/utils";
 
 /**
@@ -43,8 +44,8 @@ export function SiteFooter() {
   return (
     <div className="px-3 pb-3 md:px-6 md:pb-6">
       <footer className="relative overflow-hidden rounded-3xl bg-foreground text-background">
-        <div className="relative mx-auto max-w-6xl px-6 pt-16 md:px-10 md:pt-20">
-          <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+        <div className="relative mx-auto max-w-6xl px-6 pt-10 md:px-10 md:pt-12">
+          <div className="grid gap-8 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-5">
               <img
                 src="/imgs/logos/lrsia-sans-fond.png"
@@ -86,7 +87,7 @@ export function SiteFooter() {
           </div>
 
           {/* Ligne du bas : credit, langue, theme, retour en haut. */}
-          <div className="mt-16 flex flex-col-reverse items-center justify-between gap-6 border-t border-background/10 pt-8 md:flex-row">
+          <div className="mt-8 flex flex-col-reverse items-center justify-between gap-6 border-t border-background/10 pt-6 md:flex-row">
             <p className="text-sm text-background/60">
               &copy; {new Date().getFullYear()} LRSIA, Ratheil Research Team.
             </p>
@@ -123,15 +124,17 @@ export function SiteFooter() {
 /* -------------------------------------------------------------------------- */
 
 function BackToTop({ label }: { label: string }) {
+  // Bouton d'action secondaire : rendu "liquid glass" (le deuxieme bouton
+  // fourni). Padding reduit pour un bouton flottant compact.
   return (
-    <button
+    <LiquidGlassButton
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label={label}
-      className="group inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-background/15 bg-background/[0.04] text-background/80 shadow-[0_3px_0_0.5px_hsl(var(--background)/0.2)] transition-all duration-200 hover:translate-y-[2px] hover:bg-background/[0.08] hover:text-background hover:shadow-[0_1px_0_0.5px_hsl(var(--background)/0.2)]"
+      className="!px-4 !py-3.5"
     >
-      <ArrowUp className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" strokeWidth={2} />
-    </button>
+      <ArrowUp className="h-5 w-5" strokeWidth={2.2} />
+    </LiquidGlassButton>
   );
 }
 
@@ -161,17 +164,17 @@ function TorchWordmark({ word }: { word: string }) {
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className="relative mt-10 w-full select-none overflow-hidden"
+      className="relative mt-6 w-full select-none overflow-hidden"
       aria-hidden
     >
       {/* Couche basse : presence constante, tres discrete. */}
-      <p className="whitespace-nowrap text-center font-display text-[26vw] font-bold leading-[0.8] tracking-tighter text-background/[0.07]">
+      <p className="whitespace-nowrap text-center font-display text-[15vw] font-bold leading-[0.78] tracking-tighter text-background/[0.07]">
         {base}
       </p>
       {/* Couche haute : revelee par la torche. */}
       <p
         className={cn(
-          "absolute inset-0 whitespace-nowrap text-center font-display text-[26vw] font-bold leading-[0.8] tracking-tighter text-background transition-opacity duration-300",
+          "absolute inset-0 whitespace-nowrap text-center font-display text-[15vw] font-bold leading-[0.78] tracking-tighter text-background transition-opacity duration-300",
           pos.active ? "opacity-100" : "opacity-0",
         )}
         style={{
