@@ -51,9 +51,10 @@ export function Hero() {
     >
       {/* -------- Fond video + grain -------- */}
       <video
-        // Flou tres leger (adoucit le fond, garde les textes lisibles sans
-        // faire ramer). scale-[1.03] couvre le halo transparent du flou.
-        className="absolute inset-0 h-full w-full scale-[1.03] object-cover blur-[1px]"
+        // Pas de filtre CSS sur la video : flouter une video en continu coute
+        // cher au GPU et fait ramer. La lisibilite est assuree par le voile
+        // sombre ci-dessous et le grain, qui ne coutent presque rien.
+        className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         muted
         loop
@@ -63,8 +64,9 @@ export function Hero() {
         {/* Video de fond, recompressee (~3 Mo). Remplacable aux memes noms. */}
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
-      {/* Voile sombre : lisibilite du texte sur la video, sans couleur ajoutee. */}
-      <div className="absolute inset-0 bg-black/35" aria-hidden="true" />
+      {/* Voile sombre : lisibilite du texte sur la video, sans couleur ajoutee.
+          Un peu plus dense depuis qu'on ne floute plus la video. */}
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
       {/* Grain fin par-dessus la video. */}
       <div className="hero-grain absolute inset-0 opacity-[0.5]" aria-hidden="true" />
 

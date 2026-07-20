@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
 import { useLang } from "@/i18n/lang";
@@ -60,8 +60,8 @@ export function SiteFooter() {
                   : "Ratheil Research Team, LRSIA, IFRI, University of Abomey-Calavi, Benin."}
               </p>
               <div className="mt-5 flex items-center gap-4">
-                <img src="/imgs/logos/logoifri.png" alt="IFRI" width={40} height={40} className="h-8 w-auto opacity-90" />
-                <img src="/imgs/logos/logouac.png" alt="UAC" width={40} height={40} className="h-8 w-auto opacity-90" />
+                <img src="/imgs/logos/logoifri.png" alt="IFRI" width={52} height={52} className="h-11 w-auto opacity-90" />
+                <img src="/imgs/logos/logouac.png" alt="UAC" width={52} height={52} className="h-11 w-auto opacity-90" />
               </div>
             </div>
 
@@ -143,62 +143,43 @@ function BackToTop({ label }: { label: string }) {
 }
 
 /**
- * Wordmark geant avec effet torche, en SVG pour occuper EXACTEMENT toute la
- * largeur du footer. `textLength=1000` + `lengthAdjust=spacingAndGlyphs`
- * etire le mot pour remplir la viewBox, et `width=100%` la cale sur le footer.
- * Deux couches : la basse reste discrete, la haute (pleine opacite) n'apparait
- * que sous un halo radial qui suit la souris.
+ * Wordmark geant avec effet torche. Grand mais proportions NATURELLES (on
+ * n'etire pas les lettres). La couche haute est revelee par un halo radial qui
+ * suit la souris. Le halo est pose DIRECTEMENT sur le DOM via une ref, sans
+ * passer par un state : ainsi le footer ne se re-rend pas a chaque mouvement de
+ * souris, ce qui evite le lag ressenti.
  */
 function TorchWordmark({ word }: { word: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [pos, setPos] = useState({ x: -9999, y: -9999, active: false });
+  const topRef = useRef<HTMLParagraphElement>(null);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top, active: true });
+    const top = topRef.current;
+    if (!rect || !top) return;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const mask = `radial-gradient(circle 320px at ${x}px ${y}px, black 0%, black 32%, transparent 80%)`;
+    top.style.opacity = "1";
+    top.style.webkitMaskImage = mask;
+    top.style.maskImage = mask;
   };
-  const onLeave = () => setPos((p) => ({ ...p, active: false, x: -9999, y: -9999 }));
+  const onLeave = () => {
+    if (topRef.current) topRef.current.style.opacity = "0";
+  };
 
-  const mask = `radial-gradient(circle 320px at ${pos.x}px ${pos.y}px, black 0%, black 32%, transparent 80%)`;
-
-  const text = (className: string) => (
-    <svg viewBox="0 0 1000 210" className={cn("block w-full", className)} preserveAspectRatio="xMidYMax meet" aria-hidden>
-      <text
-        x="0"
-        y="185"
-        textLength="1000"
-        lengthAdjust="spacingAndGlyphs"
-        fontFamily="Outfit, system-ui, sans-serif"
-        fontSize="210"
-        fontWeight={700}
-        letterSpacing="-6"
-        fill="currentColor"
-      >
-        {word}
-      </text>
-    </svg>
-  );
+  const base = "text-center font-display text-[12vw] font-bold leading-none tracking-[-0.04em]";
 
   return (
-    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave} className="relative mt-6 w-full select-none" aria-hidden>
-      {/* Couche basse : presence constante, tres discrete. */}
-      <div className="text-background/[0.06]">{text("")}</div>
-      {/* Couche haute : revelee par la torche. */}
-      <div
-        className={cn(
-          "absolute inset-0 text-background transition-opacity duration-300",
-          pos.active ? "opacity-100" : "opacity-0",
-        )}
-        style={{
-          WebkitMaskImage: mask,
-          maskImage: mask,
-          WebkitMaskRepeat: "no-repeat",
-          maskRepeat: "no-repeat",
-        }}
+    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave} className="relative mt-6 w-full select-none overflow-hidden" aria-hidden>
+      <p className={cn(base, "text-background/[0.06]")}>{word}</p>
+      <p
+        ref={topRef}
+        className={cn(base, "absolute inset-0 text-background opacity-0 transition-opacity duration-300")}
+        style={{ WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat" }}
       >
-        {text("")}
-      </div>
+        {word}
+      </p>
     </div>
   );
 }
