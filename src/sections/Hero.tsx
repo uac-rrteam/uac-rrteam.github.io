@@ -2,6 +2,9 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import { useLang } from "@/i18n/lang";
 import { LANGS, type TranslationKey } from "@/i18n/dictionary";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -38,6 +41,21 @@ export function Hero() {
     const ctx = gsap.context(() => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       gsap.from("[data-reveal]", { y: 16, opacity: 0, duration: 0.8, ease: "power2.out", stagger: 0.06 });
+
+      // Effet "clip" : le hero (epingle en sticky) retrecit et s'assombrit a
+      // mesure qu'on descend, comme un arriere-plan qui recule pendant que la
+      // section suivante remonte par-dessus.
+      gsap.to(rootRef.current, {
+        scale: 0.92,
+        filter: "brightness(0.7)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: rootRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     }, rootRef);
     return () => ctx.revert();
   }, []);

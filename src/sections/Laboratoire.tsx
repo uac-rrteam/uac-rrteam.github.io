@@ -41,8 +41,8 @@ export function Laboratoire() {
     >
       {/* Fiole animee (le labo), en haut a droite. */}
       <Flask className="pointer-events-none absolute right-6 top-10 h-24 w-24 text-border md:right-16 md:h-36 md:w-36" />
-      {/* Reseau de neurones anime (l'IA), en bas a gauche. */}
-      <NeuralNet className="pointer-events-none absolute -bottom-4 left-4 h-28 w-40 text-border md:left-12 md:h-40 md:w-56" />
+      {/* Tete de robot animee (l'IA), a gauche, poussee vers le haut. */}
+      <RobotHead className="pointer-events-none absolute left-4 top-24 h-24 w-24 text-border md:left-12 md:top-36 md:h-36 md:w-36" />
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <RevealText
@@ -86,56 +86,30 @@ function Flask({ className }: { className?: string }) {
   );
 }
 
-/** Reseau de neurones : les noeuds pulsent, un signal circule sur les liens. */
-function NeuralNet({ className }: { className?: string }) {
-  // Trois couches simples (2 -> 3 -> 1). Coordonnees a la main.
-  const input = [
-    { x: 12, y: 30 },
-    { x: 12, y: 70 },
-  ];
-  const hidden = [
-    { x: 50, y: 20 },
-    { x: 50, y: 50 },
-    { x: 50, y: 80 },
-  ];
-  const output = [{ x: 88, y: 50 }];
-
-  const edges: Array<[{ x: number; y: number }, { x: number; y: number }]> = [];
-  input.forEach((a) => hidden.forEach((b) => edges.push([a, b])));
-  hidden.forEach((a) => output.forEach((b) => edges.push([a, b])));
-
-  const nodes = [...input, ...hidden, ...output];
-
+/** Tete de robot : elle flotte, l'antenne et les yeux pulsent. Signe de l'IA. */
+function RobotHead({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden>
-      {edges.map(([a, b], i) => (
-        <line
-          key={i}
-          x1={a.x}
-          y1={a.y}
-          x2={b.x}
-          y2={b.y}
-          stroke="currentColor"
-          strokeWidth="0.8"
-          className="anim-flow"
-          style={{ animationDelay: `${(i % 5) * 0.15}s`, opacity: 0.5 }}
-        />
-      ))}
-      {nodes.map((n, i) => {
-        // Le noeud de sortie en rouge, un noeud cache en bleu : la charte.
-        const fill = i === nodes.length - 1 ? "hsl(var(--lrsia-red))" : i === 3 ? "hsl(var(--lrsia-blue))" : "currentColor";
-        return (
-          <circle
-            key={i}
-            cx={n.x}
-            cy={n.y}
-            r="3.4"
-            fill={fill}
-            className="anim-node"
-            style={{ animationDelay: `${i * 0.25}s` }}
-          />
-        );
-      })}
-    </svg>
+    <div className={className}>
+      <div className="anim-float h-full w-full">
+        <svg viewBox="0 0 64 64" fill="none" className="h-full w-full" aria-hidden>
+          {/* Antenne + dot qui pulse */}
+          <line x1="32" y1="10" x2="32" y2="18" stroke="currentColor" strokeWidth="2" />
+          <circle className="anim-node" cx="32" cy="8" r="2.4" fill="hsl(var(--lrsia-red))" />
+          {/* Tete */}
+          <rect x="14" y="18" width="36" height="30" rx="8" stroke="currentColor" strokeWidth="2" />
+          {/* Oreilles */}
+          <rect x="10" y="26" width="4" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+          <rect x="50" y="26" width="4" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+          {/* Yeux (bleus, pulsent en decale) */}
+          <circle className="anim-node" cx="25" cy="31" r="3.2" fill="hsl(var(--lrsia-blue))" />
+          <circle className="anim-node" style={{ animationDelay: "0.5s" }} cx="39" cy="31" r="3.2" fill="hsl(var(--lrsia-blue))" />
+          {/* Bouche grille */}
+          <line x1="24" y1="40" x2="40" y2="40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <line x1="27" y1="37" x2="27" y2="43" stroke="currentColor" strokeWidth="1.4" />
+          <line x1="32" y1="37" x2="32" y2="43" stroke="currentColor" strokeWidth="1.4" />
+          <line x1="37" y1="37" x2="37" y2="43" stroke="currentColor" strokeWidth="1.4" />
+        </svg>
+      </div>
+    </div>
   );
 }

@@ -23,9 +23,13 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 
+    // Mode "lerp" plutot que "duration" : le scroll suit le doigt/la molette
+    // de pres (lerp 0.1) au lieu de glisser longtemps apres l'arret. Plus
+    // smooth ET plus reactif, sans la sensation de lourdeur.
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1,
+      wheelMultiplier: 1.05,
+      smoothWheel: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
