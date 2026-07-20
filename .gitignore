@@ -1,1 +1,16 @@
-.idea
+.idea/
+.vscode/
+node_modules/
+dist/
+*.log
+.env
+.env.local
+.DS_Store
+
+# Memoire de travail interne, ne quitte JAMAIS le depot public
+CLAUDE.md
+AMELIORATIONS.md
+PATH.md
+.claude/
+.agents/
+skills_MD/

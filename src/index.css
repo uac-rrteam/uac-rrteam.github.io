@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/* Dark mode pilote par la classe .dark sur <html>, pas par prefers-color-scheme.
+   Sans cette ligne, Tailwind v4 ignore le choix de l'utilisateur. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   TOKENS, charte LRSIA
+
+   Les deux couleurs sont echantillonnees directement dans le logo
+   assets/imgs/logos/lrsia-sans-fond.png :
+     bleu   rgb(0, 94, 251)   -> 217 100% 49%
+     rouge  rgb(192, 19, 25)  -> 358 82% 41%   (le filet du "digital for developement")
+
+   Le bleu porte la marque. Le rouge est un ACCENT rare : filets, soulignements,
+   etat actif. Jamais un aplat, jamais un fond de section.
+
+   Le socle noir/blanc reprend celui d'e-freeshop (noir pur 4%, texte 98%),
+   avec la teinte de fond clair recalee sur le bleu LRSIA (217 au lieu de 229).
+
+   Aucune couleur hardcodee ailleurs que dans ce bloc.
+   ========================================================================== */
+
+:root {
+  --background: 217 36% 94%;
+  --foreground: 0 0% 7%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 7%;
+
+  --primary: 217 100% 49%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 217 12% 96%;
+  --secondary-foreground: 0 0% 7%;
+
+  --muted: 217 12% 96%;
+  --muted-foreground: 215 16% 42%;
+
+  --accent: 358 82% 41%;
+  --accent-foreground: 0 0% 100%;
+
+  --border: 217 12% 87%;
+  --input: 217 12% 87%;
+  --ring: 217 100% 49%;
+
+  --lrsia-blue: 217 100% 49%;
+  --lrsia-red: 358 82% 41%;
+}
+
+.dark {
+  /* Noir pur, pas de nuance bleue : meme socle qu'e-freeshop */
+  --background: 0 0% 4%;
+  --foreground: 0 0% 98%;
+
+  --card: 0 0% 6%;
+  --card-foreground: 0 0% 98%;
+
+  --primary: 217 100% 60%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 62%;
+
+  --accent: 358 78% 58%;
+  --accent-foreground: 0 0% 100%;
+
+  --border: 0 0% 14%;
+  --input: 0 0% 14%;
+  --ring: 217 100% 60%;
+
+  --lrsia-blue: 217 100% 60%;
+  --lrsia-red: 358 78% 58%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain de fond en mode sombre, repris d'e-freeshop.
+   Pose SOUS le contenu (z-index -1) : les surfaces opaques restent nettes. */
+.dark body {
+  isolation: isolate;
+}
+.dark body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 0.16 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 220px 220px;
+}
+
+/* Scrollbar fine, bleu LRSIA */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.6) transparent;
+}
+
+/* Le filet tricolore du logo : trois traits bleu/rouge/bleu.
+   Seul endroit ou le rouge et le bleu se touchent, comme dans le logo. */
+.filet-lrsia {
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--lrsia-blue)) 0 1px,
+    transparent 1px 2px,
+    hsl(var(--lrsia-red)) 2px 3px
+  );
+}
+
+/* Respect systematique de la preference d'accessibilite */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
