@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useLang } from "@/i18n/lang";
 import { LANGS, type TranslationKey } from "@/i18n/dictionary";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { GlassSurface } from "@/components/ui/glass-surface";
 import { cn } from "@/lib/utils";
 
 // Sous-menu du laboratoire : chaque entree a un titre et une description
@@ -102,8 +103,10 @@ export function Hero() {
 
           {/* Droite : theme, langue, action */}
           <div className="flex items-center justify-end gap-2.5">
-            <div className="hidden [&_[role=radiogroup]]:border-white/20 [&_[role=radiogroup]]:bg-white/5 [&_button[aria-checked=true]]:bg-white [&_button[aria-checked=true]]:text-neutral-900 [&_button[aria-checked=false]]:text-white/60 [&_button[aria-checked=false]:hover]:text-white sm:block">
-              <ThemeToggle />
+            <div className="hidden [&_[role=radiogroup]]:border-transparent [&_[role=radiogroup]]:bg-transparent [&_button[aria-checked=true]]:bg-white [&_button[aria-checked=true]]:text-neutral-900 [&_button[aria-checked=false]]:text-white/70 [&_button[aria-checked=false]:hover]:text-white sm:block">
+              <GlassSurface width={118} height={40} borderRadius={20} className="text-white">
+                <ThemeToggle />
+              </GlassSurface>
             </div>
             <div className="hidden items-center gap-1 text-sm sm:flex">
               {LANGS.map((code) => (

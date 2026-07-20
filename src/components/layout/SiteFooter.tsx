@@ -4,7 +4,7 @@ import { ArrowUp } from "lucide-react";
 import { useLang } from "@/i18n/lang";
 import { LANGS } from "@/i18n/dictionary";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { LiquidGlassButton } from "@/components/ui/apple-tahoe-liquid-glass-button";
+import { GlassSurface } from "@/components/ui/glass-surface";
 import { cn } from "@/lib/utils";
 
 /**
@@ -92,7 +92,7 @@ export function SiteFooter() {
               &copy; {new Date().getFullYear()} LRSIA, Ratheil Research Team.
             </p>
 
-            <div className="flex items-center gap-3 [&_[role=radiogroup]]:border-background/20 [&_[role=radiogroup]]:bg-transparent [&_button[aria-checked=true]]:bg-background [&_button[aria-checked=true]]:text-foreground [&_button[aria-checked=false]]:text-background/60 [&_button[aria-checked=false]:hover]:text-background">
+            <div className="flex items-center gap-3 [&_[role=radiogroup]]:border-transparent [&_[role=radiogroup]]:bg-transparent [&_button[aria-checked=true]]:bg-background [&_button[aria-checked=true]]:text-foreground [&_button[aria-checked=false]]:text-background/60 [&_button[aria-checked=false]:hover]:text-background">
               <div className="flex items-center gap-1 text-sm">
                 {LANGS.map((code) => (
                   <Link
@@ -108,7 +108,9 @@ export function SiteFooter() {
                   </Link>
                 ))}
               </div>
-              <ThemeToggle />
+              <GlassSurface width={118} height={40} borderRadius={20} className="text-background">
+                <ThemeToggle />
+              </GlassSurface>
               <BackToTop label={fr ? "Retour en haut" : "Back to top"} />
             </div>
           </div>
@@ -124,17 +126,19 @@ export function SiteFooter() {
 /* -------------------------------------------------------------------------- */
 
 function BackToTop({ label }: { label: string }) {
-  // Bouton d'action secondaire : rendu "liquid glass" (le deuxieme bouton
-  // fourni). Padding reduit pour un bouton flottant compact.
+  // Bouton en surface de verre (GlassSurface). Le bouton porte le clic, la
+  // GlassSurface porte l'apparence : elle refracte le contenu du footer.
   return (
-    <LiquidGlassButton
+    <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label={label}
-      className="!rounded-full !px-4 !py-3.5"
+      className="inline-flex transition-transform active:scale-95"
     >
-      <ArrowUp className="h-5 w-5" strokeWidth={2.2} />
-    </LiquidGlassButton>
+      <GlassSurface width={46} height={46} borderRadius={23} className="text-background">
+        <ArrowUp className="h-5 w-5" strokeWidth={2.2} />
+      </GlassSurface>
+    </button>
   );
 }
 
