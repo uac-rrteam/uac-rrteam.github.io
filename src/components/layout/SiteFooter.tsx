@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUp } from "lucide-react";
 import { useLang } from "@/i18n/lang";
@@ -143,11 +143,11 @@ function BackToTop({ label }: { label: string }) {
 }
 
 /**
- * Wordmark geant centre avec effet torche.
- * Deux couches du meme mot : la basse reste faiblement visible, la haute
- * (pleine opacite) n'apparait que sous un halo radial qui suit la souris.
- * Rendu en texte, pas en SVG : la marque LRSIA n'a pas de logotype vectoriel
- * pour ce mot, et Outfit en gras fait un lettrage propre.
+ * Wordmark geant avec effet torche, en SVG pour occuper EXACTEMENT toute la
+ * largeur du footer. `textLength=1000` + `lengthAdjust=spacingAndGlyphs`
+ * etire le mot pour remplir la viewBox, et `width=100%` la cale sur le footer.
+ * Deux couches : la basse reste discrete, la haute (pleine opacite) n'apparait
+ * que sous un halo radial qui suit la souris.
  */
 function TorchWordmark({ word }: { word: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -160,25 +160,34 @@ function TorchWordmark({ word }: { word: string }) {
   };
   const onLeave = () => setPos((p) => ({ ...p, active: false, x: -9999, y: -9999 }));
 
-  const mask = `radial-gradient(circle 300px at ${pos.x}px ${pos.y}px, black 0%, black 30%, transparent 80%)`;
-  const base: ReactNode = word;
+  const mask = `radial-gradient(circle 320px at ${pos.x}px ${pos.y}px, black 0%, black 32%, transparent 80%)`;
+
+  const text = (className: string) => (
+    <svg viewBox="0 0 1000 210" className={cn("block w-full", className)} preserveAspectRatio="xMidYMax meet" aria-hidden>
+      <text
+        x="0"
+        y="185"
+        textLength="1000"
+        lengthAdjust="spacingAndGlyphs"
+        fontFamily="Outfit, system-ui, sans-serif"
+        fontSize="210"
+        fontWeight={700}
+        letterSpacing="-6"
+        fill="currentColor"
+      >
+        {word}
+      </text>
+    </svg>
+  );
 
   return (
-    <div
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      className="relative mt-8 w-full select-none overflow-hidden"
-      aria-hidden
-    >
+    <div ref={ref} onMouseMove={onMove} onMouseLeave={onLeave} className="relative mt-6 w-full select-none" aria-hidden>
       {/* Couche basse : presence constante, tres discrete. */}
-      <p className="whitespace-nowrap text-center font-display text-[8.5vw] font-semibold leading-none tracking-[-0.02em] text-background/[0.06]">
-        {base}
-      </p>
+      <div className="text-background/[0.06]">{text("")}</div>
       {/* Couche haute : revelee par la torche. */}
-      <p
+      <div
         className={cn(
-          "absolute inset-0 whitespace-nowrap text-center font-display text-[8.5vw] font-semibold leading-none tracking-[-0.02em] text-background transition-opacity duration-300",
+          "absolute inset-0 text-background transition-opacity duration-300",
           pos.active ? "opacity-100" : "opacity-0",
         )}
         style={{
@@ -188,8 +197,8 @@ function TorchWordmark({ word }: { word: string }) {
           maskRepeat: "no-repeat",
         }}
       >
-        {base}
-      </p>
+        {text("")}
+      </div>
     </div>
   );
 }

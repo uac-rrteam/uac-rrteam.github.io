@@ -153,6 +153,32 @@ export function GlassSurface({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Effet d'eau au survol : on fait "onduler" la distorsion des trois canaux
+  // (base -> pic -> base) sur une courbe en sinus, comme une goutte qui
+  // deforme la surface. La CSS ajoute en plus un leger grossissement.
+  const rippleRaf = useRef<number | undefined>(undefined);
+  const runRipple = () => {
+    if (rippleRaf.current) cancelAnimationFrame(rippleRaf.current);
+    const duration = 620;
+    const start = performance.now();
+    const channels: Array<[typeof redChannelRef, number]> = [
+      [redChannelRef, redOffset],
+      [greenChannelRef, greenOffset],
+      [blueChannelRef, blueOffset],
+    ];
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / duration);
+      const wave = Math.sin(p * Math.PI); // 0 -> 1 -> 0
+      channels.forEach(([ref, offset]) => {
+        // Pic a 1,7x la distorsion de repos : l'ondulation se voit sans casser.
+        const scale = distortionScale * (1 + wave * 0.7) + offset;
+        ref.current?.setAttribute("scale", scale.toString());
+      });
+      if (p < 1) rippleRaf.current = requestAnimationFrame(tick);
+    };
+    rippleRaf.current = requestAnimationFrame(tick);
+  };
+
   const supportsSVGFilters = () => {
     if (typeof window === "undefined" || typeof document === "undefined") return false;
     const isWebkit = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
@@ -176,7 +202,8 @@ export function GlassSurface({
   return (
     <div
       ref={containerRef}
-      className={`glass-surface ${svgSupported ? "glass-surface--svg" : "glass-surface--fallback"} ${className}`}
+      onMouseEnter={runRipple}
+      className={`glass-surface glass-surface--interactive ${svgSupported ? "glass-surface--svg" : "glass-surface--fallback"} ${className}`}
       style={containerStyle}
     >
       <svg className="glass-surface__filter" xmlns="http://www.w3.org/2000/svg">

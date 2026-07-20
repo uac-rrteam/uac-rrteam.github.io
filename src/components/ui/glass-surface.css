@@ -7,6 +7,27 @@
   transition: opacity 0.26s ease-out;
 }
 
+/* Leger mouvement au survol, en plus de l'ondulation de la refraction :
+   la surface "respire" comme un bouton de verre qu'on touche. */
+.glass-surface--interactive {
+  transition:
+    opacity 0.26s ease-out,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.glass-surface--interactive:hover {
+  transform: scale(1.05);
+}
+.glass-surface--interactive:active {
+  transform: scale(0.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass-surface--interactive:hover,
+  .glass-surface--interactive:active {
+    transform: none;
+  }
+}
+
 .glass-surface__filter {
   width: 100%;
   height: 100%;

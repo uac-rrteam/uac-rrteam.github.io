@@ -51,10 +51,9 @@ export function Hero() {
     >
       {/* -------- Fond video + grain -------- */}
       <video
-        // scale-110 : le flou cree un halo transparent sur les bords, on
-        // agrandit un peu pour le couvrir. blur : adoucit le fond pour que le
-        // titre et les surfaces de verre restent lisibles.
-        className="absolute inset-0 h-full w-full scale-110 object-cover blur-[3px]"
+        // Flou tres leger (adoucit le fond, garde les textes lisibles sans
+        // faire ramer). scale-[1.03] couvre le halo transparent du flou.
+        className="absolute inset-0 h-full w-full scale-[1.03] object-cover blur-[1px]"
         autoPlay
         muted
         loop
