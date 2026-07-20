@@ -98,9 +98,9 @@ export function Hero() {
               <img
                 src="/imgs/logos/lrsia-sans-fond.png"
                 alt="Logo du LRSIA"
-                width={200}
-                height={73}
-                className="h-14 w-auto md:h-16"
+                width={240}
+                height={88}
+                className="h-16 w-auto md:h-20"
               />
             </Link>
           </div>

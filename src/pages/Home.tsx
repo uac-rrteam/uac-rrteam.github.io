@@ -9,8 +9,16 @@ import { Laboratoire } from "@/sections/Laboratoire";
 export function Home() {
   return (
     <>
-      <Hero />
-      <Laboratoire />
+      {/* Parallax de recouvrement facon reference : le hero reste epingle
+          (sticky) pendant que la section suivante remonte par-dessus. */}
+      <div className="relative">
+        <div className="sticky top-0 z-0">
+          <Hero />
+        </div>
+        <div className="relative z-10">
+          <Laboratoire />
+        </div>
+      </div>
     </>
   );
 }
