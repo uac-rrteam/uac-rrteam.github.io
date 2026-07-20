@@ -131,7 +131,7 @@ function BackToTop({ label }: { label: string }) {
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label={label}
-      className="!px-4 !py-3.5"
+      className="!rounded-full !px-4 !py-3.5"
     >
       <ArrowUp className="h-5 w-5" strokeWidth={2.2} />
     </LiquidGlassButton>

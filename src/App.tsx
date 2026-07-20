@@ -1,4 +1,4 @@
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { LangProvider } from "@/i18n/lang";
 import { SmoothScroll } from "@/providers/SmoothScroll";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -16,11 +16,16 @@ import { BlogPost } from "@/pages/BlogPost";
 
 /** Coquille commune a toutes les pages : la langue vient du prefixe d'URL. */
 function LangLayout() {
+  const { pathname } = useLocation();
+  // L'accueil porte sa propre nav plein ecran (disposition micro1). Les pages
+  // internes utilisent la barre standard.
+  const isHome = /^\/(fr|en)\/?$/.test(pathname);
+
   return (
     <LangProvider>
       <SmoothScroll>
         <ScrollToTop />
-        <SiteHeader />
+        {!isHome && <SiteHeader />}
         <main>
           <Outlet />
         </main>
