@@ -47,7 +47,7 @@ export function Laboratoire() {
           className="max-w-5xl text-balance font-display text-3xl font-semibold leading-[1.12] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
         />
 
-        <p className="mt-14 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+        <p className="mx-auto mt-16 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground sm:text-base">
           {fr
             ? "Unite de recherche de l'IFRI a l'Universite d'Abomey-Calavi, creee en 2017 et dirigee par le Professeur Eugene C. Ezin. Signataire de la Declaration de Montreal pour une intelligence artificielle responsable."
             : "A research unit of IFRI at the University of Abomey-Calavi, founded in 2017 and led by Professor Eugene C. Ezin. Signatory of the Montreal Declaration for a responsible artificial intelligence."}
