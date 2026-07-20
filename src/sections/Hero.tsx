@@ -42,7 +42,12 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={rootRef} className="relative flex min-h-screen flex-col overflow-hidden bg-neutral-950 text-white">
+    <section
+      ref={rootRef}
+      // Panneau arrondi en retrait, memes marges que le footer (m-3 / md:m-6)
+      // pour que les deux cartes soient alignees et "en synchro".
+      className="relative m-3 flex min-h-[calc(100vh-1.5rem)] flex-col overflow-hidden rounded-[1.5rem] bg-neutral-950 text-white md:m-6 md:min-h-[calc(100vh-3rem)] md:rounded-[2rem]"
+    >
       {/* -------- Fond video + grain -------- */}
       <video
         className="absolute inset-0 h-full w-full object-cover"
