@@ -1,16 +1,16 @@
 import { Hero } from "@/sections/Hero";
+import { Laboratoire } from "@/sections/Laboratoire";
 
 /**
- * Page d'accueil.
- * Pour l'instant : la section d'ouverture seule. Les sections a effet
- * (parallax de recouvrement, reveal de texte grise, vitrine des travaux,
- * projets horizontaux qui se chevauchent) viendront s'empiler ici, dans
- * l'ordre de la maquette de reference, une fois l'architecture validee.
+ * Page d'accueil, en cours de transformation en landing complete : toutes les
+ * sections (labo, equipe, recherche, evenements) s'empilent ici. Les Actualites
+ * (blog) restent sur leur propre page.
  */
 export function Home() {
   return (
     <>
       <Hero />
+      <Laboratoire />
     </>
   );
 }
