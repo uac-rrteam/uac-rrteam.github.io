@@ -42,8 +42,8 @@ export function SiteFooter() {
   ];
 
   return (
-    <div className="px-3 pb-3 md:px-6 md:pb-6">
-      <footer className="relative overflow-hidden rounded-3xl bg-foreground text-background">
+    <div className="px-2 pb-2">
+      <footer className="relative overflow-hidden rounded-[1.25rem] bg-foreground text-background">
         <div className="relative mx-auto max-w-6xl px-6 pt-10 md:px-10 md:pt-12">
           <div className="grid gap-8 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-5">

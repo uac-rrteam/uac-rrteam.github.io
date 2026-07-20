@@ -44,9 +44,9 @@ export function Hero() {
   return (
     <section
       ref={rootRef}
-      // Panneau arrondi en retrait, memes marges que le footer (m-3 / md:m-6)
-      // pour que les deux cartes soient alignees et "en synchro".
-      className="relative m-3 flex min-h-[calc(100vh-1.5rem)] flex-col overflow-hidden rounded-[1.5rem] bg-neutral-950 text-white md:m-6 md:min-h-[calc(100vh-3rem)] md:rounded-[2rem]"
+      // Panneau arrondi, cadre fin (m-2), memes marges que le footer pour que
+      // les deux cartes soient alignees et "en synchro".
+      className="relative m-2 flex min-h-[calc(100vh-1rem)] flex-col overflow-hidden rounded-[1.25rem] bg-neutral-950 text-white"
     >
       {/* -------- Fond video + grain -------- */}
       <video
@@ -93,9 +93,9 @@ export function Hero() {
               <img
                 src="/imgs/logos/lrsia-sans-fond.png"
                 alt="Logo du LRSIA"
-                width={150}
-                height={55}
-                className="h-11 w-auto"
+                width={200}
+                height={73}
+                className="h-14 w-auto md:h-16"
               />
             </Link>
           </div>
