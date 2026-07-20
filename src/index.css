@@ -243,6 +243,36 @@ html.theme-instant *::after {
   z-index: 2;
 }
 
+/* ==========================================================================
+   Animations des illustrations (fiole, reseau de neurones).
+   Legeres (transform/opacity uniquement). Coupees par prefers-reduced-motion
+   via la regle globale plus bas.
+   ========================================================================== */
+@keyframes lrsia-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes lrsia-bubble {
+  0% { transform: translateY(2px); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translateY(-12px); opacity: 0; }
+}
+@keyframes lrsia-node {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@keyframes lrsia-flow {
+  to { stroke-dashoffset: -14; }
+}
+
+.anim-float { animation: lrsia-float 5s ease-in-out infinite; }
+.anim-bubble { animation: lrsia-bubble 2.4s ease-in-out infinite; }
+.anim-node { animation: lrsia-node 2.4s ease-in-out infinite; }
+.anim-flow {
+  stroke-dasharray: 4 4;
+  animation: lrsia-flow 1.1s linear infinite;
+}
+
 /* Respect systematique de la preference d'accessibilite */
 @media (prefers-reduced-motion: reduce) {
   *,

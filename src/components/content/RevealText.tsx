@@ -39,12 +39,14 @@ export function RevealText({ tokens, className }: { tokens: Token[]; className?:
         {
           opacity: 1,
           ease: "none",
-          stagger: 0.4,
+          stagger: 0.5,
+          // Plage de scroll large (top 82% -> bottom 12%) : la revelation
+          // s'etale sur presque toute la traversee de la section, donc lente.
           scrollTrigger: {
             trigger: el,
-            start: "top 78%",
-            end: "bottom 62%",
-            scrub: 0.5,
+            start: "top 82%",
+            end: "bottom 12%",
+            scrub: 0.8,
           },
         },
       );

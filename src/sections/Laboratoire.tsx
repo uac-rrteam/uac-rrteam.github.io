@@ -26,8 +26,9 @@ const MANIFESTO_EN: Token[] = [
 
 /**
  * Premiere section de contenu sous le hero : le LRSIA en gros format.
- * Le titre-surtitre est volontairement absent (refuse). Le sens vient du texte
- * lui-meme, qui se revele au scroll, ponctue par la charte du logo.
+ * Le manifeste occupe toute la largeur, aligne a gauche (disposition de la
+ * reference), et se revele au scroll. Deux illustrations animees, sobres :
+ * la fiole (le labo) et un reseau de neurones (l'IA).
  */
 export function Laboratoire() {
   const { lang } = useLang();
@@ -36,15 +37,17 @@ export function Laboratoire() {
   return (
     <section
       id="laboratoire"
-      className="relative mx-2 mt-2 overflow-hidden rounded-[1.25rem] bg-card px-6 py-24 md:px-14 md:py-36"
+      className="relative mx-2 mt-2 overflow-hidden rounded-[1.25rem] bg-background px-6 py-24 md:px-14 md:py-36"
     >
-      {/* Fiole : signe du laboratoire, trait fin, liquide bleu, bulle rouge. */}
-      <FlaskGlyph className="pointer-events-none absolute right-6 top-10 h-24 w-24 text-border md:right-16 md:h-40 md:w-40" />
+      {/* Fiole animee (le labo), en haut a droite. */}
+      <Flask className="pointer-events-none absolute right-6 top-10 h-24 w-24 text-border md:right-16 md:h-36 md:w-36" />
+      {/* Reseau de neurones anime (l'IA), en bas a gauche. */}
+      <NeuralNet className="pointer-events-none absolute -bottom-4 left-4 h-28 w-40 text-border md:left-12 md:h-40 md:w-56" />
 
-      <div className="mx-auto max-w-6xl">
+      <div className="relative z-10 mx-auto max-w-6xl">
         <RevealText
           tokens={fr ? MANIFESTO_FR : MANIFESTO_EN}
-          className="max-w-5xl text-balance font-display text-3xl font-semibold leading-[1.12] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
+          className="font-display text-3xl font-semibold leading-[1.12] tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl"
         />
 
         <p className="mx-auto mt-16 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -57,25 +60,82 @@ export function Laboratoire() {
   );
 }
 
-/** Fiole de laboratoire en trait fin. Liquide bleu et bulle rouge : la charte. */
-function FlaskGlyph({ className }: { className?: string }) {
+/* -------------------------------------------------------------------------- */
+
+/** Fiole de laboratoire : elle flotte doucement, des bulles montent. */
+function Flask({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" fill="none" className={className} aria-hidden>
-      {/* Contour de la fiole */}
-      <path
-        d="M26 6h12M28 6v16L14 50a4 4 0 0 0 3.6 6h28.8A4 4 0 0 0 50 50L36 22V6"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinejoin="round"
-      />
-      {/* Liquide bleu */}
-      <path
-        d="M20.5 40 32 34l11.5 6 4.2 8.4A3 3 0 0 1 45 53H19a3 3 0 0 1-2.7-4.6L20.5 40Z"
-        fill="hsl(var(--lrsia-blue) / 0.9)"
-      />
-      {/* Bulles */}
-      <circle cx="30" cy="46" r="2" fill="hsl(var(--lrsia-red))" />
-      <circle cx="37" cy="49" r="1.4" fill="white" fillOpacity="0.9" />
+    <div className={className}>
+      <div className="anim-float h-full w-full">
+        <svg viewBox="0 0 64 64" fill="none" className="h-full w-full" aria-hidden>
+          <path
+            d="M26 6h12M28 6v16L14 50a4 4 0 0 0 3.6 6h28.8A4 4 0 0 0 50 50L36 22V6"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinejoin="round"
+          />
+          {/* Liquide bleu */}
+          <path d="M20.5 41 32 35l11.5 6 3.7 7.4A3 3 0 0 1 44.5 53h-25a3 3 0 0 1-2.7-4.6L20.5 41Z" fill="hsl(var(--lrsia-blue) / 0.9)" />
+          {/* Bulles qui montent (delais decales) */}
+          <circle className="anim-bubble" style={{ animationDelay: "0s" }} cx="28" cy="46" r="1.8" fill="hsl(var(--lrsia-red))" />
+          <circle className="anim-bubble" style={{ animationDelay: "0.8s" }} cx="34" cy="48" r="1.3" fill="white" fillOpacity="0.9" />
+          <circle className="anim-bubble" style={{ animationDelay: "1.5s" }} cx="31" cy="44" r="1.1" fill="hsl(var(--lrsia-blue))" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/** Reseau de neurones : les noeuds pulsent, un signal circule sur les liens. */
+function NeuralNet({ className }: { className?: string }) {
+  // Trois couches simples (2 -> 3 -> 1). Coordonnees a la main.
+  const input = [
+    { x: 12, y: 30 },
+    { x: 12, y: 70 },
+  ];
+  const hidden = [
+    { x: 50, y: 20 },
+    { x: 50, y: 50 },
+    { x: 50, y: 80 },
+  ];
+  const output = [{ x: 88, y: 50 }];
+
+  const edges: Array<[{ x: number; y: number }, { x: number; y: number }]> = [];
+  input.forEach((a) => hidden.forEach((b) => edges.push([a, b])));
+  hidden.forEach((a) => output.forEach((b) => edges.push([a, b])));
+
+  const nodes = [...input, ...hidden, ...output];
+
+  return (
+    <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden>
+      {edges.map(([a, b], i) => (
+        <line
+          key={i}
+          x1={a.x}
+          y1={a.y}
+          x2={b.x}
+          y2={b.y}
+          stroke="currentColor"
+          strokeWidth="0.8"
+          className="anim-flow"
+          style={{ animationDelay: `${(i % 5) * 0.15}s`, opacity: 0.5 }}
+        />
+      ))}
+      {nodes.map((n, i) => {
+        // Le noeud de sortie en rouge, un noeud cache en bleu : la charte.
+        const fill = i === nodes.length - 1 ? "hsl(var(--lrsia-red))" : i === 3 ? "hsl(var(--lrsia-blue))" : "currentColor";
+        return (
+          <circle
+            key={i}
+            cx={n.x}
+            cy={n.y}
+            r="3.4"
+            fill={fill}
+            className="anim-node"
+            style={{ animationDelay: `${i * 0.25}s` }}
+          />
+        );
+      })}
     </svg>
   );
 }
