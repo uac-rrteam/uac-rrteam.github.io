@@ -126,10 +126,17 @@ body {
   background-size: 220px 220px;
 }
 
-/* Scrollbar fine, bleu LRSIA */
+/* Scrollbar masquee sur tout le site : le defilement reste actif, la barre
+   n'est plus visible (demande Cephas). */
 html {
-  scrollbar-width: thin;
-  scrollbar-color: hsl(var(--primary) / 0.6) transparent;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge ancien */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chromium, Safari */
 }
 
 /* Le filet tricolore du logo : trois traits bleu/rouge/bleu.

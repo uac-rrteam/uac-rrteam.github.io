@@ -168,17 +168,17 @@ function TorchWordmark({ word }: { word: string }) {
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className="relative mt-6 w-full select-none overflow-hidden"
+      className="relative mt-8 w-full select-none overflow-hidden"
       aria-hidden
     >
       {/* Couche basse : presence constante, tres discrete. */}
-      <p className="whitespace-nowrap text-center font-display text-[15vw] font-bold leading-[0.78] tracking-tighter text-background/[0.07]">
+      <p className="whitespace-nowrap text-center font-display text-[8.5vw] font-semibold leading-none tracking-[-0.02em] text-background/[0.06]">
         {base}
       </p>
       {/* Couche haute : revelee par la torche. */}
       <p
         className={cn(
-          "absolute inset-0 whitespace-nowrap text-center font-display text-[15vw] font-bold leading-[0.78] tracking-tighter text-background transition-opacity duration-300",
+          "absolute inset-0 whitespace-nowrap text-center font-display text-[8.5vw] font-semibold leading-none tracking-[-0.02em] text-background transition-opacity duration-300",
           pos.active ? "opacity-100" : "opacity-0",
         )}
         style={{
