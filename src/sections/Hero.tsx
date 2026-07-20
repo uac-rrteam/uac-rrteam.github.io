@@ -42,12 +42,12 @@ export function Hero() {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       gsap.from("[data-reveal]", { y: 16, opacity: 0, duration: 0.8, ease: "power2.out", stagger: 0.06 });
 
-      // Effet "clip" : le hero (epingle en sticky) retrecit et s'assombrit a
-      // mesure qu'on descend, comme un arriere-plan qui recule pendant que la
-      // section suivante remonte par-dessus.
+      // Effet "clip" : le hero (epingle en sticky) retrecit un peu a mesure
+      // qu'on descend, comme un arriere-plan qui recule pendant que la section
+      // suivante remonte par-dessus. PAS d'assombrissement : la video garde
+      // ses couleurs (elle ne doit jamais virer au noir).
       gsap.to(rootRef.current, {
-        scale: 0.92,
-        filter: "brightness(0.7)",
+        scale: 0.94,
         ease: "none",
         scrollTrigger: {
           trigger: rootRef.current,

@@ -41,8 +41,9 @@ export function Laboratoire() {
     >
       {/* Fiole animee (le labo), en haut a droite. */}
       <Flask className="pointer-events-none absolute right-6 top-10 h-24 w-24 text-border md:right-16 md:h-36 md:w-36" />
-      {/* Tete de robot animee (l'IA), a gauche, poussee vers le haut. */}
-      <RobotHead className="pointer-events-none absolute left-4 top-24 h-24 w-24 text-border md:left-12 md:top-36 md:h-36 md:w-36" />
+      {/* Tete de robot animee (l'IA), en bas a gauche (un peu plus haut que
+          ne l'etait le reseau). */}
+      <RobotHead className="pointer-events-none absolute bottom-8 left-4 h-24 w-24 text-border md:bottom-14 md:left-12 md:h-36 md:w-36" />
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <RevealText
@@ -100,14 +101,11 @@ function RobotHead({ className }: { className?: string }) {
           {/* Oreilles */}
           <rect x="10" y="26" width="4" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
           <rect x="50" y="26" width="4" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
-          {/* Yeux (bleus, pulsent en decale) */}
-          <circle className="anim-node" cx="25" cy="31" r="3.2" fill="hsl(var(--lrsia-blue))" />
-          <circle className="anim-node" style={{ animationDelay: "0.5s" }} cx="39" cy="31" r="3.2" fill="hsl(var(--lrsia-blue))" />
-          {/* Bouche grille */}
-          <line x1="24" y1="40" x2="40" y2="40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <line x1="27" y1="37" x2="27" y2="43" stroke="currentColor" strokeWidth="1.4" />
-          <line x1="32" y1="37" x2="32" y2="43" stroke="currentColor" strokeWidth="1.4" />
-          <line x1="37" y1="37" x2="37" y2="43" stroke="currentColor" strokeWidth="1.4" />
+          {/* Yeux (bleus, arrondis, pulsent en decale) : plus doux */}
+          <circle className="anim-node" cx="25" cy="32" r="3.6" fill="hsl(var(--lrsia-blue))" />
+          <circle className="anim-node" style={{ animationDelay: "0.5s" }} cx="39" cy="32" r="3.6" fill="hsl(var(--lrsia-blue))" />
+          {/* Sourire simple */}
+          <path d="M26 40q6 5 12 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
         </svg>
       </div>
     </div>
