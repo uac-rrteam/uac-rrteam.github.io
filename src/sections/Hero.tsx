@@ -82,11 +82,11 @@ export function Hero() {
         {/* Video de fond, recompressee (~3 Mo). Remplacable aux memes noms. */}
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
-      {/* Voile sombre : lisibilite du texte sur la video, sans couleur ajoutee.
-          Un peu plus dense depuis qu'on ne floute plus la video. */}
-      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
-      {/* Grain fin par-dessus la video. */}
-      <div className="hero-grain absolute inset-0 opacity-[0.5]" aria-hidden="true" />
+      {/* Voile sombre leger : juste de quoi lire le texte, sans noircir la
+          video. */}
+      <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+      {/* Grain fin par-dessus la video, tres discret. */}
+      <div className="hero-grain absolute inset-0 opacity-30" aria-hidden="true" />
 
       {/* -------- Nav en surimpression -------- */}
       <header className="relative z-30 px-5 pt-6 sm:px-8">

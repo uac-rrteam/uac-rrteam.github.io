@@ -1,5 +1,6 @@
 import { Hero } from "@/sections/Hero";
 import { Laboratoire } from "@/sections/Laboratoire";
+import { Membres } from "@/sections/Membres";
 
 /**
  * Page d'accueil, en cours de transformation en landing complete : toutes les
@@ -19,6 +20,7 @@ export function Home() {
           <Laboratoire />
         </div>
       </div>
+      <Membres />
     </>
   );
 }
