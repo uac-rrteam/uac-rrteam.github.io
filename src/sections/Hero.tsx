@@ -41,21 +41,9 @@ export function Hero() {
     const ctx = gsap.context(() => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       gsap.from("[data-reveal]", { y: 16, opacity: 0, duration: 0.8, ease: "power2.out", stagger: 0.06 });
-
-      // Effet "clip" : le hero (epingle en sticky) retrecit un peu a mesure
-      // qu'on descend, comme un arriere-plan qui recule pendant que la section
-      // suivante remonte par-dessus. PAS d'assombrissement : la video garde
-      // ses couleurs (elle ne doit jamais virer au noir).
-      gsap.to(rootRef.current, {
-        scale: 0.94,
-        ease: "none",
-        scrollTrigger: {
-          trigger: rootRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
+      // Pas d'effet de scale sur le hero : le faire reculer revele son bord
+      // sombre, ce qui donnait ce "noir au scroll" indesirable. Le recouvrement
+      // vient de la section suivante (claire) qui remonte par-dessus.
     }, rootRef);
     return () => ctx.revert();
   }, []);

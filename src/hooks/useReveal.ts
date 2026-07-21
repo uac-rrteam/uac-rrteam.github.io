@@ -6,7 +6,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Revele au scroll les elements marques [data-reveal] dans le conteneur.
- * Base commune des entrees de section : montee douce + fondu, en cascade.
+ * Entree "lourde" facon agence : montee ample, fondu et leger flou qui se
+ * resorbe, sur une courbe a forte deceleration (power4.out). Chaque element se
+ * declenche a son entree dans le viewport, une seule fois.
  * Respecte prefers-reduced-motion (rien ne bouge, tout reste visible).
  */
 export function useReveal(scope: RefObject<HTMLElement | null>) {
@@ -19,11 +21,12 @@ export function useReveal(scope: RefObject<HTMLElement | null>) {
       const items = gsap.utils.toArray<HTMLElement>("[data-reveal]");
       items.forEach((item) => {
         gsap.from(item, {
-          y: 24,
+          y: 44,
           opacity: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: { trigger: item, start: "top 85%" },
+          filter: "blur(6px)",
+          duration: 1,
+          ease: "power4.out",
+          scrollTrigger: { trigger: item, start: "top 88%", once: true },
         });
       });
     }, root);
