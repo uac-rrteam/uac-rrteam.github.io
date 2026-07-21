@@ -16,6 +16,7 @@ interface Member {
   linkLabel?: string;
   lead?: boolean;
   accent: "blue" | "red";
+  photo?: string;
 }
 
 const MEMBERS: Member[] = [
@@ -27,6 +28,7 @@ const MEMBERS: Member[] = [
     linkLabel: "ratheil.info",
     lead: true,
     accent: "blue",
+    photo: "/imgs/people/vinasetan-ratheil.png",
   },
   {
     name: "Marie Melene TONOU",
@@ -167,12 +169,22 @@ function MemberCard({ member, index, fr }: { member: Member; index: number; fr: 
         </div>
 
         <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
-          <div
-            className={`flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-secondary text-2xl font-semibold ring-2 ${ring}`}
-            aria-hidden
-          >
-            {initials}
-          </div>
+          {member.photo ? (
+            <img
+              src={member.photo}
+              alt={`Portrait de ${member.name}`}
+              width={80}
+              height={80}
+              className={`h-20 w-20 shrink-0 rounded-full object-cover ring-2 ${ring}`}
+            />
+          ) : (
+            <div
+              className={`flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-secondary text-2xl font-semibold ring-2 ${ring}`}
+              aria-hidden
+            >
+              {initials}
+            </div>
+          )}
           <div>
             <h3 className="font-display text-2xl font-semibold tracking-tight md:text-4xl">{member.name}</h3>
             <p className="mt-2 text-muted-foreground">{fr ? member.roleFr : member.roleEn}</p>

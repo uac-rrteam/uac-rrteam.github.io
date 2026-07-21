@@ -60,8 +60,8 @@ export function SiteFooter() {
                   : "Ratheil Research Team, LRSIA, IFRI, University of Abomey-Calavi, Benin."}
               </p>
               <div className="mt-5 flex items-center gap-4">
-                <img src="/imgs/logos/logoifri.png" alt="IFRI" width={52} height={52} className="h-11 w-auto opacity-90" />
-                <img src="/imgs/logos/logouac.png" alt="UAC" width={52} height={52} className="h-11 w-auto opacity-90" />
+                <img src="/imgs/logos/logoifri.png" alt="IFRI" width={68} height={68} className="h-16 w-auto opacity-90" />
+                <img src="/imgs/logos/logouac.png" alt="UAC" width={68} height={68} className="h-16 w-auto opacity-90" />
               </div>
             </div>
 
