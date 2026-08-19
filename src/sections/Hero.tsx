@@ -51,30 +51,13 @@ export function Hero() {
   return (
     <section
       ref={rootRef}
-      // Panneau arrondi, cadre fin (m-2), memes marges que le footer pour que
-      // les deux cartes soient alignees et "en synchro".
+      id="hero"
+      // Panneau arrondi, cadre fin (m-2), memes marges que le footer.
+      // Scene sombre FIXE (plus de video) : fond quasi noir + grain discret.
       className="relative m-2 flex min-h-[calc(100vh-1rem)] flex-col overflow-hidden rounded-[1.25rem] bg-neutral-950 text-white"
     >
-      {/* -------- Fond video + grain -------- */}
-      <video
-        // Pas de filtre CSS sur la video : flouter une video en continu coute
-        // cher au GPU et fait ramer. La lisibilite est assuree par le voile
-        // sombre ci-dessous et le grain, qui ne coutent presque rien.
-        className="absolute inset-0 h-full w-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster="/imgs/hero-poster.jpg"
-      >
-        {/* Video de fond, recompressee (~3 Mo). Remplacable aux memes noms. */}
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
-      {/* Voile sombre leger : juste de quoi lire le texte, sans noircir la
-          video. */}
-      <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
-      {/* Grain fin par-dessus la video, tres discret. */}
-      <div className="hero-grain absolute inset-0 opacity-30" aria-hidden="true" />
+      {/* Grain tres discret pour la matiere, plus de media. */}
+      <div className="hero-grain pointer-events-none absolute inset-0 opacity-[0.12]" aria-hidden="true" />
 
       {/* -------- Nav en surimpression -------- */}
       <header className="relative z-30 px-5 pt-6 sm:px-8">
