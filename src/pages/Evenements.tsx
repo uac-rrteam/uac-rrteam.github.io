@@ -76,7 +76,7 @@ export function Evenements() {
   );
 
   return (
-    <div className="evt" ref={zoneRef}>
+    <div className="evt" ref={zoneRef} key={lang}>
       <header className="evt-entete">
         <h1 className="evt-titre">
           <span className="evt-ligne">

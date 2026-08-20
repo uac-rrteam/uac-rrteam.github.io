@@ -68,7 +68,7 @@ export function Recherche() {
   }
 
   return (
-    <div className="rch" ref={zoneRef}>
+    <div className="rch" ref={zoneRef} key={lang}>
       <header className="rch-entete">
         <h1 className="rch-titre">
           <span className="rch-ligne">

@@ -256,12 +256,11 @@ export function lignesQuiRemontent({ blocs, racine }: Reglage) {
     window.removeEventListener("resize", auRedimensionnement);
     window.removeEventListener("scroll", auDefilement);
     for (const lot of lots) lot.kill();
-    // On rend aux blocs leur texte : sans cela, un remontage en développement
-    // redécouperait des masques déjà découpés.
-    for (const cible of cibles) {
-      for (const feuille of cible.querySelectorAll<HTMLElement>("[data-texte-origine]")) {
-        feuille.replaceChildren(document.createTextNode(feuille.dataset.texteOrigine ?? ""));
-      }
-    }
+    /* On ne remet pas le texte d'origine dans les blocs, et c'est important.
+       React met le DOM à jour AVANT de jouer le nettoyage de l'effet
+       précédent : restaurer ici réécrivait l'ancien texte par-dessus le
+       nouveau, et un bloc de la page suivante gardait le contenu de la
+       précédente. Un redécoupage part de `data-texte-origine`, donc rien ne
+       se perd. */
   };
 }

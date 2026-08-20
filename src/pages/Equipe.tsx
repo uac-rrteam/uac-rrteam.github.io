@@ -76,7 +76,7 @@ export function Equipe() {
   );
 
   return (
-    <div className="equ" ref={zoneRef}>
+    <div className="equ" ref={zoneRef} key={lang}>
       <header className="equ-entete">
         <h1 className="equ-titre">
           <span className="equ-ligne">

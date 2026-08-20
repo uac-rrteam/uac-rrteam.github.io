@@ -121,7 +121,7 @@ export function Profil() {
   const morceaux = membre.nom.split(" ");
 
   return (
-    <article className="pro" ref={zoneRef}>
+    <article className="pro" ref={zoneRef} key={`${lang}-${slug}`}>
       <header className="pro-ouverture">
         <Link className="pro-retour pro-jour" to={path("/people")}>
           {dit.retour}

@@ -51,7 +51,7 @@ export function Actualites() {
   );
 
   return (
-    <div className="act" ref={zoneRef}>
+    <div className="act" ref={zoneRef} key={lang}>
       <header className="act-entete">
         <h1 className="act-titre">
           <span className="act-ligne">
