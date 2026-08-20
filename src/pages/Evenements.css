@@ -110,6 +110,12 @@
   border-color: hsl(var(--miel));
 }
 
+.evt-rang {
+  margin: 0 0 0.5rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9375rem;
+}
+
 /* La date en grand : c'est ce qu'on vient chercher. */
 .evt-quand {
   margin: 0;

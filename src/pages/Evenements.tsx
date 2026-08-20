@@ -109,6 +109,7 @@ export function Evenements() {
           </div>
 
           <aside className="evt-affiche-cote">
+            <p className="evt-rang evt-leve">{dit.rang}</p>
             <p className="evt-quand evt-leve">{dit.dates}</p>
             <p className="evt-ou evt-leve">{dit.lieu}</p>
             <LogoTrace alt="Logo du Benin Workshop on Artificial Intelligence" />

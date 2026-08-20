@@ -64,13 +64,8 @@ const fr: Contenu = {
       valeur: "5",
       libelle: "Le Benin Workshop on Artificial Intelligence compte",
       precision: "déjà",
-      note: "Éditions, la cinquième du 23 au 27 novembre 2026 à l'UAC",
+      note: "Éditions, la cinquième du 17 au 21 novembre 2025 à l'UAC",
       illustration: "sigle",
-      embleme: {
-        fichier: "logobwai",
-        alt: "Logo du Benin Workshop on Artificial Intelligence",
-        vers: "https://bwai-ifri-uac.bj/",
-      },
     },
     {
       valeur: "2025",
@@ -176,13 +171,8 @@ const en: Contenu = {
       valeur: "5",
       libelle: "The Benin Workshop on Artificial Intelligence already counts",
       precision: "",
-      note: "Editions, the fifth from 23 to 27 November 2026 at UAC",
+      note: "Editions, the fifth from 17 to 21 November 2025 at UAC",
       illustration: "sigle",
-      embleme: {
-        fichier: "logobwai",
-        alt: "Benin Workshop on Artificial Intelligence logo",
-        vers: "https://bwai-ifri-uac.bj/",
-      },
     },
     {
       valeur: "2025",

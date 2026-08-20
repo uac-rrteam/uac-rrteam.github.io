@@ -53,6 +53,10 @@ export interface Evenements {
 
   afficheTitre: string;
   edition: string;
+  /* Le rang de l'édition. Le site du BWAI se contredit : son bandeau annonce
+     la cinquième, son texte la sixième. C'est le second qui a raison, la
+     cinquième s'étant tenue du 17 au 21 novembre 2025 (archive du dépôt). */
+  rang: string;
   dates: string;
   lieu: string;
   presentation: string[];
@@ -93,6 +97,7 @@ const fr: Evenements = {
 
   afficheTitre: "Le prochain rendez-vous",
   edition: "Benin Workshop on Artificial Intelligence",
+  rang: "Sixième édition",
   dates: "23 au 27 novembre 2026",
   lieu: "IFRI, campus d'Abomey-Calavi",
   presentation: [
@@ -244,6 +249,7 @@ const en: Evenements = {
 
   afficheTitre: "Next gathering",
   edition: "Benin Workshop on Artificial Intelligence",
+  rang: "Sixth edition",
   dates: "23 to 27 November 2026",
   lieu: "IFRI, Abomey-Calavi campus",
   presentation: [

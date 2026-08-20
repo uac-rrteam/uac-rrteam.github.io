@@ -1,5 +1,10 @@
 # Ratheil Research Team, UAC
 
+
+> **Pour publier une actualité**, il suffit de déposer un fichier dans
+> `content/actualites/` et de l'envoyer : la marche à suivre tient dans
+> [PUBLIER.md](PUBLIER.md), et rien d'autre n'est à installer.
+
 Site de présentation de l'équipe de recherche animée par le **Dr Vinasetan Ratheil Houndji** à l'Université d'Abomey-Calavi (UAC), Bénin.
 
 ## Stack technique

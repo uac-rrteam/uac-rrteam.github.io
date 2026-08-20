@@ -73,11 +73,54 @@
 }
 
 .act-dit {
-  margin: 0;
   max-width: 62ch;
   color: hsl(var(--muted-foreground));
   font-size: 1.0625rem;
   line-height: 1.7;
+}
+
+/* Ce que le Markdown peut produire dans le corps d'une nouvelle. */
+.act-dit p {
+  margin: 0 0 0.9em;
+}
+
+.act-dit p:last-child {
+  margin-bottom: 0;
+}
+
+.act-dit strong {
+  color: hsl(var(--foreground));
+  font-weight: 400;
+}
+
+.act-dit ul,
+.act-dit ol {
+  margin: 0 0 0.9em;
+  padding-left: 1.2rem;
+}
+
+.act-dit li {
+  margin-bottom: 0.3em;
+}
+
+.act-dit a {
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  border-bottom: 1px solid hsl(var(--miel) / 0.6);
+}
+
+.act-dit h2,
+.act-dit h3 {
+  margin: 1.2em 0 0.4em;
+  color: hsl(var(--foreground));
+  font-size: 1.0625rem;
+  font-weight: 400;
+}
+
+.act-dit blockquote {
+  margin: 0 0 0.9em;
+  padding-left: 1rem;
+  border-left: 2px solid hsl(var(--miel) / 0.5);
 }
 
 .act-liens {
