@@ -1,0 +1,38 @@
+/* Le tissu. Tout ce qui est structure reste dans le gris os du site ; le miel
+   est reserve a ce qui s'allume, corps cellulaires et impulsions. C'est le
+   meme contraste que sur les images de synthese du genre, froid partout et
+   chaud aux points actifs, mais obtenu au trait plutot qu'au rendu. */
+
+.tis {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tis-dendrite {
+  stroke: hsl(var(--foreground));
+  stroke-linecap: round;
+  fill: none;
+}
+
+.tis-axone {
+  stroke: hsl(var(--foreground) / 0.22);
+  stroke-width: 1.1;
+  fill: none;
+}
+
+/* L'impulsion : un segment court qui glisse le long de l'axone. */
+.tis-impulsion {
+  stroke: hsl(var(--miel) / 0.85);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.tis-soma {
+  fill: hsl(var(--miel) / 0.92);
+}
+
+.tis-halo {
+  pointer-events: none;
+}

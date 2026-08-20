@@ -1,7 +1,7 @@
 {
-  "name": "lrsia-ratheil-research-team.github.io",
+  "name": "uac-rrteam.github.io",
   "version": "1.0.0",
-  "description": "",
+  "description": "Site de la Ratheil Research Team, LRSIA, IFRI, Universite d'Abomey-Calavi",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LRSIA-Ratheil-Research-Team/LRSIA-Ratheil-Research-Team.github.io.git"
+    "url": "git+https://github.com/uac-rrteam/uac-rrteam.github.io.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "AMOUSSOU Simeon Cephas",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/LRSIA-Ratheil-Research-Team/LRSIA-Ratheil-Research-Team.github.io/issues"
+    "url": "https://github.com/uac-rrteam/uac-rrteam.github.io/issues"
   },
-  "homepage": "https://github.com/LRSIA-Ratheil-Research-Team/LRSIA-Ratheil-Research-Team.github.io#readme",
+  "homepage": "https://uac-rrteam.github.io/",
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "clsx": "^2.1.1",

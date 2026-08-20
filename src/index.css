@@ -5,75 +5,82 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ==========================================================================
-   TOKENS, charte LRSIA
+   PALETTE, direction artistique de la Ratheil Research Team
+   Voir DIRECTION-ARTISTIQUE.md, section 7.
 
-   Les deux couleurs sont echantillonnees directement dans le logo
-   assets/imgs/logos/lrsia-sans-fond.png :
-     bleu   rgb(0, 94, 251)   -> 217 100% 49%
-     rouge  rgb(192, 19, 25)  -> 358 82% 41%   (le filet du "digital for developement")
+   Elle sort du ratel et de rien d'autre : le noir de son corps donne le fond
+   sombre, le gris os de son manteau donne le fond clair, et le miel qu'il
+   chasse donne l'accent. Mellivora veut dire mangeur de miel.
 
-   Le bleu porte la marque. Le rouge est un ACCENT rare : filets, soulignements,
-   etat actif. Jamais un aplat, jamais un fond de section.
+   Le fond sombre est un bleu tres profond, pas un noir neutre : c'est ce qui
+   permet d'y ramener toutes les photographies par etalonnage, et c'est sur un
+   bleu nuit que le miel ressort, jamais sur un gris.
 
-   Le socle noir/blanc reprend celui d'e-freeshop (noir pur 4%, texte 98%),
-   avec la teinte de fond clair recalee sur le bleu LRSIA (217 au lieu de 229).
+   Les logos LRSIA, IFRI et UAC restent en signature institutionnelle mais ne
+   dictent plus la palette. Le socle herite d'e-freeshop est remplace.
 
-   Aucune couleur hardcodee ailleurs que dans ce bloc.
+   Aucune couleur en dur ailleurs que dans ce bloc.
    ========================================================================== */
 
-:root {
-  --background: 217 36% 94%;
-  --foreground: 0 0% 7%;
-
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 7%;
-
-  --primary: 217 100% 49%;
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 217 12% 96%;
-  --secondary-foreground: 0 0% 7%;
-
-  --muted: 217 12% 96%;
-  --muted-foreground: 215 16% 42%;
-
-  --accent: 358 82% 41%;
-  --accent-foreground: 0 0% 100%;
-
-  --border: 217 12% 87%;
-  --input: 217 12% 87%;
-  --ring: 217 100% 49%;
-
-  --lrsia-blue: 217 100% 49%;
-  --lrsia-red: 358 82% 41%;
+@font-face {
+  font-family: "Wura mi";
+  src: url("/fonts/wuramibygemmas/WuraMiByGemmaS-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Wura mi";
+  src: url("/fonts/wuramibygemmas/WuraMiByGemmaS.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Wura mi";
+  src: url("/fonts/wuramibygemmas/WuraMiByGemmaS-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
 }
 
+/* Un seul fond pour tout le site, le bleu nuit du corps du ratel. Pas de
+   bascule clair/sombre : la plateforme de référence n'en a pas non plus, et
+   c'est ce fond unique qui permet de ramener tous les visuels à une seule
+   ambiance. Les surfaces claires ne sont pas un thème, ce sont les panneaux
+   posés dessus. */
+:root,
 .dark {
-  /* Noir pur, pas de nuance bleue : meme socle qu'e-freeshop */
-  --background: 0 0% 4%;
-  --foreground: 0 0% 98%;
+  --background: 225 47% 6%;
+  --foreground: 220 7% 92%;
 
-  --card: 0 0% 6%;
-  --card-foreground: 0 0% 98%;
+  /* Le gris os du manteau : la matière des panneaux. */
+  --panneau: 90 4% 91%;
+  --panneau-encre: 225 33% 7%;
 
-  --primary: 217 100% 60%;
-  --primary-foreground: 0 0% 100%;
+  --card: 228 42% 12%;
+  --card-foreground: 220 7% 92%;
 
-  --secondary: 0 0% 10%;
-  --secondary-foreground: 0 0% 98%;
+  --primary: 220 7% 92%;
+  --primary-foreground: 225 47% 6%;
 
-  --muted: 0 0% 12%;
-  --muted-foreground: 0 0% 62%;
+  --secondary: 228 42% 12%;
+  --secondary-foreground: 220 7% 92%;
 
-  --accent: 358 78% 58%;
-  --accent-foreground: 0 0% 100%;
+  --muted: 228 42% 12%;
+  --muted-foreground: 220 7% 62%;
 
-  --border: 0 0% 14%;
-  --input: 0 0% 14%;
-  --ring: 217 100% 60%;
+  /* Sur ce fond le miel donne 8,5:1 : il peut porter du texte. */
+  --accent: 35 80% 57%;
+  --accent-foreground: 225 47% 6%;
+  --miel: 35 80% 57%;
+  --miel-encre: 35 80% 57%;
 
-  --lrsia-blue: 217 100% 60%;
-  --lrsia-red: 358 78% 58%;
+  /* Etats du vocabulaire visuel. Un etat n'est jamais signale par l'accent :
+     le miel dit la marque, ces couleurs disent la resolution. */
+  --assigne: 160 36% 48%;
+  --elague: 4 65% 65%;
+
+  --border: 228 36% 18%;
+  --input: 228 36% 18%;
+  --ring: 35 80% 57%;
 }
 
 @theme inline {
@@ -92,9 +99,16 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-panneau: hsl(var(--panneau));
+  --color-panneau-encre: hsl(var(--panneau-encre));
+  --color-miel: hsl(var(--miel));
+  --color-miel-encre: hsl(var(--miel-encre));
+  --color-assigne: hsl(var(--assigne));
+  --color-elague: hsl(var(--elague));
 
-  --font-sans: "Outfit", system-ui, sans-serif;
-  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Wura mi", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Wura mi", "Segoe UI", system-ui, sans-serif;
+  --font-lecture: "Newsreader", Georgia, "Times New Roman", serif;
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -104,6 +118,13 @@
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* La marge du site. Elle vaut de chaque cote la meme chose, comme sur le site
+   de reference, mais elle est assez large en grand ecran pour que le repere de
+   defilement tienne dans sa gouttiere sans jamais toucher le texte. */
+:root {
+  --marge: clamp(1.25rem, 4vw, 3.5rem);
+}
+
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
@@ -111,12 +132,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Grain de fond en mode sombre, repris d'e-freeshop.
-   Pose SOUS le contenu (z-index -1) : les surfaces opaques restent nettes. */
-.dark body {
+/* Grain de fond, posé SOUS le contenu (z-index -1) : les surfaces opaques
+   restent nettes. */
+body {
   isolation: isolate;
 }
-.dark body::before {
+body::before {
   content: "";
   position: fixed;
   inset: 0;
@@ -281,5 +302,64 @@ html.theme-instant *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* L'apparition des textes : chaque ligne remonte de sous son masque. Les deux
+   règles vivent ici et non dans une feuille de page, parce que le découpage
+   est posé par le même module sur toutes les pages. */
+lqr-masque {
+  display: block;
+  overflow: clip;
+  /* Le masque suit la boîte de ligne, qui finit au-dessus des jambages : on
+     rallonge par le bas et on rattrape par une marge négative, sinon les
+     descendantes du français sont coupées net. */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+lqr-ligne {
+  display: block;
+  will-change: transform;
+}
+
+/* Le mot n'existe que le temps d'une mesure, mais il doit rester en ligne :
+   c'est sa position qui dit où le navigateur a coupé. */
+lqr-mot {
+  display: inline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  lqr-ligne {
+    transform: none;
+    will-change: auto;
+  }
+}
+
+/* Le survol d'une image : un léger retrait, jamais un agrandissement.
+   L'image est posée un peu plus grande que son cadre et revient à sa taille
+   quand on la survole ; l'inverse découvrirait le fond du cadre en se
+   réduisant. Le cadre garde la main sur le déplacement au défilement, l'image
+   sur l'échelle : deux éléments, donc deux transformations qui ne se
+   chassent pas. */
+.zoom-doux {
+  overflow: hidden;
+}
+
+.zoom-doux img {
+  transform: scale(1.06);
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.zoom-doux:hover img,
+.zoom-doux:focus-within img {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zoom-doux img {
+    transform: none;
+    transition: none;
   }
 }

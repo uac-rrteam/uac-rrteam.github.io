@@ -1,0 +1,152 @@
+/* Les chiffres. Un par écran : le plan derrière, le filet segmenté au-dessus
+   de la bande, la phrase coupée en deux de part et d'autre, et le nombre
+   énorme qui déborde sous la ligne. */
+
+.chf-scene {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--marge);
+}
+
+.chf-carte {
+  width: 100%;
+}
+
+/* Le plan tient l'écran entier, sous tout le reste. */
+.chf-plan {
+  position: absolute;
+  z-index: -1;
+  inset: clamp(3rem, 8vh, 6rem) var(--marge);
+}
+
+.chf-bande {
+  position: relative;
+}
+
+.chf-corps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 0.9rem;
+}
+
+.chf-gauche {
+  position: relative;
+  max-width: 34ch;
+}
+
+.chf-droite {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1rem, 2.5vw, 2.25rem);
+}
+
+.chf-dit {
+  margin: 0;
+  will-change: transform;
+}
+
+.chf-libelle,
+.chf-precision {
+  color: hsl(var(--foreground));
+  font-size: 1.0625rem;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.chf-precision {
+  padding-top: 0.1rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.chf-note {
+  margin-top: 0.7rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9375rem;
+  letter-spacing: 0.03em;
+  line-height: 1.55;
+}
+
+.chf-valeur {
+  display: flex;
+  margin: -0.12em 0 0;
+  font-size: clamp(4.5rem, 11vw, 11rem);
+  font-weight: 200;
+  /* Les nombres se succèdent au même endroit : sans chasse fixe, l'axe droit
+     bougerait d'un chiffre à l'autre. */
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+/* Chaque chiffre coulisse sous son propre masque. */
+.chf-chiffre {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.chf-chiffre > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* L'emblème, sur sa plaque claire. Angles droits comme tout le reste du site,
+   et une plaque plutôt qu'un logo posé nu : ses lettres sont noires.
+
+   Hors du flux, sans quoi sa hauteur s'ajoute à celle de la colonne, la bande
+   entière grandit et le filet du chiffre remonte : ce seul chiffre aurait sa
+   ligne plus haut que les trois autres. */
+.chf-embleme {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block;
+  width: fit-content;
+  margin-top: 1.4rem;
+  padding: 0.9rem 1.1rem;
+  background: hsl(var(--panneau));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.chf-embleme img {
+  display: block;
+  width: auto;
+  height: clamp(8.5rem, 20vh, 12rem);
+}
+
+.chf-embleme:hover,
+.chf-embleme:focus-visible {
+  transform: translateY(-0.35rem);
+}
+
+@media (max-width: 46rem) {
+  .chf-corps {
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .chf-droite {
+    align-self: flex-end;
+    align-items: baseline;
+  }
+
+  /* Empilé, l'illustration passe dans le flux, au-dessus du texte : derrière
+     lui elle ne servait qu'à brouiller la lecture, faute de place pour la
+     mettre à côté. */
+  .chf-plan {
+    position: static;
+    z-index: auto;
+    inset: auto;
+    height: 26svh;
+    margin-bottom: 1.6rem;
+  }
+
+  /* Sur un écran étroit, la colonne du texte et le nombre se suivent : la
+     plaque prendrait la place du nombre. Elle rétrécit. */
+  .chf-embleme img {
+    height: 6.5rem;
+  }
+}

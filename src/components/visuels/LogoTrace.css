@@ -1,0 +1,30 @@
+/* Le logo tracé. Le trait et le dessin occupent exactement la même boîte :
+   c'est ce qui permet au second de prendre la place du premier sans qu'on
+   voie de saut. */
+
+.ltr {
+  position: relative;
+  width: clamp(5rem, 12vw, 9rem);
+  aspect-ratio: 437 / 560;
+}
+
+.ltr-carte,
+.ltr-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ltr-trait {
+  visibility: hidden;
+  will-change: stroke-dashoffset;
+}
+
+/* Sans mouvement, le dessin est là d'emblée et le trait ne sert à rien. */
+@media (prefers-reduced-motion: reduce) {
+  .ltr-trait {
+    display: none;
+  }
+}

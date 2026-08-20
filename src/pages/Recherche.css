@@ -1,0 +1,408 @@
+/* La recherche. Une page longue, en listes plutôt qu'en cartes : ce qu'on
+   compare ici, ce sont des lignes de même nature, et une grille de vignettes
+   ferait passer un article de 2014 pour l'égal d'un projet en cours. */
+
+.rch {
+  padding: clamp(7rem, 16vh, 11rem) var(--marge) clamp(5rem, 12vh, 8rem);
+}
+
+.rch-entete {
+  max-width: 46rem;
+}
+
+.rch-titre {
+  margin: 0;
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  font-weight: 200;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+/* Le masque suit la boîte de ligne, qui finit au-dessus des jambages : on
+   rallonge par le bas et on rattrape par une marge négative. */
+.rch-ligne {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+.rch-ligne > span {
+  display: block;
+}
+
+.rch-chapo {
+  margin: 1.8rem 0 0;
+  max-width: 54ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.rch-bloc {
+  margin-top: clamp(4.5rem, 12vh, 8rem);
+}
+
+.rch-section {
+  margin: 0 0 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(var(--foreground) / 0.14);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.rch-section-suite {
+  margin-top: clamp(3.5rem, 9vh, 6rem);
+}
+
+.rch-intro {
+  margin: 0 0 clamp(2rem, 5vh, 3rem);
+  max-width: 56ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+/* Les axes : quatre, donc deux colonnes suffisent. Ils tiennent la largeur
+   sans qu'on ait besoin d'un cadre autour de chacun. */
+.rch-axes {
+  display: grid;
+  gap: clamp(1.6rem, 4vh, 2.6rem) 3rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rch-axes h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 400;
+}
+
+.rch-axes p {
+  margin: 0;
+  max-width: 44ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+/* Les projets : une ligne chacun, l'année à gauche comme repère de lecture,
+   le rôle et le financeur à droite. C'est la mise en page d'un relevé. */
+.rch-projets,
+.rch-theses,
+.rch-publications {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rch-projets > li {
+  display: grid;
+  align-items: baseline;
+  gap: 0.6rem 2rem;
+  grid-template-columns: 9rem minmax(0, 1fr) 15rem;
+  padding: clamp(1.4rem, 3vh, 2rem) 0;
+  border-bottom: 1px solid hsl(var(--foreground) / 0.1);
+}
+
+.rch-projets > li:first-child {
+  border-top: 1px solid hsl(var(--foreground) / 0.14);
+}
+
+.rch-projet-quand,
+.rch-projet-dit,
+.rch-projet-role {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.rch-projet-nom {
+  margin: 0 0 0.4rem;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.rch-projet-dit {
+  max-width: 52ch;
+}
+
+.rch-projet-role span {
+  display: block;
+}
+
+.rch-projet-role span:first-child {
+  color: hsl(var(--foreground) / 0.82);
+}
+
+/* La vitrine : le seul bloc qui sort du gabarit de liste. Un fond à peine
+   plus clair que la nuit suffit à le détacher, sans cadre ni ombre. */
+.rch-vitrine {
+  margin-top: clamp(4.5rem, 12vh, 8rem);
+  padding: clamp(2rem, 5vh, 3.4rem) clamp(1.4rem, 3vw, 2.6rem);
+  background: hsl(228 40% 11%);
+}
+
+.rch-vitrine-corps {
+  display: grid;
+  gap: clamp(2rem, 5vh, 3rem) clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+}
+
+.rch-vitrine-titre {
+  margin: 0 0 0.6rem;
+  max-width: 24ch;
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+}
+
+.rch-vitrine-quand {
+  margin: 0 0 1.6rem;
+  color: hsl(var(--miel));
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rch-vitrine-dire p {
+  margin: 0 0 1.1rem;
+  max-width: 62ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.rch-vitrine-liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  margin-top: 1.8rem;
+}
+
+.rch-vitrine-liens a,
+.rch-repertoires a {
+  color: hsl(var(--foreground));
+  font-size: 0.9375rem;
+  text-decoration: none;
+  border-bottom: 1px solid hsl(var(--miel) / 0.6);
+  padding-bottom: 0.15rem;
+  transition: border-color 0.4s ease;
+}
+
+.rch-vitrine-liens a:hover,
+.rch-repertoires a:hover {
+  border-color: hsl(var(--miel));
+}
+
+.rch-vitrine-chiffres,
+.rch-vitrine-auteurs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rch-vitrine-chiffres li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding-bottom: 1rem;
+}
+
+.rch-vitrine-chiffres strong {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 200;
+  line-height: 1;
+}
+
+.rch-vitrine-chiffres span {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+
+.rch-vitrine-auteurs {
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid hsl(var(--foreground) / 0.14);
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9375rem;
+  line-height: 1.9;
+}
+
+/* Les thèses. Le titre porte le propos, la ligne du dessous porte les gens et
+   le cadre : c'est l'ordre dans lequel on les lit. */
+.rch-theses > li {
+  padding: clamp(1.3rem, 3vh, 1.9rem) 0;
+  border-bottom: 1px solid hsl(var(--foreground) / 0.1);
+}
+
+.rch-theses > li:first-child {
+  border-top: 1px solid hsl(var(--foreground) / 0.14);
+}
+
+.rch-theses h3 {
+  margin: 0 0 0.55rem;
+  max-width: 58ch;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.rch-these-qui {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.4rem;
+  margin: 0;
+  color: hsl(var(--foreground) / 0.7);
+  font-size: 0.9375rem;
+}
+
+.rch-these-qui a {
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  border-bottom: 1px solid hsl(var(--miel) / 0.6);
+  padding-bottom: 0.1rem;
+  transition: border-color 0.4s ease;
+}
+
+.rch-these-qui a:hover {
+  border-color: hsl(var(--miel));
+}
+
+.rch-these-etat {
+  color: hsl(var(--miel));
+}
+
+/* Les prototypes, par terrain. */
+.rch-champs {
+  display: grid;
+  gap: clamp(2rem, 5vh, 3rem) 3rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rch-champ h3 {
+  margin: 0 0 1rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid hsl(var(--foreground) / 0.12);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.rch-champ ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rch-champ li {
+  padding: 0.7rem 0;
+}
+
+.rch-champ strong {
+  display: block;
+  font-size: 1.0625rem;
+  font-weight: 400;
+}
+
+.rch-champ span {
+  display: block;
+  margin-top: 0.25rem;
+  max-width: 46ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+/* Les publications, groupées par année. Le nombre tient la colonne de gauche
+   et ne se répète pas : c'est ce qui rend la liste parcourable. */
+.rch-repertoires {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  margin: -1rem 0 clamp(2.4rem, 6vh, 3.4rem);
+}
+
+.rch-annee {
+  display: grid;
+  gap: 0.6rem 2rem;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  padding-top: clamp(1.6rem, 4vh, 2.4rem);
+}
+
+.rch-annee-nombre {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.25rem;
+  font-weight: 200;
+}
+
+.rch-publications > li {
+  padding-bottom: 1.4rem;
+}
+
+.rch-publications h3 {
+  margin: 0 0 0.35rem;
+  max-width: 64ch;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.rch-publications p {
+  margin: 0;
+  max-width: 64ch;
+  color: hsl(var(--foreground) / 0.68);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Sur téléphone, tout passe en une colonne : les relevés à trois colonnes
+   deviennent illisibles bien avant de déborder. */
+@media (max-width: 46rem) {
+  .rch-axes,
+  .rch-champs,
+  .rch-vitrine-corps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rch-projets > li,
+  .rch-annee {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rch-projet-quand,
+  .rch-annee-nombre {
+    color: hsl(var(--miel));
+    font-size: 0.9375rem;
+    letter-spacing: 0.06em;
+  }
+
+  .rch-annee-nombre {
+    font-size: 1.125rem;
+    letter-spacing: 0;
+  }
+
+  .rch-projet-role {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+  }
+
+  .rch-vitrine {
+    margin-left: calc(var(--marge) * -1);
+    margin-right: calc(var(--marge) * -1);
+    padding-left: var(--marge);
+    padding-right: var(--marge);
+  }
+}

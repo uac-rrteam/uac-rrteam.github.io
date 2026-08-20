@@ -1,0 +1,136 @@
+/* Celui qui mene l'equipe. Le portrait tient la moitie de l'ecran : c'est la
+   premiere photographie du site, elle a le droit d'etre grande. */
+
+.dir {
+  position: relative;
+  display: grid;
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  grid-template-columns: 42% 1fr;
+  min-height: 100svh;
+  padding: clamp(6rem, 12vh, 9rem) var(--marge) clamp(3rem, 7vh, 5rem);
+}
+
+/* Le cadre porte la marche : c'est lui qu'on decoupe, pas l'image, sinon la
+   photographie se deformerait au lieu de se decouvrir. */
+.dir-cadre {
+  overflow: hidden;
+}
+
+.dir-portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Le detourage laisse le portrait sur le fond nuit ; un leger passage au
+     froid le raccorde a la palette au lieu de le poser dessus. */
+  filter: saturate(0.82) contrast(1.04);
+}
+
+.dir-mots {
+  max-width: 34rem;
+}
+
+.dir-nom {
+  margin: 0;
+  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.04;
+}
+
+/* Chaque mot du nom a son masque et remonte de dessous. */
+/* Le masque suit la boîte de ligne, et une interligne serrée la fait finir
+   au-dessus des jambages. On rallonge la boîte par le bas et on rattrape la
+   hauteur par une marge négative : les descendantes passent, l'espacement des
+   lignes ne bouge pas. */
+.dir-ligne {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+.dir-ligne > span {
+  display: block;
+}
+
+.dir-fonction {
+  margin: 1.5rem 0 0;
+  color: hsl(var(--miel));
+  font-size: 1.0625rem;
+  letter-spacing: 0.03em;
+}
+
+.dir-propos {
+  margin: 2rem 0 0;
+}
+
+.dir-propos p {
+  margin: 0 0 1rem;
+  max-width: 46ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.dir-charges {
+  margin: 2.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dir-charges li {
+  padding: 0.85rem 0;
+  border-top: 1px solid hsl(var(--foreground) / 0.12);
+  font-size: 0.8125rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.dir-charges li:last-child {
+  border-bottom: 1px solid hsl(var(--foreground) / 0.12);
+}
+
+/* Le lien vers l'equipe. Le filet se remplit au survol, de gauche a droite :
+   le meme geste que les filets segmentes du reste du site. */
+.dir-vers {
+  position: relative;
+  display: inline-block;
+  margin-top: 2.4rem;
+  padding-bottom: 0.4rem;
+  color: hsl(var(--foreground));
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.dir-vers::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: hsl(var(--miel));
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dir-vers:hover::after,
+.dir-vers:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 46rem) {
+  .dir {
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    padding: clamp(4.5rem, 10vh, 7rem) var(--marge);
+  }
+
+  .dir-cadre {
+    width: 78%;
+  }
+}

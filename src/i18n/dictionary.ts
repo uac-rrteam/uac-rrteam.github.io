@@ -11,13 +11,13 @@ export function isLang(value: string | undefined): value is Lang {
    Le francais fait foi : toute cle absente de l'anglais retombe dessus
    (voir traduire() dans lang.tsx). */
 const fr = {
+  "nav.menu": "Menu",
   "nav.lab": "Le laboratoire",
-  "nav.lrsia": "Le LRSIA",
-  "nav.team": "L'equipe",
+  "nav.team": "L'équipe",
   "nav.research": "Recherche",
-  "nav.people": "Membres",
-  "nav.events": "Evenements",
-  "nav.blog": "Actualites",
+  "nav.people": "L'équipe",
+  "nav.events": "Événements",
+  "nav.blog": "Actualités",
 
   "lab.lrsiaDesc": "Le laboratoire, sa direction et ses domaines",
   "lab.teamDesc": "La Ratheil Research Team et ses axes",
@@ -29,12 +29,12 @@ const fr = {
   "hero.lead2": "Agriculture, sante, education, optimisation pour le bien commun.",
   "hero.cta": "Decouvrir nos travaux",
   "hero.ctaSecondary": "Rencontrer l'equipe",
-  "hero.ledBy": "Equipe animee par le Dr Vinasetan Ratheil Houndji",
+  "hero.ledBy": "Equipe animee par le Dr Vinasetan Ratheil HOUNDJI",
 } as const;
 
 const en: Partial<Record<keyof typeof fr, string>> = {
+  "nav.menu": "Menu",
   "nav.lab": "The lab",
-  "nav.lrsia": "About LRSIA",
   "nav.team": "The team",
   "nav.research": "Research",
   "nav.people": "People",
@@ -51,7 +51,7 @@ const en: Partial<Record<keyof typeof fr, string>> = {
   "hero.lead2": "Agriculture, health, education, optimisation for the common good.",
   "hero.cta": "Explore our work",
   "hero.ctaSecondary": "Meet the team",
-  "hero.ledBy": "Team led by Dr Vinasetan Ratheil Houndji",
+  "hero.ledBy": "Team led by Dr Vinasetan Ratheil HOUNDJI",
 };
 
 export type TranslationKey = keyof typeof fr;

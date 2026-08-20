@@ -1,37 +1,35 @@
-import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { LangProvider } from "@/i18n/lang";
 import { SmoothScroll } from "@/providers/SmoothScroll";
-import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
-import { CookieBanner } from "@/components/layout/CookieBanner";
+import { EnTete } from "@/components/layout/EnTete";
 import { DEFAULT_LANG } from "@/i18n/dictionary";
-import { Home } from "@/pages/Home";
-import { Lrsia } from "@/pages/about/Lrsia";
-import { Team } from "@/pages/about/Team";
-import { Research } from "@/pages/Research";
-import { People } from "@/pages/People";
-import { Events } from "@/pages/Events";
-import { Blog } from "@/pages/Blog";
-import { BlogPost } from "@/pages/BlogPost";
+import { Accueil } from "@/pages/Accueil";
+import { Equipe } from "@/pages/Equipe";
+import { Profil } from "@/pages/Profil";
+import { Recherche } from "@/pages/Recherche";
+import { Evenements } from "@/pages/Evenements";
+import { Actualites } from "@/pages/Actualites";
 
-/** Coquille commune a toutes les pages : la langue vient du prefixe d'URL. */
-function LangLayout() {
-  const { pathname } = useLocation();
-  // L'accueil porte sa propre nav plein ecran (disposition micro1). Les pages
-  // internes utilisent la barre standard.
-  const isHome = /^\/(fr|en)\/?$/.test(pathname);
-
+/**
+ * Coquille commune à toutes les pages : la langue vient du préfixe d'URL.
+ *
+ * L'entrée n'est pas ici mais au-dessus du routeur, dans main.tsx : elle ne
+ * doit jouer qu'au premier chargement, jamais entre deux pages.
+ *
+ * Le pied de page n'est pas ici non plus. Il se déplie sur toute sa hauteur et
+ * conclut le parcours de l'accueil ; sous une page de lecture, il en doublerait
+ * la longueur pour ne rien conclure du tout. C'est donc l'accueil qui le porte.
+ */
+function CoquilleLangue() {
   return (
     <LangProvider>
       <SmoothScroll>
         <ScrollToTop />
-        {!isHome && <SiteHeader />}
+        <EnTete />
         <main>
           <Outlet />
         </main>
-        <SiteFooter />
-        <CookieBanner />
       </SmoothScroll>
     </LangProvider>
   );
@@ -40,17 +38,15 @@ function LangLayout() {
 export default function App() {
   return (
     <Routes>
-      <Route path="/:lang" element={<LangLayout />}>
-        <Route index element={<Home />} />
-        <Route path="about/lrsia" element={<Lrsia />} />
-        <Route path="about/team" element={<Team />} />
-        <Route path="research" element={<Research />} />
-        <Route path="people" element={<People />} />
-        <Route path="events" element={<Events />} />
-        <Route path="blog" element={<Blog />} />
-        <Route path="blog/:slug" element={<BlogPost />} />
+      <Route path="/:lang" element={<CoquilleLangue />}>
+        <Route index element={<Accueil />} />
+        <Route path="research" element={<Recherche />} />
+        <Route path="events" element={<Evenements />} />
+        <Route path="news" element={<Actualites />} />
+        <Route path="people" element={<Equipe />} />
+        <Route path="people/:slug" element={<Profil />} />
       </Route>
-      {/* Toute URL sans prefixe de langue part sur le francais. */}
+      {/* Toute URL sans préfixe de langue part sur le français. */}
       <Route path="*" element={<Navigate to={`/${DEFAULT_LANG}`} replace />} />
     </Routes>
   );

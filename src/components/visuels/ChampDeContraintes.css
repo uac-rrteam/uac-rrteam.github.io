@@ -1,0 +1,42 @@
+/* Le champ de contraintes : le plan de fond de l'ouverture.
+   Un domaine de valeurs, chacune une barre verticale, posées sur le bleu nuit
+   du site. Quelques-unes ont été assignées et tiennent au miel ; les autres
+   restent ouvertes et s'effacent vers le haut. */
+
+.champ {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: hsl(225 47% 6%);
+}
+
+.champ-domaine {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(1px, 0.22vw, 3px);
+  padding: 0 clamp(1px, 0.22vw, 3px);
+}
+
+.champ-barre {
+  flex: 1;
+  min-width: 0;
+  background: linear-gradient(to top, hsl(228 42% 22%), hsl(228 42% 13%) 55%, hsl(225 47% 8%));
+  transform-origin: bottom;
+  will-change: transform;
+}
+
+/* Une valeur assignée : elle est fixée, donc elle est la seule à porter la
+   couleur. Le dégradé s'éteint vers le haut, jamais un aplat. */
+.champ-barre[data-assignee] {
+  background: linear-gradient(to top, hsl(var(--miel) / 0.85), hsl(var(--miel) / 0.22) 60%, transparent);
+}
+
+/* Sur un petit ecran, une valeur sur deux suffit : a 96 colonnes les barres
+   tombent a deux pixels et le domaine se lit comme un code-barres. */
+@media (max-width: 46rem) {
+  .champ-barre:nth-child(even) {
+    display: none;
+  }
+}

@@ -1,0 +1,166 @@
+/* Le pied de page. Il ne fait que deux tiers d'ecran et rogne ce qui
+   depasse : son contenu part remonte et redescend a sa place au fil de son
+   arrivee, si bien qu'on voit les informations descendre. */
+
+.pied {
+  position: relative;
+  overflow: hidden;
+  height: 68svh;
+  min-height: 32rem;
+  border-top: 1px solid hsl(var(--foreground) / 0.12);
+}
+
+/* La boite est ce qui coulisse : c'est elle que le depliement fait descendre,
+   pas le pied, qui reste en place et sert de fenetre. */
+.pied-boite {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: clamp(3rem, 7vh, 5rem) var(--marge) 0;
+  will-change: transform;
+}
+
+.pied-haut {
+  display: grid;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+}
+
+.pied-rubriques {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+/* Le filet se remplit de gauche a droite au survol, comme partout ailleurs. */
+.pied-lien {
+  position: relative;
+  padding-bottom: 0.25rem;
+  color: hsl(var(--foreground) / 0.78);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.pied-lien::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: hsl(var(--miel));
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pied-lien:hover::after,
+.pied-lien:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.pied-adresse {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9375rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.pied-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.4rem;
+}
+
+.pied-tutelles {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Les logos institutionnels sont en couleur ; sur le fond nuit ils crieraient
+   plus fort que le miel. On les desature et on les rend a l'oeil au survol. */
+.pied-tutelles img {
+  display: block;
+  width: auto;
+  height: 2.4rem;
+  filter: grayscale(1) brightness(1.6);
+  opacity: 0.55;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.pied-tutelles a:hover img,
+.pied-tutelles a:focus-visible img {
+  filter: none;
+  opacity: 1;
+}
+
+.pied-annee {
+  margin: 0;
+  color: hsl(var(--muted-foreground) / 0.7);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+}
+
+/* Le sigle du laboratoire tient le bas du site, etale d'un bord a l'autre :
+   une enseigne a la mesure de la facade. */
+.pied-sigle {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  font-size: clamp(4rem, 21vw, 20rem);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+/* Chaque lettre a son masque : elle monte de dessous sans jamais deborder sur
+   la ligne d'informations. Le masque suit la line-box, d'ou la line-height a
+   1 plus haut : en dessous, il couperait le bas des glyphes. */
+.pied-masque {
+  display: block;
+  overflow: hidden;
+}
+
+.pied-lettre {
+  display: block;
+  transform-origin: 50% 100%;
+}
+
+@media (max-width: 46rem) {
+  .pied {
+    height: auto;
+    padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
+  }
+
+  .pied-boite {
+    gap: 3rem;
+    padding-bottom: 0;
+  }
+
+  .pied-haut {
+    gap: 2.2rem;
+    grid-template-columns: 1fr;
+  }
+
+  .pied-signature {
+    align-items: flex-start;
+  }
+
+  .pied-sigle {
+    font-size: 23vw;
+  }
+}

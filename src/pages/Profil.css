@@ -1,0 +1,388 @@
+/* La page d'une personne. Un écran pour le nom, puis les blocs qui se lèvent
+   au défilement, un par idée. */
+
+.pro {
+  display: block;
+  padding: 0 var(--marge) clamp(5rem, 12vh, 8rem);
+}
+
+/* Le premier écran : le nom d'un côté, le portrait de l'autre. La hauteur est
+   donnée, pas subie, pour que le nom tombe toujours au même endroit d'une
+   personne à l'autre. */
+.pro-ouverture {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 86svh;
+  padding-top: clamp(7rem, 15vh, 10rem);
+}
+
+.pro-retour {
+  align-self: flex-start;
+  margin-bottom: clamp(2.5rem, 6vh, 4rem);
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* Le trait qui se remplit sous le lien : le même geste que dans le pied de
+   page et l'en-tête, pour que tout le site réponde de la même façon. */
+.pro-retour::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 0.45rem;
+  background: currentColor;
+  opacity: 0.3;
+  transform: scaleX(0.16);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+}
+
+.pro-retour:hover::after,
+.pro-retour:focus-visible::after {
+  opacity: 0.85;
+  transform: scaleX(1);
+}
+
+.pro-tete {
+  display: grid;
+  align-items: end;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 32%);
+}
+
+/* La taille se plafonne à la hauteur disponible divisée par le nombre de mots :
+   un nom de quatre mots tient alors dans l'écran sans qu'un nom de deux
+   rapetisse pour rien. */
+.pro-nom {
+  margin: 0;
+  font-size: clamp(2.4rem, min(6.4vw, calc(46svh / var(--pro-lignes, 3))), 5.6rem);
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+/* Un masque par mot : le nom se pose morceau par morceau au lieu d'arriver
+   d'un bloc.
+
+   Le masque suit la boîte de ligne, et une interligne serrée la fait finir
+   au-dessus des jambages : le g de Balogoun s'y coupait. On rallonge la boîte
+   par le bas et on rattrape la hauteur par une marge négative, de sorte que
+   l'espacement des lignes ne bouge pas. */
+.pro-mot {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+.pro-mot > span {
+  display: block;
+  will-change: transform;
+}
+
+.pro-statut {
+  margin: clamp(1.6rem, 4vh, 2.6rem) 0 0;
+  color: hsl(var(--foreground));
+  font-size: 1.0625rem;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.pro-sujet {
+  margin: 0.7rem 0 0;
+  max-width: 40ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.pro-jour {
+  will-change: transform, opacity;
+}
+
+.pro-tete[data-seul] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.pro-tete[data-seul] .pro-nom {
+  font-size: clamp(2.6rem, min(10.5vw, calc(52svh / var(--pro-lignes, 3))), 9rem);
+}
+
+.pro-tete[data-seul] .pro-sujet {
+  max-width: 48ch;
+  font-size: 1.0625rem;
+}
+
+/* L'enveloppe porte le masque d'apparition, le panneau porte l'encoche : deux
+   clip-path sur le même élément se remplaceraient l'un l'autre. */
+.pro-voile {
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.pro-cadre {
+  overflow: hidden;
+}
+
+.pro-portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Le portrait est en couleurs ; le site ne l'est pas. On le rapproche sans
+     le vider, comme sur l'accueil. */
+  filter: saturate(0.82) contrast(1.04);
+  will-change: transform;
+}
+
+/* Les blocs de la suite. Le titre à gauche, le contenu à droite : la même
+   colonne que le reste du site, et l'œil retrouve son axe. */
+.pro-bloc {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 3rem);
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  padding: clamp(3.5rem, 9vh, 6rem) 0;
+  border-top: 1px solid hsl(var(--foreground) / 0.14);
+}
+
+.pro-bloc:first-of-type {
+  margin-top: clamp(3rem, 8vh, 5rem);
+}
+
+.pro-titre {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pro-propos p {
+  margin: 0 0 1.4rem;
+  max-width: 62ch;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 200;
+  line-height: 1.6;
+}
+
+.pro-propos p:last-child {
+  margin-bottom: 0;
+}
+
+/* Les travaux. Chacun tient sur son bloc : l'année, le titre, qui l'a mené,
+   puis ce qu'il dit de lui-même. */
+.pro-travaux {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-travaux li + li {
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+  padding-top: clamp(2.5rem, 6vh, 4rem);
+  border-top: 1px solid hsl(var(--foreground) / 0.1);
+}
+
+.pro-travail-annee {
+  margin: 0;
+  color: hsl(var(--miel));
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+}
+
+.pro-travail-titre {
+  margin: 0.7rem 0 0;
+  max-width: 34ch;
+  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.pro-travail-avec {
+  margin: 0.9rem 0 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.9375rem;
+  letter-spacing: 0.03em;
+}
+
+.pro-travail-dit {
+  margin: 1.4rem 0 0;
+  max-width: 66ch;
+  color: hsl(var(--foreground) / 0.82);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.pro-travail-vers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.8rem;
+  margin: 1.4rem 0 0;
+}
+
+.pro-travail-vers a {
+  color: hsl(var(--foreground));
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.pro-travail-vers a::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 0.4rem;
+  background: hsl(var(--miel));
+  transform: scaleX(0.24);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pro-travail-vers a:hover::after,
+.pro-travail-vers a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.pro-attente {
+  margin: 0;
+  max-width: 54ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.pro-charges,
+.pro-liens {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pro-charges li {
+  padding: 0.95rem 0;
+  border-bottom: 1px solid hsl(var(--foreground) / 0.1);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.pro-charges li:first-child {
+  padding-top: 0;
+}
+
+.pro-liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.pro-liens a {
+  color: hsl(var(--miel));
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.pro-liens a::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 0.35rem;
+  background: currentColor;
+  transform: scaleX(0.2);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pro-liens a:hover::after,
+.pro-liens a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* La personne suivante, en grand : c'est la sortie de la page, et elle mène
+   quelque part plutôt que nulle part. */
+.pro-suite {
+  padding-top: clamp(3.5rem, 9vh, 6rem);
+  border-top: 1px solid hsl(var(--foreground) / 0.14);
+}
+
+.pro-suite a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.pro-suite-dit {
+  display: block;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pro-suite-nom {
+  display: block;
+  margin-top: 0.9rem;
+  font-size: clamp(1.8rem, 4.4vw, 3.6rem);
+  font-weight: 200;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pro-suite a:hover .pro-suite-nom,
+.pro-suite a:focus-visible .pro-suite-nom {
+  transform: translateX(0.6rem);
+}
+
+@media (max-width: 46rem) {
+  .pro-tete {
+    gap: 2.5rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Le portrait passe au-dessus du nom : sur une colonne, une photographie en
+     dernier se lit comme une note de bas de page. */
+  .pro-cadre {
+    order: -1;
+    width: 78%;
+  }
+
+  .pro-bloc {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Le portrait se retire légèrement au survol. Le retrait porte sur le cadre,
+   la dérive au défilement sur l'image : sur un même élément, la seconde
+   écraserait la première. Le cadre est posé un peu plus grand que son voile,
+   donc en revenant à sa taille il ne découvre rien. */
+.pro-voile {
+  overflow: hidden;
+}
+
+.pro-cadre {
+  transform: scale(1.05);
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.pro-voile:hover .pro-cadre,
+.pro-voile:focus-within .pro-cadre {
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pro-cadre {
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,96 @@
+/* Le menu. Un panneau clair plein écran, ouvert en marche comme les sections
+   du site. Sa découpe est posée par le composant, jamais ici. */
+
+.men {
+  position: fixed;
+  z-index: 90;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(6rem, 14vh, 9rem) var(--marge) clamp(2rem, 6vh, 4rem);
+  background: hsl(var(--panneau));
+  color: hsl(var(--panneau-encre));
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+.men[data-ouvert] {
+  pointer-events: auto;
+}
+
+.men-liste {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+/* Chaque entrée coulisse sous son propre masque. */
+.men-masque {
+  display: block;
+  overflow: hidden;
+}
+
+.men-entree {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  color: inherit;
+  font-size: clamp(2rem, 5.5vw, 4.5rem);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.16;
+  text-decoration: none;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+/* Le numéro de rang. À 45 % d'opacité sur le gris os, il ne se lisait plus :
+   il porte maintenant sa propre encre, plus claire que le texte mais pas
+   effacée. */
+.men-entree em {
+  color: hsl(var(--panneau-encre) / 0.9);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+.men-entree:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 1px;
+}
+
+.men-pied {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem 2.5rem;
+  margin: 0;
+  color: hsl(var(--panneau-encre) / 0.62);
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.men-pied-nom {
+  color: hsl(var(--panneau-encre) / 0.9);
+}
+
+/* Sans mouvement, le panneau se montre et se cache, sans découpe animée. */
+@media (prefers-reduced-motion: reduce) {
+  .men {
+    visibility: hidden;
+  }
+
+  .men[data-ouvert] {
+    visibility: visible;
+  }
+}

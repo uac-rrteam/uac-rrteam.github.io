@@ -1,0 +1,48 @@
+/* Le grand nombre. Deux tailles de texte et rien entre les deux : le libellé
+   à 12 px en capitales interlettrées, la valeur à 130 px en très maigre.
+   C'est cette absence de taille moyenne qui donne le calme. */
+
+.gn {
+  margin: 0;
+}
+
+.gn-filet {
+  height: 1px;
+  background: hsl(var(--foreground) / 0.22);
+}
+
+.gn-corps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-top: 0.75rem;
+}
+
+.gn-libelle {
+  max-width: 34ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.gn-note {
+  display: block;
+  margin-top: 0.35rem;
+  color: hsl(var(--muted-foreground) / 0.72);
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.gn-valeur {
+  margin: -0.28em 0 0;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  font-weight: 200;
+  /* Les chiffres doivent s'aligner d'une ligne à l'autre quand plusieurs
+     nombres se suivent. */
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}

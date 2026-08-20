@@ -1,0 +1,122 @@
+/* Les actualités. Un fil daté : la colonne de gauche porte le mois, celle de
+   droite ce qui s'est passé. La règle horizontale entre deux entrées suffit à
+   les séparer, une carte ferait de chaque nouvelle un objet à part. */
+
+.act {
+  padding: clamp(7rem, 16vh, 11rem) var(--marge) clamp(5rem, 12vh, 8rem);
+}
+
+.act-entete {
+  max-width: 46rem;
+}
+
+.act-titre {
+  margin: 0;
+  font-size: clamp(2.6rem, 7vw, 5.5rem);
+  font-weight: 200;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+
+.act-ligne {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+.act-ligne > span {
+  display: block;
+}
+
+.act-chapo {
+  margin: 1.8rem 0 0;
+  max-width: 52ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.act-fil {
+  margin: clamp(3.5rem, 9vh, 6rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.act-entree {
+  display: grid;
+  gap: 0.8rem 3rem;
+  grid-template-columns: 12rem minmax(0, 1fr);
+  padding: clamp(1.8rem, 4vh, 2.8rem) 0;
+  border-bottom: 1px solid hsl(var(--foreground) / 0.1);
+}
+
+.act-entree:first-child {
+  border-top: 1px solid hsl(var(--foreground) / 0.14);
+}
+
+.act-quand {
+  margin: 0;
+  color: hsl(var(--miel));
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.act-corps h2 {
+  margin: 0 0 0.7rem;
+  max-width: 34ch;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.act-dit {
+  margin: 0;
+  max-width: 62ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.act-liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin: 1.2rem 0 0;
+}
+
+.act-liens a {
+  color: hsl(var(--foreground));
+  font-size: 0.9375rem;
+  text-decoration: none;
+  border-bottom: 1px solid hsl(var(--miel) / 0.6);
+  padding-bottom: 0.15rem;
+  transition: border-color 0.4s ease;
+}
+
+.act-liens a:hover {
+  border-color: hsl(var(--miel));
+}
+
+.act-suivre {
+  margin-top: clamp(4rem, 10vh, 6.5rem);
+}
+
+.act-section {
+  margin: 0 0 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid hsl(var(--foreground) / 0.14);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 46rem) {
+  .act-entree {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+}

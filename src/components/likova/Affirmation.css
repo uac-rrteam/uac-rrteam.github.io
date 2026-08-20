@@ -1,0 +1,12 @@
+.aff {
+  margin: 0;
+  /* L'alinéa de la première ligne, la signature de la mise en page. Il fond
+     jusqu'à zéro sur mobile, où pousser une ligne ne laisserait plus qu'un
+     mot dessus. */
+  text-indent: clamp(0rem, 42vw - 12rem, 30rem);
+  font-size: clamp(1.75rem, 4.1vw, 3.6rem);
+  font-weight: 200;
+  letter-spacing: -0.005em;
+  line-height: 1.06;
+  text-transform: uppercase;
+}

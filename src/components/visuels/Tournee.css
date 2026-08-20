@@ -1,0 +1,49 @@
+/* La tournee, posee sur le pays reel. Meme langage que le tissu neuronal :
+   une trame froide et tres faible pour ce qui a ete pese puis ecarte, le miel
+   pour ce qui a ete retenu. */
+
+.tou {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* La frontiere. Elle porte le dessin sans jamais lui disputer l'oeil : c'est
+   le cadre, pas le sujet. */
+.tou-pays {
+  stroke: hsl(var(--foreground) / 0.3);
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+  fill: hsl(var(--foreground) / 0.022);
+}
+
+/* Les trajets candidats. Chacun reste a la limite du visible : c'est le
+   maillage qui doit se lire, pas chaque trait. */
+.tou-arete {
+  stroke: hsl(var(--foreground) / 0.12);
+  stroke-width: 0.6;
+}
+
+.tou-circuit {
+  stroke: hsl(var(--miel) / 0.5);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+/* Le passage du vehicule sur le circuit retenu. */
+.tou-passage {
+  stroke: hsl(var(--miel));
+  stroke-width: 3;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.tou-ville {
+  fill: hsl(var(--foreground) / 0.6);
+}
+
+/* Cotonou : le port, d'ou part et ou revient la tournee. */
+.tou-depot {
+  fill: hsl(var(--miel) / 0.92);
+}

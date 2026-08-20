@@ -1,0 +1,265 @@
+/* L'ouverture. Trois écrans de course pour une scène épinglée : les positions
+   au repos sont celles relevées sur le site de référence, en pourcentages de
+   la fenêtre pour tenir sur tous les écrans. */
+
+.ouv {
+  position: relative;
+}
+
+.ouv-piste {
+  position: relative;
+}
+
+.ouv-scene {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  height: 100svh;
+}
+
+.ouv-jalon {
+  height: 100svh;
+  pointer-events: none;
+}
+
+.ouv-piste > .ouv-jalon:first-of-type {
+  margin-top: -100svh;
+}
+
+/* L'élévation occupe le bas de l'écran et déborde : elle doit pouvoir sortir
+   par le haut sans jamais découvrir de vide sous elle. */
+.ouv-plan {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 74%;
+  will-change: transform;
+}
+
+/* Le cartouche, dans son cadre au trait. Invisible au chargement : c'est le
+   defilement qui le decouvre, une fois la coiffe claire remontee. */
+.ouv-cartouche {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 29%;
+  left: 21%;
+  width: min(24.5rem, 25vw);
+  height: 54%;
+  padding: 2.5rem 0 0;
+  border: 1px solid hsl(var(--foreground) / 0.16);
+  text-align: center;
+  will-change: transform;
+}
+
+.ouv-cartouche p {
+  margin: 0;
+  color: hsl(var(--foreground) / 0.7);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.ouv-cartouche strong {
+  display: block;
+  margin-top: 0.6rem;
+  color: hsl(var(--foreground) / 0.32);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 200;
+  line-height: 1;
+}
+
+/* La coiffe : le haut de la page est clair sur toute la largeur, puis son
+   bord descend d'un cran du côté du logotype. Une marche, pas un trait, et
+   c'est la même forme que l'encoche des panneaux.
+
+   Les deux paliers sont exprimés en fraction de la coiffe elle-même : 27 % de
+   l'écran pour le palier haut, 35 % pour le bas. */
+.ouv-coiffe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 35%;
+  background: hsl(var(--panneau));
+  clip-path: polygon(0 0, 100% 0, 100% 77.1%, 62% 77.1%, 62% 100%, 0 100%);
+  will-change: transform;
+}
+
+/* Le nom vit au-dessus du bandeau, pas dedans : il a son propre trajet, qui
+   finit sur la place du logotype de l'en-tête. */
+.ouv-nom {
+  position: absolute;
+  top: 27%;
+  z-index: 1;
+  left: var(--marge);
+  display: flex;
+  align-items: center;
+  height: clamp(4.5rem, 8vh, 6.5rem);
+  margin: 0;
+  color: #e8e9e7;
+  font-size: clamp(1.05rem, 2.8vw, 2.75rem);
+  font-weight: 200;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  /* Sombre sur le gris os, clair sur la nuit : une seule couleur déclarée. */
+  mix-blend-mode: difference;
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.ouv-descendre {
+  position: absolute;
+  z-index: 1;
+  top: 27%;
+  left: calc(62% - 4.25rem);
+  display: grid;
+  place-items: center;
+  height: clamp(4.5rem, 8vh, 6.5rem);
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.ouv-descendre svg {
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
+  color: hsl(var(--panneau));
+  background: hsl(var(--panneau-encre));
+  border-radius: 50%;
+  transition: transform 0.35s cubic-bezier(0.8, 0, 0.3, 1);
+}
+
+.ouv-descendre:hover svg {
+  transform: translateY(3px);
+}
+
+/* Les deux phrases se superposent au même endroit : elles se relaient. */
+.ouv-these {
+  position: absolute;
+  top: 50%;
+  right: var(--marge);
+  left: 67%;
+  margin: 0;
+  color: hsl(var(--foreground));
+  font-size: clamp(0.9rem, 1.5vw, 1.35rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  will-change: transform, opacity;
+}
+
+.ouv-these-b {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.ouv-these span {
+  display: block;
+}
+
+/* Sur téléphone, la scène garde son épinglage : c'est la seule de la page, et
+   ce qu'elle tient à l'écran est le bâtiment. Le cartouche, lui, ne rentre pas
+   dans la largeur d'un téléphone à côté des tours. */
+.ouv-piste[data-empile] .ouv-cartouche {
+  display: none;
+}
+
+/* La troisième phrase. Elle ne se pose pas dans le haut, comme les deux
+   autres, mais contre les tours, à gauche et à mi-hauteur : c'est ce
+   déplacement qui fait qu'on lit une suite plutôt qu'un texte remplacé sur
+   place. */
+.ouv-tierce {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: 1;
+  top: 46%;
+  right: 26%;
+  left: var(--marge);
+  margin: 0;
+  color: hsl(var(--foreground));
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  /* Le texte se lit sur les lames du bâtiment : une ombre portée courte
+     tient le contraste sans poser de plaque par-dessus le dessin. */
+  text-shadow: 0 1px 12px hsl(var(--background) / 0.85);
+  will-change: transform, opacity;
+}
+
+.ouv-tierce span {
+  display: block;
+}
+
+@media (max-width: 46rem) {
+  /* Le bâtiment est debout et occupe tout l'écran : son sommet attend
+     derrière la coiffe, et c'est la coiffe qui, en remontant, le découvre. */
+  .ouv-plan {
+    height: 100%;
+  }
+
+  /* La coiffe s'arrête au-dessus des sommets : c'est ce qui laisse lire la
+     silhouette dès le premier écran. Plus bas, elle rognait les tours et le
+     bâtiment n'était plus qu'une texture de lames. */
+  .ouv-coiffe {
+    clip-path: none;
+    height: 38%;
+  }
+
+  .ouv-cartouche {
+    left: 8%;
+    width: 46%;
+  }
+
+  /* Le site de référence remonte sa phrase tout en haut sur petit écran, sur
+     le fond clair, et descend le logotype. On fait pareil. */
+  .ouv-these {
+    top: 9%;
+    right: var(--marge);
+    left: var(--marge);
+    font-size: 1.0625rem;
+    line-height: 1.35;
+  }
+
+  /* La première phrase est posée sur la coiffe claire, la seconde arrive une
+     fois la coiffe partie, sur la nuit. Deux fonds, deux encres. */
+  .ouv-these-a {
+    color: hsl(var(--panneau-encre));
+  }
+
+  /* Le nom se tient dans la coiffe, contre son bord bas : il en sort donc
+     avec elle. */
+  .ouv-nom,
+  .ouv-descendre {
+    top: 26%;
+  }
+
+  .ouv-descendre {
+    display: none;
+  }
+}
+
+/* Sans mouvement, la scène ne s'épingle pas : chaque couche reste où elle est
+   et la page se lit d'un seul écran. */
+@media (prefers-reduced-motion: reduce) {
+  .ouv-scene {
+    position: relative;
+  }
+
+  .ouv-jalon {
+    display: none;
+  }
+
+  .ouv-piste > .ouv-jalon:first-of-type {
+    margin-top: 0;
+  }
+}

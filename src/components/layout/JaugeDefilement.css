@@ -1,0 +1,151 @@
+/* Le repère de défilement, lu comme un thermomètre. La tige tient toute la
+   hauteur utile, le mercure monte, et chaque graduation porte le nom de sa
+   section, écrit à la verticale. */
+
+.jauge {
+  position: fixed;
+  z-index: 55;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  /* Sa propre gouttiere, en dedans de la marge du texte. */
+  padding-left: 1.5rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.8, 0, 0.3, 1);
+}
+
+.jauge[data-visible] {
+  opacity: 1;
+}
+
+.jauge-tige {
+  position: relative;
+  width: 1px;
+  height: 62vh;
+  background: hsl(var(--foreground) / 0.16);
+}
+
+.jauge-mercure {
+  position: absolute;
+  inset: 0;
+  background: hsl(var(--miel));
+  transform-origin: top;
+  will-change: transform;
+}
+
+.jauge-graduation {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.jauge-trait {
+  width: 9px;
+  height: 1px;
+  background: hsl(var(--foreground) / 0.4);
+  transition: width 0.35s cubic-bezier(0.8, 0, 0.3, 1), background-color 0.35s;
+}
+
+.jauge-graduation[data-atteinte] .jauge-trait {
+  background: hsl(var(--miel));
+}
+
+.jauge-graduation[aria-current="true"] .jauge-trait {
+  width: 18px;
+}
+
+/* Le nom monte à la verticale, lu de bas en haut comme une tranche de livre.
+   Il n'apparaît que pour la section courante ou au survol : quatre noms
+   empilés d'un coup feraient un mur. */
+.jauge-nom {
+  /* La couleur du mercure : le nom appartient au repere, il n'est pas une
+     legende posee a cote. */
+  color: hsl(var(--miel));
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.jauge-graduation[aria-current="true"] .jauge-nom,
+.jauge-graduation:hover .jauge-nom,
+.jauge-graduation:focus-visible .jauge-nom {
+  opacity: 1;
+}
+
+.jauge-graduation:focus-visible {
+  outline: 1px solid hsl(var(--miel));
+  outline-offset: 6px;
+}
+
+/* Le filet horizontal, la forme que prend le repère en petit écran. */
+.jauge-filet {
+  display: none;
+  position: fixed;
+  top: 3.7rem;
+  right: var(--marge);
+  left: var(--marge);
+  height: 1px;
+  background: hsl(var(--foreground) / 0.16);
+}
+
+.jauge-avancee {
+  height: 100%;
+  background: hsl(var(--miel));
+  transform-origin: left;
+  will-change: transform;
+}
+
+.jauge-cran {
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: hsl(var(--foreground) / 0.3);
+}
+
+.jauge-cran[data-atteinte] {
+  background: hsl(var(--miel));
+}
+
+/* Sous 900 px la colonne n'a plus de gouttière où tenir : elle se couche. */
+@media (max-width: 56.25rem) {
+  .jauge {
+    display: block;
+    height: auto;
+    padding: 0;
+  }
+
+  .jauge-tige {
+    display: none;
+  }
+
+  .jauge-filet {
+    display: block;
+  }
+}
+
+/* Sans mouvement, la jauge saute d'une graduation à l'autre au lieu de
+   glisser : elle reste informative, elle cesse d'être animée. */
+@media (prefers-reduced-motion: reduce) {
+  .jauge-mercure,
+  .jauge-trait,
+  .jauge-nom {
+    transition: none;
+  }
+}

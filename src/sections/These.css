@@ -1,0 +1,22 @@
+.thes {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding: clamp(6rem, 14vh, 10rem) var(--marge);
+}
+
+.thes-corps {
+  position: relative;
+  margin-top: auto;
+}
+
+.thes-signature {
+  margin: clamp(2.5rem, 6vh, 4rem) 0 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  letter-spacing: 0.11em;
+  text-align: right;
+  text-transform: uppercase;
+}

@@ -1,0 +1,50 @@
+/* La piste de relais. Les jalons remontent sur la scène : ils ne servent qu'à
+   être croisés, ils n'ont donc ni contenu ni prise sur la souris. */
+
+/* Combien d'ecrans de defilement dure un contenu. Chaque piste fixe la
+   sienne : les chiffres se lisent vite, un domaine demande qu'on s'arrete. */
+.rel-piste {
+  --rel-course: 1;
+  position: relative;
+}
+
+.rel-scene {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  height: 100svh;
+}
+
+.rel-jalon {
+  height: calc(100svh * var(--rel-course));
+  pointer-events: none;
+}
+
+/* La scène occupe la première tranche de la piste : on la rend aux jalons en
+   remontant tout d'une hauteur d'écran.
+
+   Le sélecteur vise le jalon qui suit la scène, et non `:first-of-type` :
+   celui-ci compte les div, or le premier div de la piste est la scène. La
+   règle ne s'appliquait donc à personne, et le premier contenu durait une
+   tranche de plus que les autres.
+
+   Le decalage vaut la hauteur de la scene, pas celle d'un jalon : c'est la
+   scene qu'on rend aux jalons. Le multiplier par la course ferait commencer
+   le premier jalon avant la section. */
+.rel-scene + .rel-jalon {
+  margin-top: -100svh;
+}
+
+/* Empilé, sur téléphone. La scène cesse d'être collée et cesse d'imposer une
+   hauteur d'écran : un contenu court n'a pas à occuper tout le viseur, et un
+   contenu long doit pouvoir déborder. */
+.rel-empile > .rel-scene {
+  /* Relative et non statique : les plans de fond des contenus se posent en
+     absolu dedans, et sans repère ils iraient se caler sur la page entière. */
+  position: relative;
+  height: auto;
+  /* Assez pour que deux contenus ne se touchent pas, pas au point de laisser
+     un demi-écran vide sous un contenu court. */
+  min-height: 0;
+  padding-block: clamp(2.5rem, 7vh, 4rem);
+}

@@ -1,0 +1,32 @@
+.fil {
+  display: flex;
+  gap: 1.15rem;
+}
+
+.fil span {
+  flex: 1;
+  height: 1px;
+  transition: background-color 0.6s cubic-bezier(0.8, 0, 0.3, 1);
+}
+
+.fil-sombre span {
+  background: hsl(var(--foreground) / 0.18);
+}
+
+.fil-sombre span[data-vu] {
+  background: hsl(var(--foreground) / 0.7);
+}
+
+.fil-clair span {
+  background: hsl(var(--foreground) / 0.2);
+}
+
+.fil-clair span[data-vu] {
+  background: hsl(var(--foreground) / 0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fil span {
+    transition: none;
+  }
+}

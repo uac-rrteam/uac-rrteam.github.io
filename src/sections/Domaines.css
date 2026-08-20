@@ -1,0 +1,250 @@
+/* Les domaines. Le plan reste au bleu nuit du site pendant toute la section,
+   le motif du domaine courant s'y dessine en grand, et le panneau à encoche
+   se pose dessus en bas à droite : un domaine par écran, jamais quatre cartes
+   côte à côte. */
+
+.dom {
+  position: relative;
+}
+
+/* La carte tient tout l'ecran de la scene : le plan et le panneau s'y posent
+   en absolu. Les mesures du panneau vivent ici plutot que sur lui, car le
+   volet les relit pour caler son pied sur l'encoche : deux jeux de mesures
+   finiraient par diverger. */
+.dom-carte {
+  --pan-large: min(48rem, 62%);
+  --pan-haut: 62%;
+  --pan-creux-x: 0.34;
+  --pan-creux-y: 0.15;
+  position: absolute;
+  inset: 0;
+}
+
+.dom-scene {
+  padding: clamp(4.5rem, 9vh, 7rem) var(--marge) clamp(1.5rem, 4vh, 3rem);
+}
+
+/* Le plan porte les quatre motifs empiles. Il rogne ce qui depasse : c'est
+   dans ce cadre que le sortant s'en va et que l'entrant arrive. */
+.dom-plan {
+  position: absolute;
+  overflow: hidden;
+  inset: 0;
+}
+
+/* Un motif. Les trois qui ne sont pas a l'ecran restent la, transparents :
+   il faut les deux, le partant et l'arrivant, pour que la releve se voie. */
+.dom-vue {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  inset: 0;
+  padding-left: clamp(2rem, 8vw, 9rem);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* Seule à l'écran, une vue n'attend aucune relève pour se montrer. */
+.dom-vue[data-vue-seule] {
+  opacity: 1;
+  will-change: auto;
+}
+
+.mot {
+  width: min(26rem, 32vw);
+  height: auto;
+}
+
+.mot-plein {
+  fill: hsl(var(--miel) / 0.9);
+}
+
+/* Une valeur encore ouverte : au trait, comme tout le reste du motif. Pleine,
+   elle ferait une trame grise qui mangerait les valeurs assignées. */
+.mot-cellule {
+  fill: none;
+  stroke: hsl(var(--foreground) / 0.28);
+  stroke-width: 0.7;
+}
+
+.mot-filet {
+  stroke: hsl(var(--foreground) / 0.2);
+  stroke-width: 1;
+}
+
+.mot-trace {
+  stroke: hsl(var(--foreground) / 0.8);
+  stroke-width: 1.2;
+}
+
+/* La route. Elle porte le camion sans lui disputer le trait : c'est un support,
+   pas un sujet. Placee apres .mot-trace pour l'emporter a specificite egale. */
+.mot-route {
+  stroke: hsl(var(--foreground) / 0.32);
+}
+
+.mot-site {
+  fill: hsl(var(--foreground) / 0.5);
+}
+
+/* Le depot, d'ou les trois vehicules partent et ou ils reviennent. */
+.mot-depot {
+  fill: hsl(var(--miel));
+}
+
+/* Le circuit. Il porte l'accent : c'est lui le resultat, la route n'est que
+   le chemin qui y mene. */
+.mot-tournee {
+  stroke: hsl(var(--miel) / 0.85);
+}
+
+/* Les trois charges, dans la caisse. Meme hauteur : c'est l'equite, montree
+   plutot qu'affirmee. Elles se distinguent par l'encre et non par la couleur,
+   la palette du site n'ayant qu'un accent. */
+.mot-charge[data-part="0"] {
+  fill: hsl(var(--miel) / 0.85);
+}
+
+.mot-charge[data-part="1"] {
+  fill: hsl(var(--foreground) / 0.6);
+}
+
+.mot-charge[data-part="2"] {
+  fill: hsl(var(--foreground) / 0.32);
+}
+
+
+.dom-panneau {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: var(--pan-large);
+  height: var(--pan-haut);
+  padding: 0 var(--retrait) var(--retrait);
+}
+
+/* Le titre vit dans le bandeau haut, celui que l'encoche a laissé : aligné à
+   droite, il tient dans la partie étroite du panneau. */
+.dom-titre {
+  margin: 0 0 auto;
+  padding: calc(var(--retrait) * 0.8) 0 0;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+/* Chaque ligne du titre a son masque : elle remonte de dessous au lieu de
+   surgir, et rien ne deborde pendant qu'elle monte. */
+/* Le masque suit la boîte de ligne, et une interligne serrée la fait finir
+   au-dessus des jambages. On rallonge la boîte par le bas et on rattrape la
+   hauteur par une marge négative : les descendantes passent, l'espacement des
+   lignes ne bouge pas. */
+.dom-ligne {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+}
+
+.dom-ligne > span {
+  display: block;
+}
+
+/* Les sujets, un par ligne, séparés par un filet. Ils remplissent le panneau
+   par du contenu réel plutôt que par un pictogramme décoratif. */
+.dom-sujets {
+  margin: auto 0 2.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.dom-sujets li {
+  padding: 1.05rem 0;
+  border-top: 1px solid hsl(var(--panneau-encre) / 0.14);
+  font-size: 0.8125rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.dom-sujets li:last-child {
+  border-bottom: 1px solid hsl(var(--panneau-encre) / 0.14);
+}
+
+/* Dans le panneau, le filet commun s'écrit sur du gris os : il reprend donc
+   l'encre du panneau, pas celle du thème. */
+.dom-panneau .fil span {
+  background: hsl(var(--panneau-encre) / 0.2);
+}
+
+.dom-panneau .fil span[data-vu] {
+  background: hsl(var(--panneau-encre) / 0.8);
+}
+
+.dom-compte {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.4rem;
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+}
+
+.dom-total {
+  color: hsl(var(--panneau-encre) / 0.55);
+}
+
+@media (max-width: 46rem) {
+  /* Empilé, tout passe dans le flux : le panneau était haut de soixante-seize
+     pour cent d'une scène qui, elle, tenait la hauteur du panneau. Chacun
+     attendait la mesure de l'autre et le domaine s'écrasait. */
+  .dom-plan {
+    position: static;
+    height: 21svh;
+  }
+
+  .dom-vue {
+    position: static;
+    height: 100%;
+    padding: 0 0 0 var(--marge);
+  }
+
+  .dom-carte {
+    position: static;
+    --pan-large: 100%;
+    --pan-haut: auto;
+  }
+
+  .dom-panneau {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding-top: 2.6rem;
+  }
+
+  /* Le titre ne repousse plus le reste au fond du panneau : sur une colonne,
+     l'écart devenait un trou. */
+  .dom-titre {
+    margin: 0 0 2.2rem;
+  }
+
+  /* Le panneau prend toute la largeur et les trois quarts de la hauteur : il
+     ne reste au motif que la bande du haut et le creux de l'encoche. Il s'y
+     loge, plutôt que de se cacher dessous. */
+  .dom-vue {
+    align-items: flex-start;
+    padding: 1.4rem 0 0 var(--marge);
+  }
+
+  .mot {
+    width: 58%;
+  }
+
+  .mot {
+    width: 60vw;
+  }
+}

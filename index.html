@@ -19,6 +19,11 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Les deux graisses du premier ecran. Sans ce prechargement, le
+         navigateur ne les demande qu'apres avoir lu le CSS, et le titre
+         s'affiche d'abord dans la police de secours. -->
+    <link rel="preload" href="/fonts/wuramibygemmas/WuraMiByGemmaS-ExtraLight.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/wuramibygemmas/WuraMiByGemmaS.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <div id="root"></div>

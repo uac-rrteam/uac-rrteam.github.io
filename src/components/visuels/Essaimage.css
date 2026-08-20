@@ -1,0 +1,41 @@
+/* L'essaimage. Quatre editions en retrait, la cinquieme au miel : on lit ou
+   en est l'atelier sans perdre de vue d'ou il vient. */
+
+.ess {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Le cercle d'une edition. En pointille, parce qu'une promotion n'est pas une
+   frontiere : les gens d'une annee restent la les annees suivantes. */
+.ess-anneau {
+  stroke: hsl(var(--foreground) / 0.1);
+  stroke-width: 1;
+  stroke-dasharray: 3 9;
+  fill: none;
+}
+
+.ess-derniere {
+  stroke: hsl(var(--miel) / 0.16);
+  stroke-dasharray: 4 10;
+}
+
+.ess-attache {
+  stroke: hsl(var(--foreground) / 0.16);
+  stroke-width: 0.8;
+  fill: none;
+}
+
+.ess-membre {
+  fill: hsl(var(--foreground) / 0.42);
+}
+
+/* La derniere couronne, la seule au miel. */
+.ess-recente .ess-membre {
+  fill: hsl(var(--miel) / 0.88);
+}
+
+.ess-noyau {
+  fill: hsl(var(--miel));
+}

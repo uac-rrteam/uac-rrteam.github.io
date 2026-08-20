@@ -1,0 +1,33 @@
+/* L'élévation. Une masse à peine plus claire que le fond, des lames fines
+   dessus, et quelques valeurs assignées au miel. Rien de plus : elle doit se
+   tenir loin derrière le texte. */
+
+.elv {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.elv-masse {
+  fill: hsl(228 40% 13%);
+}
+
+.elv-lame {
+  fill: hsl(220 22% 66% / 0.26);
+}
+
+.elv-assignee {
+  fill: hsl(var(--miel) / 0.75);
+}
+
+/* Une valeur que la propagation fixera plus tard. Elle est peinte au miel dès
+   maintenant, mais éteinte : c'est le défilement qui l'allume. */
+.elv-tardive {
+  fill: hsl(var(--miel) / 0.75);
+  opacity: 0;
+}
+
+.elv-plancher {
+  stroke: hsl(220 22% 72% / 0.16);
+  stroke-width: 1;
+}

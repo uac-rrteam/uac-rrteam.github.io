@@ -1,0 +1,27 @@
+/* La projection. Les quatre grappes ne se distinguent pas par la couleur mais
+   par leur place et leur forme : la palette reste celle du site, et le miel
+   garde sa valeur d'accent au lieu d'etre depense en code couleur. */
+
+.lat {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.lat-point {
+  fill: hsl(var(--foreground));
+}
+
+/* L'ellipse de dispersion, a deux ecarts-types. C'est la convention des
+   projections publiees : elle dit ou le modele situe la frontiere, et le
+   pointille rappelle que c'est une estimation, pas un mur. */
+.lat-contour {
+  stroke: hsl(var(--miel) / 0.3);
+  stroke-width: 1;
+  stroke-dasharray: 6 7;
+  fill: hsl(var(--miel) / 0.03);
+}
+
+.lat-centre {
+  fill: hsl(var(--miel) / 0.9);
+}
