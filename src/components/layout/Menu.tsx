@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useLang } from "@/i18n/lang";
+import { LANGS } from "@/i18n/dictionary";
 import "./Menu.css";
 
 interface Props {
@@ -22,7 +23,17 @@ interface Props {
  * une décoration : on sait combien il y en a et où on en est.
  */
 export function Menu({ ouvert, onFermer }: Props) {
-  const { t, path } = useLang();
+  const { t, path, lang } = useLang();
+  const { pathname } = useLocation();
+
+  /* Changer de langue garde la page ouverte : on remplace le préfixe et rien
+     d'autre. Renvoyer à l'accueil obligerait à refaire tout le chemin, et
+     personne ne change de langue pour recommencer. */
+  const enLangue = (autre: string) => {
+    const morceaux = pathname.split("/").filter(Boolean);
+    morceaux[0] = autre;
+    return `/${morceaux.join("/")}`;
+  };
   const panneauRef = useRef<HTMLDivElement>(null);
 
   const entrees = [
@@ -97,6 +108,23 @@ export function Menu({ ouvert, onFermer }: Props) {
           </span>
         ))}
       </nav>
+
+      {/* Les deux langues, sous les entrées. La courante reste affichée, mais
+          éteinte : sans elle on ne saurait pas dans laquelle on est. */}
+      <p className="men-langues">
+        {LANGS.map((code) => (
+          <Link
+            key={code}
+            to={enLangue(code)}
+            className="men-langue"
+            data-active={code === lang ? "" : undefined}
+            aria-current={code === lang ? "true" : undefined}
+            onClick={onFermer}
+          >
+            {code.toUpperCase()}
+          </Link>
+        ))}
+      </p>
 
       {/* Le pied court sur toute la largeur, centré : c'est la signature du
           panneau, pas une note en marge. */}

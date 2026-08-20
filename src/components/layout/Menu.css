@@ -65,6 +65,36 @@
   text-decoration-thickness: 1px;
 }
 
+/* Les deux langues. Un trait les sépare, comme un interrupteur à deux
+   positions ; la courante est marquée, l'autre est cliquable. */
+.men-langues {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 0 0 clamp(1.6rem, 4vh, 2.6rem);
+}
+
+.men-langue {
+  padding: 0.3rem 0.9rem;
+  color: hsl(var(--panneau-encre) / 0.45);
+  font-size: 0.875rem;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  transition: color 0.35s ease;
+}
+
+.men-langue + .men-langue {
+  border-left: 1px solid hsl(var(--panneau-encre) / 0.25);
+}
+
+.men-langue:hover {
+  color: hsl(var(--panneau-encre) / 0.85);
+}
+
+.men-langue[data-active] {
+  color: hsl(var(--panneau-encre));
+}
+
 .men-pied {
   display: flex;
   flex-wrap: wrap;
