@@ -283,7 +283,6 @@ const fr: Texte[] = [
       "Elle conçoit des systèmes intelligents pour des problèmes réels : intelligence artificielle embarquée, technologies de santé et internet des objets industriel.",
     ],
     charges: [
-      "Team lead du département internet des objets, United Student Developers",
       "Contributrice, FRIARE Africa",
       "Atelier d'initiation à l'internet des objets, Agence universitaire de la Francophonie",
     ],
@@ -422,7 +421,6 @@ const en: Texte[] = [
       "She designs intelligent systems for real-world problems: edge artificial intelligence, health technology and the industrial internet of things.",
     ],
     charges: [
-      "Team lead of the internet of things department, United Student Developers",
       "Contributor, FRIARE Africa",
       "Internet of things introductory workshop, Agence universitaire de la Francophonie",
     ],
