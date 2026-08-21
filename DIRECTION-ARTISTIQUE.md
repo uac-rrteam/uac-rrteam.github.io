@@ -236,7 +236,7 @@ d'images générique.
 /people               la liste des membres
 /people/<slug>        une page par membre
 /events               CP4SD 2025, les éditions du BWAI, ce qui vient
-/news                 actualités, alimentées par content/blog/<slug>.<langue>.md
+/news                 actualités, alimentées par content/actualites/<slug>.<langue>.md
 ```
 
 ### Une page par membre
@@ -406,20 +406,12 @@ Règle vérifiée au rendu : **sous 20 px, l'ExtraLight décroche**, la ligne pa
 fumée sur fond sombre. Les deux graisses légères sont strictement des graisses
 d'affichage.
 
-### Newsreader, pour la voix de la recherche
+### Une seule famille sur toutes les pages
 
-Seule exception, et elle est motivée : Likova n'a presque pas de texte long, le
-site de l'équipe en aura beaucoup (articles vulgarisés, notices des membres,
-pages de domaine). Une grotesque géométrique condensée est mauvaise sur huit
-cents mots.
-
-**Newsreader** (OFL, Google Fonts, axe optique) porte donc le **corps des textes
-longs uniquement** : 17–19 px, graisse 400, interligne 1.65, colonne de 65
-caractères. Elle n'est chargée que sur les pages qui en contiennent.
-
-La distinction devient alors porteuse de sens : **ce que le site dit se lit en
-Wúrà mi, ce que l'équipe écrit se lit en Newsreader.** Le lecteur le sent avant
-de le comprendre.
+Wúrà mi porte également les biographies, les articles et les descriptions de
+projet. Les textes longs utilisent la graisse Regular, une taille de 17 à 19 px,
+un interligne d'au moins 1.65 et une colonne de lecture limitée. La hiérarchie
+vient de la composition et des graisses, pas d'un changement de famille.
 
 ### Pas de troisième caractère
 

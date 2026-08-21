@@ -26,6 +26,3 @@ posters, resumes d'etudiants et ateliers thematiques.
 - BWAI-22, troisieme edition, 19 au 23 decembre 2022, UAC.
 - BWAI-24, quatrieme edition, 21 au 25 mai 2024, UAC.
 - BWAI-25, cinquieme edition, 17 au 21 novembre 2025, UAC.
-
-> Cet article est un exemple de contenu. Pour en publier un nouveau, il
-> suffit de deposer un fichier Markdown dans content/blog/.

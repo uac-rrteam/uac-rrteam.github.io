@@ -10,6 +10,9 @@ import { Equipe } from "@/pages/Equipe";
 import { Profil } from "@/pages/Profil";
 import { Recherche } from "@/pages/Recherche";
 import { Evenements } from "@/pages/Evenements";
+import { Evenement } from "@/pages/Evenement";
+import { Projet } from "@/pages/Projet";
+import { APropos } from "@/pages/APropos";
 /* La seule page qui rende du Markdown, donc la seule à charger le moteur qui
    va avec : quarante-huit kilo-octets compressés que les autres pages n'ont
    aucune raison de payer. Elle arrive en morceau séparé, au moment où on
@@ -48,7 +51,10 @@ export default function App() {
       <Route path="/:lang" element={<CoquilleLangue />}>
         <Route index element={<Accueil />} />
         <Route path="research" element={<Recherche />} />
+        <Route path="research/projects/:slug" element={<Projet />} />
         <Route path="events" element={<Evenements />} />
+        <Route path="events/:slug" element={<Evenement />} />
+        <Route path="about" element={<APropos />} />
         <Route
           path="news"
           element={

@@ -33,7 +33,7 @@ export function EnTete() {
 
   return (
     <>
-      {enLecture && !menuOuvert ? <div className="ent-voile" aria-hidden="true" /> : null}
+      {enLecture && !menuOuvert ? <div className="ent-voile" data-clair="" aria-hidden="true" /> : null}
       <header className="ent-tete" data-menu={menuOuvert ? "" : undefined}>
         <div className="ent-tete-gauche">
           <button

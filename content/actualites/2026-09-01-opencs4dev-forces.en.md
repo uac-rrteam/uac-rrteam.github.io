@@ -4,4 +4,4 @@ date: 2026-09-01
 periode: September 2026
 ---
 
-Southern coordination of two ARES-supported projects. OpenCS4Dev develops and shares open educational resources for computer science teaching. ForCES, conducted with ULB and Cheikh Anta Diop University from September 2026 to August 2028, will co-design a continuing professional development infrastructure for digital university pedagogy in Benin and Senegal.
+Ratheil Houndji coordinates the southern partnerships of two ARES-supported projects. OpenCS4Dev concerns the production and sharing of open computer-science teaching material. ForCES, conducted with ULB and Université Cheikh Anta Diop from September 2026 to August 2028, addresses continuing professional development in digital university pedagogy in Benin and Senegal.

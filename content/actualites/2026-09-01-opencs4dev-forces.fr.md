@@ -4,4 +4,4 @@ date: 2026-09-01
 periode: Septembre 2026
 ---
 
-Coordination Sud de deux projets soutenus par l'ARES. OpenCS4Dev vise la production et la mutualisation de ressources pédagogiques ouvertes pour l'enseignement de l'informatique. ForCES, mené avec l'ULB et l'Université Cheikh Anta Diop de septembre 2026 à août 2028, doit co-construire une infrastructure de formation continue en pédagogie universitaire numérique au Bénin et au Sénégal.
+Ratheil Houndji assure la coordination Sud de deux projets soutenus par l'ARES. OpenCS4Dev porte sur la production et le partage de ressources pédagogiques ouvertes en informatique. ForCES, mené avec l'ULB et l'Université Cheikh Anta Diop de septembre 2026 à août 2028, concerne la formation continue des enseignants à la pédagogie universitaire numérique au Bénin et au Sénégal.

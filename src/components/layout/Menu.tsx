@@ -37,6 +37,7 @@ export function Menu({ ouvert, onFermer }: Props) {
   const panneauRef = useRef<HTMLDivElement>(null);
 
   const entrees = [
+    { vers: "/about", texte: t("nav.about") },
     { vers: "/research", texte: t("nav.research") },
     { vers: "/people", texte: t("nav.people") },
     { vers: "/events", texte: t("nav.events") },

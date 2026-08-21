@@ -18,6 +18,7 @@ const fr = {
   "nav.people": "L'équipe",
   "nav.events": "Événements",
   "nav.blog": "Actualités",
+  "nav.about": "À propos",
 
   "lab.lrsiaDesc": "Le laboratoire, sa direction et ses domaines",
   "lab.teamDesc": "La Ratheil Research Team et ses axes",
@@ -40,6 +41,7 @@ const en: Partial<Record<keyof typeof fr, string>> = {
   "nav.people": "People",
   "nav.events": "Events",
   "nav.blog": "News",
+  "nav.about": "About",
 
   "lab.lrsiaDesc": "The lab, its direction and fields",
   "lab.teamDesc": "The Ratheil Research Team and its focus",

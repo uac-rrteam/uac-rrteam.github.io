@@ -43,12 +43,18 @@ npm run build
 npm run preview
 ```
 
-## Publier un article (actualites)
+## Modifier le contenu
 
-Le site est pense pour etre maintenu sans toucher au code. Pour ajouter une
-actualité, il suffit de **déposer un fichier Markdown** dans
-[`content/blog/`](content/blog/), nomme `<slug>.<langue>.md`
-(exemple : `cp4sd-2025.fr.md`).
+Le site est pensé pour être maintenu sans toucher au code. Les biographies,
+projets, événements, pages institutionnelles et actualités vivent dans
+[`content/`](content/). La convention commune est `<slug>.<langue>.md`, par
+exemple `maryse-gahou.fr.md` et `maryse-gahou.en.md`.
+
+La structure complète et les champs disponibles sont expliqués dans
+[CONTENU.md](CONTENU.md). Pour publier uniquement une actualité, suivez
+[PUBLIER.md](PUBLIER.md).
+
+Une actualité se dépose dans [`content/actualites/`](content/actualites/) :
 
 Chaque fichier commence par un bloc d'informations (frontmatter) :
 
@@ -70,13 +76,19 @@ modifier.
 ## Structure
 
 ```text
-content/blog/     Articles en Markdown (le contenu qui évolue)
+content/
+  actualites/     Actualités
+  events/         Événements et leurs pages de détail
+  pages/          Pages À propos, Recherche et Événements
+  people/         Biographies des membres
+  projects/       Projets et leurs pages de détail
 public/imgs/      Logos (LRSIA, IFRI, UAC) et portraits
 src/
   sections/       Sections de la page d'accueil (hero, laboratoire, membres...)
   pages/          Pages du site
   components/     Composants réutilisables (mise en page, UI, contenu)
-  i18n/           Traductions FR / EN
+  donnees/        Lecture et structuration des fichiers Markdown
+  i18n/           Traductions de l'interface FR / EN
 ```
 
 ---

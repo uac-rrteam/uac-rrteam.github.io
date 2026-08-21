@@ -5,8 +5,8 @@
 .pied {
   position: relative;
   overflow: hidden;
-  height: 68svh;
-  min-height: 32rem;
+  height: 42svh;
+  min-height: 22rem;
   border-top: 1px solid hsl(var(--foreground) / 0.12);
 }
 
@@ -115,30 +115,6 @@
   letter-spacing: 0.1em;
 }
 
-/* Le sigle du laboratoire tient le bas du site, etale d'un bord a l'autre :
-   une enseigne a la mesure de la facade. */
-.pied-sigle {
-  display: flex;
-  justify-content: space-between;
-  margin: 0;
-  font-size: clamp(4rem, 21vw, 20rem);
-  font-weight: 200;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-/* Chaque lettre a son masque : elle monte de dessous sans jamais deborder sur
-   la ligne d'informations. Le masque suit la line-box, d'ou la line-height a
-   1 plus haut : en dessous, il couperait le bas des glyphes. */
-.pied-masque {
-  display: block;
-  overflow: hidden;
-}
-
-.pied-lettre {
-  display: block;
-  transform-origin: 50% 100%;
-}
 
 @media (max-width: 46rem) {
   .pied {
@@ -160,7 +136,4 @@
     align-items: flex-start;
   }
 
-  .pied-sigle {
-    font-size: 23vw;
-  }
 }

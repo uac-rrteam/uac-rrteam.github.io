@@ -11,14 +11,12 @@ gsap.registerPlugin(ScrollTrigger);
 /** De combien le contenu du pied part remonté, en pourcentage de sa hauteur. */
 const RETRAIT = -35;
 
-/** Le sigle qui se pose au bas du site, une lettre à la fois. */
-const SIGLE = "LRSIA";
-
 /* Les institutions dont l'équipe relève. Elles restent en signature, elles ne
    dictent pas la palette : voir DIRECTION-ARTISTIQUE.md §7. */
 const TUTELLES = [
-  { nom: "IFRI", fichier: "logoifri", vers: "https://ifri.uac.bj" },
-  { nom: "Université d'Abomey-Calavi", fichier: "logouac", vers: "https://uac.bj" },
+  { nom: "LRSIA", fichier: "lrsia-sans-fond.png", vers: "https://ifri.uac.bj" },
+  { nom: "IFRI", fichier: "logoifri.webp", vers: "https://ifri.uac.bj" },
+  { nom: "Université d'Abomey-Calavi", fichier: "logouac.webp", vers: "https://uac.bj" },
 ];
 
 /**
@@ -39,6 +37,7 @@ export function PiedDePage() {
   const { t, path, lang } = useLang();
 
   const rubriques = [
+    { vers: "/about", texte: t("nav.about") },
     { vers: "/research", texte: t("nav.research") },
     { vers: "/people", texte: t("nav.people") },
     { vers: "/events", texte: t("nav.events") },
@@ -79,31 +78,8 @@ export function PiedDePage() {
         };
       });
 
-      // Les lettres du sigle montent en s'étirant, puis reprennent leur forme.
-      // L'étirement est ce qui donne le poids : sans lui, elles glissent.
-      const lettres = gsap.fromTo(
-        ".pied-lettre",
-        { yPercent: 118, scaleY: 2.3, scaleX: 0.72, opacity: 0 },
-        {
-          yPercent: 0,
-          scaleY: 1,
-          scaleX: 1,
-          opacity: 1,
-          ease: "back.inOut(2)",
-          stagger: 0.09,
-          scrollTrigger: {
-            trigger: pied,
-            start: "top bottom-=8%",
-            end: "bottom bottom",
-            scrub: 0.9,
-          },
-        },
-      );
-
       return () => {
         large.revert();
-        lettres.scrollTrigger?.kill();
-        lettres.kill();
       };
     },
     { scope: piedRef },
@@ -133,7 +109,7 @@ export function PiedDePage() {
                 <li key={tutelle.nom}>
                   <a href={tutelle.vers} target="_blank" rel="noreferrer">
                     <img
-                      src={`/imgs/logos/${tutelle.fichier}.webp`}
+                      src={`/imgs/logos/${tutelle.fichier}`}
                       width={120}
                       height={120}
                       alt={tutelle.nom}
@@ -147,14 +123,6 @@ export function PiedDePage() {
             <p className="pied-annee">{new Date().getFullYear()}</p>
           </div>
         </div>
-
-        <p className="pied-sigle" aria-label={SIGLE}>
-          {Array.from(SIGLE).map((lettre, rang) => (
-            <span key={`${lettre}-${rang}`} className="pied-masque" aria-hidden="true">
-              <span className="pied-lettre">{lettre}</span>
-            </span>
-          ))}
-        </p>
       </div>
     </footer>
   );

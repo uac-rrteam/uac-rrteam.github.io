@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useLang } from "@/i18n/lang";
 import { actualites } from "@/donnees/actualites";
+import { pageContenu } from "@/donnees/contenu";
+import { Markdown as MarkdownContenu } from "@/components/content/Markdown";
 import { lignesQuiRemontent } from "@/animations/lignesQuiRemontent";
 import "./Actualites.css";
 
@@ -20,7 +22,8 @@ import "./Actualites.css";
 export function Actualites() {
   const zoneRef = useRef<HTMLDivElement>(null);
   const { lang } = useLang();
-  const dit = actualites(lang);
+  const entrees = actualites(lang);
+  const page = pageContenu(lang, "news");
 
   useGSAP(
     () => {
@@ -55,14 +58,14 @@ export function Actualites() {
       <header className="act-entete">
         <h1 className="act-titre">
           <span className="act-ligne">
-            <span>{dit.titre}</span>
+            <span>{page?.titre}</span>
           </span>
         </h1>
-        <p className="act-chapo">{dit.chapo}</p>
+        <p className="act-chapo">{page?.resume}</p>
       </header>
 
       <ol className="act-fil">
-        {dit.entrees.map((entree) => (
+        {entrees.map((entree) => (
           <li key={entree.cle} className="act-entree act-leve">
             <p className="act-quand">{entree.quand}</p>
             <div className="act-corps">
@@ -86,16 +89,7 @@ export function Actualites() {
         ))}
       </ol>
 
-      <section className="act-suivre">
-        <h2 className="act-section act-leve">{dit.ailleursTitre}</h2>
-        <p className="act-liens act-leve">
-          {dit.ailleurs.map((lien) => (
-            <a key={lien.vers} href={lien.vers} target="_blank" rel="noreferrer">
-              {lien.intitule}
-            </a>
-          ))}
-        </p>
-      </section>
+      {page?.corps ? <section className="act-suivre act-leve"><MarkdownContenu>{page.corps}</MarkdownContenu></section> : null}
     </div>
   );
 }

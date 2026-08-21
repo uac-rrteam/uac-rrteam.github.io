@@ -154,6 +154,11 @@
   margin-top: clamp(3rem, 8vh, 5rem);
 }
 
+.pro-biographie > .prose-lrsia {
+  grid-column: 2;
+  width: min(100%, 46rem);
+}
+
 .pro-titre {
   margin: 0;
   color: hsl(var(--muted-foreground));
@@ -285,6 +290,9 @@
 }
 
 .pro-liens a {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
   color: hsl(var(--miel));
   font-size: 0.9375rem;
   letter-spacing: 0.04em;
@@ -358,6 +366,10 @@
 
   .pro-bloc {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pro-biographie > .prose-lrsia {
+    grid-column: 1;
   }
 }
 
