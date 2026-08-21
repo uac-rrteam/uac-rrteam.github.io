@@ -17,7 +17,8 @@ const fr = {
   "nav.research": "Recherche",
   "nav.people": "L'équipe",
   "nav.events": "Événements",
-  "nav.blog": "Actualités",
+  "nav.news": "Actualités",
+  "nav.blog": "Blog",
   "nav.about": "À propos",
 
   "lab.lrsiaDesc": "Le laboratoire, sa direction et ses domaines",
@@ -40,7 +41,8 @@ const en: Partial<Record<keyof typeof fr, string>> = {
   "nav.research": "Research",
   "nav.people": "People",
   "nav.events": "Events",
-  "nav.blog": "News",
+  "nav.news": "News",
+  "nav.blog": "Blog",
   "nav.about": "About",
 
   "lab.lrsiaDesc": "The lab, its direction and fields",

@@ -1,7 +1,7 @@
 # Ratheil Research Team, UAC
 
 
-> **Pour publier une actualité**, il suffit de déposer un fichier dans
+> **Pour publier une actualité**, il suffit de créer son dossier dans
 > `content/actualites/` et de l'envoyer : la marche à suivre tient dans
 > [PUBLIER.md](PUBLIER.md), et rien d'autre n'est à installer.
 
@@ -47,14 +47,20 @@ npm run preview
 
 Le site est pensé pour être maintenu sans toucher au code. Les biographies,
 projets, événements, pages institutionnelles et actualités vivent dans
-[`content/`](content/). La convention commune est `<slug>.<langue>.md`, par
-exemple `maryse-gahou.fr.md` et `maryse-gahou.en.md`.
+[`content/`](content/). La convention commune est `<slug>/index.<langue>.md`,
+par exemple `maryse-gahou/index.fr.md` et `maryse-gahou/index.en.md`.
 
 La structure complète et les champs disponibles sont expliqués dans
 [CONTENU.md](CONTENU.md). Pour publier uniquement une actualité, suivez
 [PUBLIER.md](PUBLIER.md).
 
 Une actualité se dépose dans [`content/actualites/`](content/actualites/) :
+
+```text
+content/actualites/2027-02-10-soutenance/
+  index.fr.md
+  index.en.md
+```
 
 Chaque fichier commence par un bloc d'informations (frontmatter) :
 
@@ -78,6 +84,7 @@ modifier.
 ```text
 content/
   actualites/     Actualités
+  blog/           Billets de blog (code et mathématiques acceptés)
   events/         Événements et leurs pages de détail
   pages/          Pages À propos, Recherche et Événements
   people/         Biographies des membres

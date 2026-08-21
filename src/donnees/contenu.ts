@@ -1,25 +1,31 @@
 import type { Lang } from "@/i18n/dictionary";
 import { champ, rassembler, type Article, type Entete } from "./lireMarkdown";
 
-const PERSONNES = import.meta.glob("../../content/people/*.md", {
+const PERSONNES = import.meta.glob("../../content/people/*/index.*.md", {
   eager: true,
   query: "?raw",
   import: "default",
 }) as Record<string, string>;
 
-const PROJETS = import.meta.glob("../../content/projects/*.md", {
+const PROJETS = import.meta.glob("../../content/projects/*/index.*.md", {
   eager: true,
   query: "?raw",
   import: "default",
 }) as Record<string, string>;
 
-const EVENEMENTS = import.meta.glob("../../content/events/*.md", {
+const EVENEMENTS = import.meta.glob("../../content/events/*/index.*.md", {
   eager: true,
   query: "?raw",
   import: "default",
 }) as Record<string, string>;
 
-const PAGES = import.meta.glob("../../content/pages/*.md", {
+const PAGES = import.meta.glob("../../content/pages/*/index.*.md", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+}) as Record<string, string>;
+
+const BLOG = import.meta.glob("../../content/blog/*/index.*.md", {
   eager: true,
   query: "?raw",
   import: "default",
@@ -180,4 +186,34 @@ export function pageContenu(lang: Lang, slug: string): PageContenu | undefined {
     resume: champ(article.entete, "resume") || champ(article.entete, "summary"),
     corps: article.corps,
   };
+}
+
+export interface BilletContenu {
+  slug: string;
+  titre: string;
+  date: string;
+  resume: string;
+  auteur?: string;
+  motsCles: string[];
+  corps: string;
+}
+
+export function billets(lang: Lang): BilletContenu[] {
+  return avecRepli(BLOG, lang).map((article) => ({
+    slug: article.slug,
+    titre: champ(article.entete, "titre") || champ(article.entete, "title") || article.slug,
+    date: champ(article.entete, "date"),
+    resume: champ(article.entete, "resume") || champ(article.entete, "summary"),
+    auteur: champ(article.entete, "auteur") || champ(article.entete, "author") || undefined,
+    motsCles: Array.isArray(article.entete.motsCles)
+      ? article.entete.motsCles
+      : Array.isArray(article.entete.tags)
+        ? article.entete.tags
+        : [],
+    corps: article.corps,
+  }));
+}
+
+export function billet(lang: Lang, slug: string | undefined): BilletContenu | undefined {
+  return billets(lang).find((item) => item.slug === slug);
 }

@@ -6,17 +6,18 @@ ajouter un fichier suffit pour qu'il apparaisse dans la liste correspondante.
 
 ## Convention commune
 
-Chaque contenu bilingue utilise deux fichiers portant le même identifiant :
+Chaque contenu bilingue possède son propre dossier et deux fichiers de langue :
 
 ```text
-mon-identifiant.fr.md
-mon-identifiant.en.md
+mon-identifiant/
+  index.fr.md
+  index.en.md
 ```
 
 L'identifiant devient l'adresse de la page. Par exemple :
 
 ```text
-content/projects/ai4ckd.fr.md
+content/projects/ai4ckd/index.fr.md
 → /fr/research/projects/ai4ckd
 ```
 
@@ -25,6 +26,9 @@ corps en Markdown. Les champs inconnus sont ignorés et les champs facultatifs
 peuvent simplement être omis.
 
 ## Membres — `content/people/`
+
+Chaque membre possède un dossier, par exemple
+`content/people/maryse-gahou/index.fr.md`.
 
 ```markdown
 ---
@@ -56,6 +60,9 @@ identifiants des projets à afficher sur la page du membre.
 
 ## Projets — `content/projects/`
 
+Chaque projet possède un dossier, par exemple
+`content/projects/ai4ckd/index.fr.md`.
+
 ```markdown
 ---
 titre: Nom du projet
@@ -78,6 +85,9 @@ institutions ; ne renseignez que les collaborations confirmées.
 
 ## Événements — `content/events/`
 
+Chaque événement possède un dossier, par exemple
+`content/events/bwai-2026/index.fr.md`.
+
 ```markdown
 ---
 titre: Nom de l'événement
@@ -96,7 +106,7 @@ récent au plus ancien.
 
 ## Pages — `content/pages/`
 
-Les fichiers `about`, `research` et `events` portent les textes généraux de
+Les dossiers `about`, `research`, `events`, `people`, `news` et `blog` portent les textes généraux de
 leurs pages. Leur en-tête contient `titre` et `resume`; leur corps accepte le
 Markdown ordinaire.
 
@@ -104,6 +114,32 @@ Markdown ordinaire.
 
 La procédure spécifique, y compris les brouillons et les liens, est détaillée
 dans [PUBLIER.md](PUBLIER.md).
+
+## Blog — `content/blog/`
+
+Un billet suit la même convention :
+`content/blog/mon-billet/index.fr.md` et `index.en.md`. Son en-tête accepte
+`title`/`titre`, `date`, `summary`/`resume`, `author`/`auteur` et `tags`.
+Ajoutez `brouillon: oui` pour le conserver sans le publier.
+
+Les blocs de code utilisent les clôtures Markdown et peuvent préciser le
+langage :
+
+````markdown
+```python
+def optimiser(instance):
+    return solve(instance)
+```
+````
+
+Les formules en ligne s'écrivent entre deux `$`, par exemple `$x \in X$`, et
+les formules isolées entre `$$` :
+
+```markdown
+$$
+\min_{x \in X} \sum_i c_i x_i
+$$
+```
 
 ## Traductions et repli
 

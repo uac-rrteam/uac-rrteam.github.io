@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLang } from "@/i18n/lang";
+import { LienIcone } from "@/components/content/LienIcone";
 import "./PiedDePage.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -41,7 +42,8 @@ export function PiedDePage() {
     { vers: "/research", texte: t("nav.research") },
     { vers: "/people", texte: t("nav.people") },
     { vers: "/events", texte: t("nav.events") },
-    { vers: "/news", texte: t("nav.blog") },
+    { vers: "/news", texte: t("nav.news") },
+    { vers: "/blog", texte: t("nav.blog") },
   ];
 
   const adresse =
@@ -101,6 +103,9 @@ export function PiedDePage() {
             {adresse.map((ligne) => (
               <span key={ligne}>{ligne}</span>
             ))}
+            <span className="pied-github">
+              <LienIcone intitule="GitHub" vers="https://github.com/uac-rrteam" />
+            </span>
           </address>
 
           <div className="pied-signature">

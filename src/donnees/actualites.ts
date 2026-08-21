@@ -1,7 +1,7 @@
 import type { Lang } from "@/i18n/dictionary";
 import { champ, rassembler } from "./lireMarkdown";
 
-const FICHIERS = import.meta.glob("../../content/actualites/*.md", {
+const FICHIERS = import.meta.glob("../../content/actualites/*/index.*.md", {
   eager: true,
   query: "?raw",
   import: "default",

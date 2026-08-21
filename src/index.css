@@ -108,6 +108,9 @@
 
   --font-sans: "Wura mi", "Segoe UI", system-ui, sans-serif;
   --font-display: "Wura mi", "Segoe UI", system-ui, sans-serif;
+  /* Emplacement réservé à Martian Mono, proposée pour les données techniques.
+     La police locale prendra la main ici dès que le choix sera validé. */
+  --font-tech: "Martian Mono", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -148,7 +151,7 @@ body::before {
 
 /* Les pages de consultation utilisent le gris os du ratel comme une feuille.
    L'accueil et le menu conservent le bleu nuit de l'identité. */
-:is(.equ, .pro, .rch, .evt, .act, .detail-contenu) {
+:is(.equ, .pro, .rch, .evt, .act, .blg, .detail-contenu) {
   --foreground: 225 33% 7%;
   --muted-foreground: 225 12% 38%;
   --primary: 225 33% 7%;
@@ -235,10 +238,36 @@ body::-webkit-scrollbar {
   font-style: italic;
 }
 .prose-lrsia code {
+  font-family: var(--font-tech);
   background: hsl(var(--muted));
   padding: 0.15em 0.4em;
   border-radius: var(--radius-sm);
   font-size: 0.9em;
+}
+.prose-lrsia pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius-md);
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  font-family: var(--font-tech);
+  font-size: .875rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+.prose-lrsia pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+.prose-lrsia .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .5rem 0;
 }
 .prose-lrsia img {
   border-radius: var(--radius-lg);

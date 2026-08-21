@@ -13,6 +13,8 @@ import { Evenements } from "@/pages/Evenements";
 import { Evenement } from "@/pages/Evenement";
 import { Projet } from "@/pages/Projet";
 import { APropos } from "@/pages/APropos";
+import { Blog } from "@/pages/Blog";
+import { Billet } from "@/pages/Billet";
 /* La seule page qui rende du Markdown, donc la seule à charger le moteur qui
    va avec : quarante-huit kilo-octets compressés que les autres pages n'ont
    aucune raison de payer. Elle arrive en morceau séparé, au moment où on
@@ -55,6 +57,8 @@ export default function App() {
         <Route path="events" element={<Evenements />} />
         <Route path="events/:slug" element={<Evenement />} />
         <Route path="about" element={<APropos />} />
+        <Route path="blog" element={<Blog />} />
+        <Route path="blog/:slug" element={<Billet />} />
         <Route
           path="news"
           element={

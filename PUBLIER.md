@@ -1,7 +1,8 @@
 # Publier une actualité
 
-Pour mettre une nouvelle en ligne, il suffit de **déposer un fichier** dans le
-dossier `content/actualites/` et de l'envoyer sur GitHub. Le site se
+Pour mettre une nouvelle en ligne, il suffit de **créer un dossier** dans
+`content/actualites/`, d'y déposer les deux versions du texte et d'envoyer le
+tout sur GitHub. Le site se
 reconstruit tout seul et la nouvelle paraît deux à trois minutes plus tard sur
 <https://uac-rrteam.github.io/>.
 
@@ -11,29 +12,29 @@ Aucune ligne de code à écrire, aucun outil à installer.
 
 ## 1. Créer le fichier
 
-Le nom du fichier suit toujours la même forme :
+Le nom du dossier suit toujours la même forme :
 
 ```
-AAAA-MM-JJ-un-titre-court.fr.md
+AAAA-MM-JJ-un-titre-court/
+  index.fr.md
+  index.en.md
 ```
 
 - **La date** met la nouvelle à sa place dans le fil, la plus récente en haut.
 - **Le titre court** n'a ni accent, ni espace, ni majuscule ; les mots sont
   séparés par des tirets.
-- **`.fr`** dit la langue. `.en` pour l'anglais.
-- **`.md`** est l'extension, à ne pas oublier.
+- **`index.fr.md`** contient la version française et **`index.en.md`** la version anglaise.
 
 Exemples :
 
 ```
-2026-11-23-bwai-2026.fr.md
-2026-11-23-bwai-2026.en.md
-2027-02-10-soutenance-de-these.fr.md
+content/actualites/2026-11-23-bwai-2026/index.fr.md
+content/actualites/2026-11-23-bwai-2026/index.en.md
+content/actualites/2027-02-10-soutenance-de-these/index.fr.md
 ```
 
-> **Un seul fichier pour les deux langues ?** Écrivez-le sans le `.fr` ni le
-> `.en` : `2027-02-10-soutenance.md` paraîtra dans les deux versions du site.
-> C'est utile quand le texte est court ou qu'il n'y a pas encore de traduction.
+> Si la traduction anglaise n'est pas encore prête, publiez seulement
+> `index.fr.md` : le français servira temporairement de repli.
 
 ---
 
@@ -96,7 +97,8 @@ Laissez une ligne vide entre deux paragraphes : c'est ce qui les sépare.
 1. Ouvrir <https://github.com/uac-rrteam/uac-rrteam.github.io>
 2. Entrer dans le dossier `content/actualites/`
 3. Cliquer sur **Add file**, puis **Create new file**
-4. Écrire le nom du fichier, puis coller le contenu
+4. Dans le champ du nom, écrire par exemple
+   `2027-02-10-soutenance-de-these/index.fr.md`, puis coller le contenu
 5. En bas, cliquer sur **Commit changes**
 
 C'est tout. La publication démarre à l'instant où vous validez.
@@ -127,8 +129,9 @@ Ouvrir l'onglet **Actions** du dépôt :
 
 Dans l'ordre, les trois causes les plus fréquentes :
 
-**Le fichier n'apparaît pas du tout.** Vérifiez son nom : il doit finir par
-`.md`, et se trouver dans `content/actualites/`, pas ailleurs.
+**Le fichier n'apparaît pas du tout.** Vérifiez son chemin : il doit s'appeler
+`index.fr.md` ou `index.en.md` dans son propre dossier sous
+`content/actualites/`.
 
 **La nouvelle s'affiche sans titre.** La fiche d'identité est mal fermée. Il
 faut exactement trois tirets `---` sur la première ligne, et trois tirets sur

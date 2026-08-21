@@ -4,6 +4,7 @@ date: 2025-11-17
 summary: Retour sur la cinquieme edition de l'atelier national sur l'intelligence artificielle, tenue a l'UAC du 17 au 21 novembre 2025.
 author: Ratheil Research Team
 tags: [evenement, BWAI, IA]
+brouillon: oui
 ---
 
 Le **Benin Workshop on Artificial Intelligence** (BWAI) est un atelier

@@ -5,7 +5,6 @@ import "./Accueil.css";
 
 const contenu = {
   fr: {
-    repere: "LRSIA · IFRI · Université d'Abomey-Calavi",
     titre: ["Intelligence artificielle", "et optimisation", "pour l'impact sociétal"],
     introduction:
       "La Ratheil Research Team étudie des méthodes d'apprentissage, de programmation par contraintes et d'optimisation combinatoire à partir de problèmes rencontrés au Bénin.",
@@ -51,6 +50,9 @@ export function Accueil() {
     <>
       <div className="acc">
         <section id="ouverture" className="acc-hero">
+          <div className="acc-geometrie" aria-hidden="true">
+            {Array.from({ length: 12 }, (_, rang) => <span key={rang} />)}
+          </div>
           <p className="acc-repere">{dit.repere}</p>
           <h1>
             {dit.titre.map((ligne) => <span key={ligne}>{ligne}</span>)}

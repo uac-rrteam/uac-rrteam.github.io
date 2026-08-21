@@ -1,6 +1,4 @@
 import { useRef } from "react";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useLang } from "@/i18n/lang";
@@ -73,7 +71,7 @@ export function Actualites() {
               {/* Le corps vient d'un fichier Markdown : gras, listes et liens
                   y sont donc permis, sans que personne ait à toucher au code. */}
               <div className="act-dit">
-                <Markdown remarkPlugins={[remarkGfm]}>{entree.dit}</Markdown>
+                <MarkdownContenu>{entree.dit}</MarkdownContenu>
               </div>
               {entree.liens ? (
                 <p className="act-liens">
