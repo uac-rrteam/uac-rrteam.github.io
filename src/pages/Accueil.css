@@ -41,7 +41,7 @@
 .acc-hero h1 span:nth-child(2) { animation-delay: .06s; }
 .acc-hero h1 span:nth-child(3) { animation-delay: .12s; }
 .acc-intro { align-self: end; padding-bottom: .4rem; animation: acc-apparition .8s .16s var(--ease-smooth) both; }
-.acc-intro > p { margin: 0; color: hsl(var(--muted-foreground)); font-size: 1.0625rem; line-height: 1.7; }
+.acc-intro > p { margin: 0; color: hsl(var(--muted-foreground)); font-size: 1.125rem; line-height: 1.72; }
 .acc-actions { display: flex; flex-wrap: wrap; gap: 1rem 1.8rem; margin-top: 2rem; }
 .acc-actions a, .acc-propos a { color: hsl(var(--foreground)); font-size: .8125rem; letter-spacing: .07em; text-decoration: none; text-transform: uppercase; border-bottom: 1px solid hsl(var(--miel)); padding-bottom: .25rem; transition: color .25s ease, border-color .25s ease; }
 .acc-actions a:hover, .acc-actions a:focus-visible, .acc-propos a:hover, .acc-propos a:focus-visible { color: hsl(var(--miel)); }
@@ -57,7 +57,7 @@
 .acc-axes li:nth-child(3) .acc-index { color: hsl(var(--elague)); }
 .acc-axes li:hover { background: hsl(var(--foreground) / .025); }
 .acc-axes h3 { margin: 0; font-size: clamp(1.25rem, 2.4vw, 2rem); font-weight: 300; }
-.acc-axes p { margin: .3rem 0 0; color: hsl(var(--muted-foreground)); font-size: .9375rem; line-height: 1.55; }
+.acc-axes p { margin: .35rem 0 0; color: hsl(var(--muted-foreground)); font-size: 1rem; line-height: 1.62; }
 
 .acc-propos { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end; padding: clamp(4rem, 10vh, 7rem) 0; border-top: 1px solid hsl(var(--foreground) / .14); }
 .acc-propos p { margin: 0; max-width: 42ch; font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 200; line-height: 1.25; }

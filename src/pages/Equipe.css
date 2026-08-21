@@ -110,8 +110,10 @@
 
 .equ-nom {
   margin: 0;
-  font-size: clamp(1.05rem, 1.8vw, 1.5rem);
-  font-weight: 200;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  /* Un nom de personne se lit d'un coup d'oeil dans une grille : a cette
+     taille l'ExtraLight n'en donnait pas assez. */
+  font-weight: 300;
 }
 
 .equ-statut {

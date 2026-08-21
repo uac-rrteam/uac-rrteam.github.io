@@ -11,22 +11,11 @@
       content="Equipe de recherche du Dr Vinasetan Ratheil Houndji au LRSIA, IFRI, Universite d'Abomey-Calavi. Intelligence artificielle au service de l'impact societal."
     />
 
-    <!-- Outfit, police unique du site. preconnect pour couper la latence DNS/TLS,
-         display=swap pour ne jamais bloquer le premier rendu. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
     <!-- Les deux graisses du premier ecran. Sans ce prechargement, le
          navigateur ne les demande qu'apres avoir lu le CSS, et le titre
          s'affiche d'abord dans la police de secours. -->
     <link rel="preload" href="/fonts/wuramibygemmas/WuraMiByGemmaS-ExtraLight.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/wuramibygemmas/WuraMiByGemmaS.woff2" as="font" type="font/woff2" crossorigin />
-  </head>
-  <body>
-    <div id="root"></div>
     <!-- Pose la classe .dark AVANT le premier rendu, pour eviter le flash de
          theme clair chez un visiteur en mode sombre. Lit le meme choix que
          le ThemeProvider (localStorage), avec repli sur la preference OS. -->
@@ -41,6 +30,9 @@
         } catch (e) {}
       })();
     </script>
+  </head>
+  <body>
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

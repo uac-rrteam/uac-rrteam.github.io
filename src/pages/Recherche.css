@@ -61,8 +61,8 @@
   margin: 0 0 clamp(2rem, 5vh, 3rem);
   max-width: 56ch;
   color: hsl(var(--muted-foreground));
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1.125rem;
+  line-height: 1.72;
 }
 
 /* Les axes : quatre, donc deux colonnes suffisent. Ils tiennent la largeur
@@ -87,7 +87,7 @@
   max-width: 44ch;
   color: hsl(var(--muted-foreground));
   font-size: 1.0625rem;
-  line-height: 1.6;
+  line-height: 1.68;
 }
 
 /* Les projets : une ligne chacun, l'année à gauche comme repère de lecture,
@@ -161,12 +161,16 @@
   color: hsl(var(--foreground) / 0.82);
 }
 
-/* La vitrine : le seul bloc qui sort du gabarit de liste. Un fond à peine
-   plus clair que la nuit suffit à le détacher, sans cadre ni ombre. */
+/* La vitrine : le seul bloc qui sort du gabarit de liste. Un fond a peine
+   decale de celui de la page suffit a le detacher, sans cadre ni ombre. C'est
+   exactement ce que --card designe, dans les deux themes : un peu plus clair
+   que la nuit, un peu plus clair que le gris os. Le bleu qui etait ecrit ici en
+   dur devenait illisible des que la page passait au clair. */
 .rch-vitrine {
   margin-top: clamp(4.5rem, 12vh, 8rem);
   padding: clamp(2rem, 5vh, 3.4rem) clamp(1.4rem, 3vw, 2.6rem);
-  background: hsl(228 40% 11%);
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
 }
 
 .rch-vitrine-corps {
@@ -364,7 +368,7 @@
   margin: 0;
   color: hsl(var(--muted-foreground));
   font-size: 1.25rem;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .rch-publications > li {

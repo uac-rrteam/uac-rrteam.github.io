@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useLang } from "@/i18n/lang";
 import { useDepassement } from "@/hooks/useDepassement";
 import { Menu } from "./Menu";
+import { BasculeTheme } from "./BasculeTheme";
 import "./EnTete.css";
 
 /**
@@ -33,7 +34,7 @@ export function EnTete() {
 
   return (
     <>
-      {enLecture && !menuOuvert ? <div className="ent-voile" data-clair="" aria-hidden="true" /> : null}
+      {enLecture && !menuOuvert ? <div className="ent-voile" aria-hidden="true" /> : null}
       <header className="ent-tete" data-menu={menuOuvert ? "" : undefined}>
         <div className="ent-tete-gauche">
           <button
@@ -58,11 +59,16 @@ export function EnTete() {
           </Link>
         </div>
 
-        <nav className="ent-tete-liens" aria-label={t("nav.menu")} onClick={() => setMenuOuvert(false)}>
-          <Link to={path("/research")}>{t("nav.research")}</Link>
-          <Link to={path("/people")}>{t("nav.people")}</Link>
-          <Link to={path("/events")}>{t("nav.events")}</Link>
-        </nav>
+        <div className="ent-tete-droite">
+          <nav className="ent-tete-liens" aria-label={t("nav.menu")} onClick={() => setMenuOuvert(false)}>
+            <Link to={path("/research")}>{t("nav.research")}</Link>
+            <Link to={path("/people")}>{t("nav.people")}</Link>
+            <Link to={path("/events")}>{t("nav.events")}</Link>
+          </nav>
+          {/* La bascule reste visible menu ouvert : elle ne dit pas ou l'on va,
+              elle change la façon dont on lit, ce qui vaut partout. */}
+          <BasculeTheme />
+        </div>
       </header>
 
       {/* Hors de l'en-tête : celui-ci est en fusion « différence », et le

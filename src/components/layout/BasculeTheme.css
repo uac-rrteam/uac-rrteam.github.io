@@ -1,0 +1,39 @@
+/* La bascule de theme. Elle vit dans l'en-tete, qui est en fusion
+   « difference » : aucune couleur posee ici ne ressortirait telle quelle. Le
+   trait de l'icone prend donc currentColor, comme le trait du menu. */
+
+.bth {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+.bth svg {
+  animation: bth-arrivee 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Le focus doit rester visible : c'est le seul repere au clavier, l'en-tete
+   n'ayant ni fond ni cadre. */
+.bth:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+}
+
+@keyframes bth-arrivee {
+  from {
+    opacity: 0;
+    transform: rotate(-45deg) scale(0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bth svg {
+    animation: none;
+  }
+}

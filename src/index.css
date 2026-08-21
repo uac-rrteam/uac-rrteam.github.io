@@ -8,18 +8,12 @@
    PALETTE, direction artistique de la Ratheil Research Team
    Voir DIRECTION-ARTISTIQUE.md, section 7.
 
-   Elle sort du ratel et de rien d'autre : le noir de son corps donne le fond
-   sombre, le gris os de son manteau donne le fond clair, et le miel qu'il
-   chasse donne l'accent. Mellivora veut dire mangeur de miel.
-
-   Le fond sombre est un bleu tres profond, pas un noir neutre : c'est ce qui
-   permet d'y ramener toutes les photographies par etalonnage, et c'est sur un
-   bleu nuit que le miel ressort, jamais sur un gris.
+   Elle sort du ratel et de rien d'autre : le bleu nuit de son corps, le gris
+   os de son manteau, et le miel qu'il chasse pour accent. Mellivora veut dire
+   mangeur de miel.
 
    Les logos LRSIA, IFRI et UAC restent en signature institutionnelle mais ne
    dictent plus la palette. Le socle herite d'e-freeshop est remplace.
-
-   Aucune couleur en dur ailleurs que dans ce bloc.
    ========================================================================== */
 
 @font-face {
@@ -36,22 +30,101 @@
 }
 @font-face {
   font-family: "Wura mi";
+  src: url("/fonts/wuramibygemmas/WuraMiByGemmaS-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Wura mi";
   src: url("/fonts/wuramibygemmas/WuraMiByGemmaS-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-display: swap;
 }
+@font-face {
+  font-family: "Wura mi";
+  src: url("/fonts/wuramibygemmas/WuraMiByGemmaS-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
 
-/* Un seul fond pour tout le site, le bleu nuit du corps du ratel. Pas de
-   bascule clair/sombre : la plateforme de référence n'en a pas non plus, et
-   c'est ce fond unique qui permet de ramener tous les visuels à une seule
-   ambiance. Les surfaces claires ne sont pas un thème, ce sont les panneaux
-   posés dessus. */
-:root,
+/* Deux themes, tires des memes deux matieres du ratel : le bleu nuit de son
+   corps et le gris os de son manteau. Ce ne sont pas deux palettes, c'est la
+   meme retournee.
+
+   --background et --foreground portent la page. --panneau et --panneau-encre
+   portent la surface qui la contredit : le menu plein ecran. Ce couple est
+   toujours l'inverse du premier, c'est ce qui fait l'effet de retournement
+   quand le menu s'ouvre, et il reste vrai dans les deux themes.
+
+   Le miel change de valeur d'un theme a l'autre, pas de teinte : clair sur le
+   bleu nuit, brule sur le gris os. C'est le contraste du texte qui commande,
+   la couleur reste la meme.
+
+   Aucune couleur en dur ailleurs que dans ces deux blocs.
+
+   Le theme de depart est celui du systeme d'exploitation, voir ThemeProvider.
+   ========================================================================== */
+
+/* THEME CLAIR, le gris os du manteau */
+:root {
+  color-scheme: light;
+
+  --background: 90 4% 91%;
+  --foreground: 225 48% 3%;
+
+  /* Le panneau contredit la page : ici il est sombre. */
+  --panneau: 225 47% 6%;
+  --panneau-encre: 220 7% 92%;
+
+  --card: 90 5% 96%;
+  --card-foreground: 225 48% 3%;
+
+  --primary: 225 48% 3%;
+  --primary-foreground: 90 4% 91%;
+
+  --secondary: 90 4% 86%;
+  --secondary-foreground: 225 48% 3%;
+
+  --muted: 90 4% 86%;
+  /* 9,2:1 sur le gris os. Le texte courant n'est pas de la mention legale :
+     il se lit sans effort ou il ne se lit pas. */
+  --muted-foreground: 225 22% 26%;
+
+  /* Le miel brule : 6,4:1 sur le gris os, il peut porter du texte. */
+  --accent: 33 79% 30%;
+  --accent-foreground: 90 4% 91%;
+  --miel: 33 79% 30%;
+  --miel-encre: 33 79% 30%;
+
+  /* Etats du vocabulaire visuel. Un etat n'est jamais signale par l'accent :
+     le miel dit la marque, ces couleurs disent la resolution. Elles ne servent
+     qu'en filet ou en aplat tres dilue, donc la meme valeur tient des deux
+     cotes. */
+  --assigne: 160 36% 48%;
+  --elague: 4 65% 65%;
+
+  --border: 90 4% 78%;
+  --input: 90 4% 78%;
+  --ring: 33 79% 30%;
+
+  /* Le grain est fait de bruit sombre. Sur le gris os il salit vite : on le
+     tient a la moitie de ce qu'il vaut sur le bleu nuit. */
+  --grain-opacite: 0.45;
+  /* Les logos institutionnels sont en couleur et crieraient plus fort que le
+     miel. Ici on les desature et on les assombrit pour qu'ils tiennent sur le
+     gris os. */
+  --filtre-tutelles: grayscale(1) brightness(0.45);
+}
+
+/* THEME SOMBRE, le bleu nuit du corps. Un bleu tres profond, pas un noir
+   neutre : c'est ce qui permet d'y ramener toutes les photographies par
+   etalonnage, et c'est sur un bleu nuit que le miel ressort. */
 .dark {
+  color-scheme: dark;
+
   --background: 225 47% 6%;
   --foreground: 220 7% 92%;
 
-  /* Le gris os du manteau : la matière des panneaux. */
   --panneau: 90 4% 91%;
   --panneau-encre: 225 48% 3%;
 
@@ -65,22 +138,26 @@
   --secondary-foreground: 220 7% 92%;
 
   --muted: 228 42% 12%;
-  --muted-foreground: 220 7% 62%;
+  /* Remonte de 62 a 74 %. Sur un fond sombre les fins deliés de Wura mi se
+     mangent, et le texte courant demandait un effort qu'il ne doit pas
+     demander. On passe de 6,7:1 a 10:1. */
+  --muted-foreground: 220 9% 74%;
 
-  /* Sur ce fond le miel donne 8,5:1 : il peut porter du texte. */
   --accent: 35 80% 57%;
   --accent-foreground: 225 47% 6%;
   --miel: 35 80% 57%;
   --miel-encre: 35 80% 57%;
 
-  /* Etats du vocabulaire visuel. Un etat n'est jamais signale par l'accent :
-     le miel dit la marque, ces couleurs disent la resolution. */
   --assigne: 160 36% 48%;
   --elague: 4 65% 65%;
 
   --border: 228 36% 18%;
   --input: 228 36% 18%;
   --ring: 35 80% 57%;
+
+  --grain-opacite: 1;
+  /* Sur le bleu nuit c'est l'inverse : il faut eclaircir les logos. */
+  --filtre-tutelles: grayscale(1) brightness(1.6);
 }
 
 @theme inline {
@@ -131,7 +208,11 @@ body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+  /* Pas de -webkit-font-smoothing: antialiased. Il force un lissage en niveaux
+     de gris, qui amincit visiblement les caracteres : sur une police aux delies
+     fins comme Wura mi, le texte courant y perdait le peu de matiere qu'il a.
+     Le lissage par defaut du navigateur rend plus gras, donc plus lisible. */
+  text-rendering: optimizeLegibility;
 }
 
 /* Grain de fond, posé SOUS le contenu (z-index -1) : les surfaces opaques
@@ -144,23 +225,20 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
+  opacity: var(--grain-opacite);
   pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0.299 0.587 0.114 0 0  0 0 0 0.16 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   background-size: 220px 220px;
 }
 
-/* Les pages de consultation utilisent le gris os du ratel comme une feuille.
-   L'accueil et le menu conservent le bleu nuit de l'identité. */
+/* Les pages de consultation posent une feuille pleine hauteur sous le texte.
+   Elles imposaient jusqu'ici le gris os quel que soit le reste du site ; elles
+   suivent maintenant le theme, comme tout le monde, et n'ont donc plus le
+   moindre jeton a redefinir. Le filet tricolore en haut a droite reste, c'est
+   la signature de ces pages. */
 :is(.equ, .pro, .rch, .evt, .blg, .detail-contenu) {
-  --foreground: 225 48% 3%;
-  --muted-foreground: 225 18% 29%;
-  --primary: 225 48% 3%;
-  --primary-foreground: 90 4% 91%;
-  --border: 90 4% 78%;
-  --miel: 33 79% 30%;
-  --miel-encre: 33 79% 30%;
   min-height: 100svh;
-  background-color: hsl(var(--panneau));
+  background-color: hsl(var(--background));
   background-image:
     linear-gradient(
       90deg,
@@ -171,7 +249,7 @@ body::before {
   background-repeat: no-repeat;
   background-position: calc(100% - var(--marge)) clamp(6.5rem, 14vh, 9rem);
   background-size: clamp(8rem, 18vw, 15rem) clamp(2.5rem, 5vw, 4rem);
-  color: hsl(var(--panneau-encre));
+  color: hsl(var(--foreground));
 }
 
 /* Scrollbar masquee sur tout le site : le defilement reste actif, la barre
@@ -205,8 +283,13 @@ body::-webkit-scrollbar {
    Un seul endroit ou le style du contenu est defini : les .md restent nus.
    ========================================================================== */
 .prose-lrsia {
-  max-width: 44rem;
-  line-height: 1.75;
+  /* 66 caracteres environ, la largeur de lecture confortable. */
+  max-width: 38rem;
+  /* Wura mi a un oeil petit pour sa taille : a 16 px le texte courant se lisait
+     a l'effort. On monte a 17 px et on garde l'interligne large, c'est ce qui
+     donne le repos entre deux lignes. */
+  font-size: 1.0625rem;
+  line-height: 1.78;
   color: hsl(var(--foreground));
 }
 .prose-lrsia > * + * {

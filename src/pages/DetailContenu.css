@@ -7,7 +7,7 @@
 .detail-entete::after { position: absolute; bottom: -1px; left: 0; width: clamp(5rem, 12vw, 9rem); height: 2px; background: linear-gradient(90deg, hsl(var(--miel)) 0 33.333%, hsl(var(--assigne)) 33.333% 66.666%, hsl(var(--elague)) 66.666%); content: ""; }
 .detail-entete h1 { margin: 0; font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 200; letter-spacing: -.02em; line-height: 1.04; }
 .detail-meta { margin: 0 0 1rem; color: hsl(var(--miel)); font-size: .8125rem; letter-spacing: .06em; text-transform: uppercase; }
-.detail-resume { margin: 1.5rem 0 0; max-width: 56ch; color: hsl(var(--muted-foreground)); font-size: 1.125rem; line-height: 1.65; }
+.detail-resume { margin: 1.5rem 0 0; max-width: 56ch; color: hsl(var(--muted-foreground)); font-size: 1.1875rem; line-height: 1.7; }
 .detail-infos { margin: 1rem 0 0; color: hsl(var(--foreground) / .78); font-size: .9375rem; }
 .detail-image { display: block; width: 100%; height: auto; margin-bottom: clamp(2.5rem, 6vh, 4rem); border: 1px solid hsl(var(--foreground) / .12); object-fit: cover; }
 .detail-collaborateurs { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem 2rem; margin-bottom: clamp(2.5rem, 6vh, 4rem); padding-bottom: clamp(2rem, 5vh, 3rem); border-bottom: 1px solid hsl(var(--foreground) / .14); }

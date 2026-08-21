@@ -1,5 +1,13 @@
-/* L'en-tête. Il flotte au-dessus de tout sans fond ni filet : ce sont les
-   panneaux qui passent dessous qui lui donnent son contraste. */
+/* L'en-tête. Il flotte au-dessus de tout sans fond ni filet.
+
+   Il tirait son contraste d'un mix-blend-mode: difference sur une couleur
+   posée en dur. Le procédé ne tenait que par accident : le fond du site est
+   déclaré sur `body`, donc peint sur le canevas, hors du groupe de fusion. La
+   différence ne se faisait avec rien, et l'en-tête sortait tel qu'il était
+   écrit, un gris très clair. Lisible sur le bleu nuit, invisible sur le gris os.
+
+   Il prend maintenant l'encre du thème, et celle du panneau quand le menu est
+   ouvert : le menu est la seule surface qui contredit la page. */
 
 /* Le voile des pages de lecture. Il vit hors de l'en-tête, qui est en fusion
    « différence » et le rendrait en négatif. Un dégradé, pas un aplat : une
@@ -19,14 +27,6 @@
   pointer-events: none;
 }
 
-.ent-voile[data-clair] {
-  background: linear-gradient(
-    hsl(var(--panneau)) 38%,
-    hsl(var(--panneau) / 0.82) 66%,
-    transparent
-  );
-}
-
 .ent-tete {
   position: fixed;
   /* Au-dessus du menu : le même bouton l'ouvre et le referme. */
@@ -38,9 +38,14 @@
   justify-content: space-between;
   width: 100%;
   padding: 1.15rem var(--marge);
-  mix-blend-mode: difference;
-  color: #e8e9e7;
+  color: hsl(var(--foreground));
+  transition: color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
+}
+
+/* Menu ouvert : le panneau couvre la page, l'en-tête passe sur son encre. */
+.ent-tete[data-menu] {
+  color: hsl(var(--panneau-encre));
 }
 
 .ent-tete a,
@@ -84,8 +89,8 @@
   width: 100%;
 }
 
-/* Le panneau du menu est clair : l'en-tête en fusion « différence » s'y écrit
-   sombre tout seul, mais il doit passer devant lui. */
+/* Menu ouvert, les entrées de l'en-tête s'effacent : le panneau les redit
+   toutes, en grand, juste en dessous. */
 .ent-tete[data-menu] .ent-tete-liens {
   opacity: 0;
   pointer-events: none;
@@ -108,6 +113,15 @@
   transform: none;
 }
 
+/* Le groupe de droite. La bascule de theme y est collee aux entrees, mais un
+   peu plus loin qu'elles ne le sont entre elles : elle ne fait pas partie de la
+   navigation, elle en est voisine. */
+.ent-tete-droite {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+}
+
 .ent-tete-liens {
   display: flex;
   transition: opacity 0.35s;
@@ -126,16 +140,15 @@
 }
 
 /* Le meme filet qui se remplit de gauche a droite que dans le pied de page et
-   sur tous les liens du site. Il prend `currentColor` et non le miel : l'en-tete
-   est en mix-blend-mode difference, ou une couleur posee ressortirait inversee.
-   Le geste est le meme, c'est lui qui fait la coherence. */
+   sur tous les liens du site. Il porte le miel, comme eux : la contrainte de
+   fusion qui l'en empechait n'existe plus. */
 .ent-tete-liens a::after {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   height: 1px;
-  background: currentColor;
+  background: hsl(var(--miel));
   content: "";
   transform: scaleX(0);
   transform-origin: left;
@@ -166,6 +179,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ent-tete,
   .ent-tete-nom {
     transition: none;
   }

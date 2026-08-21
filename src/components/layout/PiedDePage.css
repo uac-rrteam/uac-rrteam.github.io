@@ -101,13 +101,15 @@
   list-style: none;
 }
 
-/* Les logos institutionnels sont en couleur ; sur le fond nuit ils crieraient
-   plus fort que le miel. On les desature et on les rend a l'oeil au survol. */
+/* Les logos institutionnels sont en couleur ; poses tels quels ils crieraient
+   plus fort que le miel. On les desature et on les rend a l'oeil au survol. Le
+   sens de la correction depend du fond, elle vient donc du theme : eclaircir
+   sur le bleu nuit, assombrir sur le gris os. */
 .pied-tutelles img {
   display: block;
   width: auto;
   height: 2.4rem;
-  filter: grayscale(1) brightness(1.6);
+  filter: var(--filtre-tutelles);
   opacity: 0.55;
   transition: opacity 0.4s ease, filter 0.4s ease;
 }

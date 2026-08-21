@@ -19,6 +19,8 @@ const fr = {
   "nav.events": "Événements & actualités",
   "nav.blog": "Blog",
   "nav.about": "À propos",
+  "theme.versClair": "Passer en thème clair",
+  "theme.versSombre": "Passer en thème sombre",
 
   "lab.lrsiaDesc": "Le laboratoire, sa direction et ses domaines",
   "lab.teamDesc": "La Ratheil Research Team et ses axes",
@@ -42,6 +44,8 @@ const en: Partial<Record<keyof typeof fr, string>> = {
   "nav.events": "Events & news",
   "nav.blog": "Blog",
   "nav.about": "About",
+  "theme.versClair": "Switch to light theme",
+  "theme.versSombre": "Switch to dark theme",
 
   "lab.lrsiaDesc": "The lab, its direction and fields",
   "lab.teamDesc": "The Ratheil Research Team and its focus",
