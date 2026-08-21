@@ -3,15 +3,15 @@ import { Link, Navigate, useParams } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useLang } from "@/i18n/lang";
-import { personne, personneSuivante, projets } from "@/donnees/contenu";
+import { personne, personnePrecedente, personneSuivante, projets } from "@/donnees/contenu";
 import { Markdown } from "@/components/content/Markdown";
 import { LienIcone } from "@/components/content/LienIcone";
 import { lignesQuiRemontent } from "@/animations/lignesQuiRemontent";
 import "./Profil.css";
 
 const mots = {
-  fr: { retour: "L'équipe", projets: "Projets associés", ailleurs: "Liens", suite: "Ensuite" },
-  en: { retour: "The team", projets: "Related projects", ailleurs: "Links", suite: "Next" },
+  fr: { retour: "L'équipe", bio: "Biographie", projets: "Projets associés", ailleurs: "Liens", avant: "Précédent", suite: "Suivant" },
+  en: { retour: "The team", bio: "Biography", projets: "Related projects", ailleurs: "Links", avant: "Previous", suite: "Next" },
 };
 
 /** Une page membre entièrement alimentée par content/people/<slug>/. */
@@ -53,6 +53,7 @@ export function Profil() {
   );
 
   if (!membre) return <Navigate to={path("/people")} replace />;
+  const avant = personnePrecedente(lang, membre.slug);
   const apres = personneSuivante(lang, membre.slug);
   const associes = projets(lang).filter((projet) => membre.projets.includes(projet.slug));
   const morceaux = membre.nom.split(" ");
@@ -64,7 +65,11 @@ export function Profil() {
         <div
           className="pro-tete"
           data-seul={membre.image ? undefined : ""}
-          style={{ "--pro-lignes": morceaux.length } as CSSProperties}
+          style={{
+            "--pro-lignes": morceaux.length,
+            "--pro-image-position": membre.imagePosition,
+            "--pro-image-scale": membre.imageScale,
+          } as CSSProperties}
         >
           <div className="pro-mots">
             <h1 className="pro-nom">
@@ -95,7 +100,10 @@ export function Profil() {
       </header>
 
       <section className="pro-bloc pro-biographie pro-leve">
-        <Markdown>{membre.corps}</Markdown>
+        <h2 className="pro-titre">{dit.bio}</h2>
+        <div className="pro-biographie-corps">
+          <Markdown>{membre.corps}</Markdown>
+        </div>
       </section>
 
       {associes.length ? (
@@ -125,9 +133,21 @@ export function Profil() {
       ) : null}
 
       <nav className="pro-suite">
-        <Link className="pro-leve" to={path(`/people/${apres.slug}`)}>
-          <span className="pro-suite-dit">{dit.suite}</span>
-          <span className="pro-suite-nom">{apres.nom}</span>
+        <Link
+          className="pro-leve"
+          to={path(`/people/${avant.slug}`)}
+          aria-label={`${dit.avant} : ${avant.nom}`}
+        >
+          <span aria-hidden="true">←</span>
+          <span>{dit.avant}</span>
+        </Link>
+        <Link
+          className="pro-leve"
+          to={path(`/people/${apres.slug}`)}
+          aria-label={`${dit.suite} : ${apres.nom}`}
+        >
+          <span>{dit.suite}</span>
+          <span aria-hidden="true">→</span>
         </Link>
       </nav>
     </article>

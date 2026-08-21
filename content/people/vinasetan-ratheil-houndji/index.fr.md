@@ -2,7 +2,7 @@
 nom: Vinasétan Ratheil HOUNDJI
 statut: Maître de conférences CAMES en intelligence artificielle
 sujet: Programmation par contraintes et optimisation combinatoire
-image: ./images/vinasetan-ratheil.webp
+image: ./images/vinasetan-ratheil.png
 ordre: 1
 projets: [mpvrp-cc, optiplan, opencs4dev, forces, stop-mnt, ai4ckd, iot4pest, path, ai4cardio]
 lien1: Site personnel | https://ratheil.info

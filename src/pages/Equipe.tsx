@@ -12,7 +12,7 @@ import "./Equipe.css";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * L'équipe.
+ * L'équipe
  *
  * Un annuaire en lignes plutôt qu'une grille de vignettes : nous n'avons qu'un
  * portrait, et trois cadres vides à côté d'une photographie diraient surtout ce

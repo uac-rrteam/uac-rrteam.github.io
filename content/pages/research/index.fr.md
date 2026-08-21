@@ -23,4 +23,4 @@ L'interprétabilité, l'équité et la qualité des données sont examinées lor
 
 ## Publications
 
-La Ratheil Research Team ayant été constituée récemment, sa bibliographie collective est encore en cours d'établissement. Les publications antérieures de Ratheil Houndji peuvent être consultées sur [ratheil.info](https://ratheil.info). Les articles issus des travaux de l'équipe seront ajoutés ici après leur publication.
+Les articles issus des travaux de l'équipe seront ajoutés ici après leur publication.

@@ -71,6 +71,8 @@ export interface PersonneContenu {
   arrivee?: number;
   image?: string;
   imagePetite?: string;
+  imagePosition: string;
+  imageScale: number;
   ordre: number;
   projets: string[];
   liens: LienContenu[];
@@ -89,6 +91,8 @@ export function personnes(lang: Lang): PersonneContenu[] {
         : undefined,
       image: imageContenu(article.entete, "people", article.slug),
       imagePetite: imageContenu(article.entete, "people", article.slug, "-520"),
+      imagePosition: champ(article.entete, "image_position") || "50% 35%",
+      imageScale: Math.min(2, Math.max(1, nombre(article.entete, "image_scale", 1))),
       ordre: nombre(article.entete, "ordre"),
       projets: Array.isArray(article.entete.projets) ? article.entete.projets : [],
       liens: liens(article.entete),
@@ -105,6 +109,12 @@ export function personneSuivante(lang: Lang, slug: string): PersonneContenu {
   const membres = personnes(lang);
   const rang = membres.findIndex((membre) => membre.slug === slug);
   return membres[(rang + 1 + membres.length) % membres.length];
+}
+
+export function personnePrecedente(lang: Lang, slug: string): PersonneContenu {
+  const membres = personnes(lang);
+  const rang = membres.findIndex((membre) => membre.slug === slug);
+  return membres[(rang - 1 + membres.length) % membres.length];
 }
 
 export interface ProjetContenu {

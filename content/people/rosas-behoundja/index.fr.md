@@ -2,6 +2,9 @@
 nom: Todè Rosas BEHOUNDJA
 statut: Stagiaire de recherche
 sujet: Intelligence artificielle, recherche opérationnelle et optimisation combinatoire
+image: ./images/rosas-behoundja.png
+image_position: 44% 50%
+image_scale: 1.35
 arrivee: 2025
 ordre: 6
 projets: [mpvrp-cc]

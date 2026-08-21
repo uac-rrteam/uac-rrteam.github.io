@@ -37,6 +37,8 @@ statut: Doctorante
 sujet: Sujet ou axe principal
 arrivee: 2026
 image: ./images/portrait.webp
+image_position: 50% 35%
+image_scale: 1
 ordre: 3
 projets: [ai4ckd, stop-mnt]
 lien1: LinkedIn | https://linkedin.com/...
@@ -55,6 +57,15 @@ Le portrait se place à côté des Markdown, dans le sous-dossier `images/` du
 membre : `content/people/mon-identifiant/images/portrait.webp`. Le champ
 `image` contient son chemin relatif. Si aucun portrait n'est disponible, il
 suffit de supprimer la ligne.
+
+Tous les portraits sont affichés dans un cadre vertical 4:5. Le champ facultatif
+`image_position` règle le recadrage horizontal et vertical, comme en CSS :
+`50% 20%` remonte le sujet, tandis que `40% 50%` le déplace légèrement vers la
+gauche. L'image originale reste intacte.
+
+`image_scale` agrandit le sujet à l'intérieur du cadre lorsque la photographie
+contient beaucoup d'arrière-plan. Sa valeur habituelle va de `1` à `1.5` ; le
+site la limite automatiquement entre `1` et `2`.
 
 `ordre` détermine la position dans l'annuaire. `projets` contient les
 identifiants des projets à afficher sur la page du membre.

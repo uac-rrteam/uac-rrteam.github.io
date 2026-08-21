@@ -23,4 +23,4 @@ Interpretability, fairness and data quality are examined whenever models contrib
 
 ## Publications
 
-As the Ratheil Research Team was formed recently, its collective bibliography is still being assembled. Ratheil Houndji's earlier publications are available on [ratheil.info](https://ratheil.info). Papers arising from the team's work will be added here after publication.
+Papers arising from the team's work will be added here after publication.

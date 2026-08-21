@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 86svh;
+  min-height: min(82svh, 56rem);
   padding-top: clamp(7rem, 15vh, 10rem);
 }
 
@@ -60,7 +60,7 @@
    rapetisse pour rien. */
 .pro-nom {
   margin: 0;
-  font-size: clamp(2.4rem, min(6.4vw, calc(46svh / var(--pro-lignes, 3))), 5.6rem);
+  font-size: clamp(2.25rem, min(5.7vw, calc(43svh / var(--pro-lignes, 3))), 4.8rem);
   font-weight: 200;
   letter-spacing: -0.02em;
   line-height: 1.02;
@@ -111,7 +111,7 @@
 }
 
 .pro-tete[data-seul] .pro-nom {
-  font-size: clamp(2.6rem, min(10.5vw, calc(52svh / var(--pro-lignes, 3))), 9rem);
+  font-size: clamp(2.5rem, min(9vw, calc(48svh / var(--pro-lignes, 3))), 7.5rem);
 }
 
 .pro-tete[data-seul] .pro-sujet {
@@ -122,18 +122,27 @@
 /* L'enveloppe porte le masque d'apparition, le panneau porte l'encoche : deux
    clip-path sur le même élément se remplaceraient l'un l'autre. */
 .pro-voile {
+  width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
+  background: hsl(var(--foreground) / .06);
+  box-shadow: inset 0 0 0 1px hsl(var(--foreground) / .1);
   will-change: clip-path;
 }
 
 .pro-cadre {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
 .pro-portrait {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--pro-image-position, 50% 35%);
+  transform: scale(var(--pro-image-scale, 1));
   /* Le portrait est en couleurs ; le site ne l'est pas. On le rapproche sans
      le vider, comme sur l'accueil. */
   filter: saturate(0.82) contrast(1.04);
@@ -154,9 +163,19 @@
   margin-top: clamp(3rem, 8vh, 5rem);
 }
 
-.pro-biographie > .prose-lrsia {
+.pro-biographie-corps {
   grid-column: 2;
   width: min(100%, 46rem);
+}
+
+.pro-biographie > .pro-titre { color: hsl(var(--miel)); }
+
+.pro-biographie-corps .prose-lrsia { max-width: 42rem; }
+.pro-biographie-corps .prose-lrsia > p:first-child { margin-top: 0; }
+.pro-biographie-corps .prose-lrsia h2 {
+  margin-top: 2.4em;
+  font-size: 1.2rem;
+  letter-spacing: .01em;
 }
 
 .pro-titre {
@@ -318,38 +337,33 @@
 /* La personne suivante, en grand : c'est la sortie de la page, et elle mène
    quelque part plutôt que nulle part. */
 .pro-suite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
   padding-top: clamp(3.5rem, 9vh, 6rem);
   border-top: 1px solid hsl(var(--foreground) / 0.14);
 }
 
 .pro-suite a {
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
   color: inherit;
+  font-size: .75rem;
+  letter-spacing: .12em;
   text-decoration: none;
-}
-
-.pro-suite-dit {
-  display: block;
-  color: hsl(var(--muted-foreground));
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
   text-transform: uppercase;
+  transition: color .3s ease, transform .4s var(--ease-smooth);
 }
 
-.pro-suite-nom {
-  display: block;
-  margin-top: 0.9rem;
-  font-size: clamp(1.8rem, 4.4vw, 3.6rem);
-  font-weight: 200;
-  letter-spacing: -0.015em;
-  line-height: 1.05;
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+.pro-suite a:hover,
+.pro-suite a:focus-visible {
+  color: hsl(var(--miel));
+  transform: translateX(-.2rem);
 }
-
-.pro-suite a:hover .pro-suite-nom,
-.pro-suite a:focus-visible .pro-suite-nom {
-  transform: translateX(0.6rem);
-}
+.pro-suite a:last-child:hover,
+.pro-suite a:last-child:focus-visible { transform: translateX(.2rem); }
 
 @media (max-width: 46rem) {
   .pro-tete {
@@ -359,16 +373,16 @@
 
   /* Le portrait passe au-dessus du nom : sur une colonne, une photographie en
      dernier se lit comme une note de bas de page. */
-  .pro-cadre {
+  .pro-voile {
     order: -1;
-    width: 78%;
+    width: min(78%, 24rem);
   }
 
   .pro-bloc {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .pro-biographie > .prose-lrsia {
+  .pro-biographie-corps {
     grid-column: 1;
   }
 }
