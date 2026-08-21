@@ -202,12 +202,28 @@
    defilement tienne dans sa gouttiere sans jamais toucher le texte. */
 :root {
   --marge: clamp(1.25rem, 4vw, 3.5rem);
+
+  /* La graisse du texte courant, posee sur body et donc heritee partout.
+
+     Wura mi n'a pas de Medium : entre le Regular 400 et le SemiBold 600 il n'y
+     a rien, et font-weight: 500 se rabat silencieusement sur 400. Le texte
+     courant prend donc le SemiBold, c'est la seule marche disponible et c'est
+     le choix de Cephas apres relecture a l'ecran.
+
+     Les titres ne sont pas concernes : ils declarent leur propre graisse
+     d'affichage, 200 ou 300, qui l'emporte sur l'heritage. Un seul endroit a
+     changer pour revenir en arriere. */
+  --graisse-texte: 600;
+  /* La graisse d'emphase doit rester au-dessus du texte courant, sinon un
+     <strong> ne se distingue plus de ce qui l'entoure. */
+  --graisse-emphase: 700;
 }
 
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: var(--font-sans);
+  font-weight: var(--graisse-texte);
   /* Pas de -webkit-font-smoothing: antialiased. Il force un lissage en niveaux
      de gris, qui amincit visiblement les caracteres : sur une police aux delies
      fins comme Wura mi, le texte courant y perdait le peu de matiere qu'il a.
@@ -300,14 +316,18 @@ body::-webkit-scrollbar {
   border-left: 3px solid hsl(var(--assigne));
   margin-top: 2em;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: var(--graisse-emphase);
   letter-spacing: -0.01em;
 }
 .prose-lrsia h3 {
   color: hsl(var(--miel));
   margin-top: 1.6em;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: var(--graisse-emphase);
+}
+.prose-lrsia strong,
+.prose-lrsia b {
+  font-weight: var(--graisse-emphase);
 }
 .prose-lrsia a {
   color: hsl(var(--primary));
@@ -335,6 +355,7 @@ body::-webkit-scrollbar {
 }
 .prose-lrsia code {
   font-family: var(--font-tech);
+  font-weight: 400;
   background: hsl(var(--muted));
   padding: 0.15em 0.4em;
   border-radius: var(--radius-sm);
@@ -349,6 +370,7 @@ body::-webkit-scrollbar {
   background: hsl(var(--card));
   color: hsl(var(--card-foreground));
   font-family: var(--font-tech);
+  font-weight: 400;
   font-size: .875rem;
   line-height: 1.65;
   tab-size: 2;

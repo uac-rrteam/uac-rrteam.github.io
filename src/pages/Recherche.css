@@ -48,7 +48,7 @@
   padding-bottom: 1rem;
   border-bottom: 1px solid hsl(var(--foreground) / 0.14);
   font-size: clamp(1.1rem, 2vw, 1.4rem);
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
@@ -79,7 +79,7 @@
 .rch-axes h3 {
   margin: 0 0 0.5rem;
   font-size: 1.0625rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
 }
 
 .rch-axes p {
@@ -130,7 +130,7 @@
 .rch-projet-nom {
   margin: 0 0 0.4rem;
   font-size: 1.125rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   letter-spacing: 0.01em;
 }
 
@@ -276,7 +276,7 @@
   margin: 0 0 0.55rem;
   max-width: 58ch;
   font-size: 1.0625rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   line-height: 1.4;
 }
 
@@ -318,7 +318,7 @@
   padding-bottom: 0.7rem;
   border-bottom: 1px solid hsl(var(--foreground) / 0.12);
   font-size: 0.9375rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -336,7 +336,7 @@
 .rch-champ strong {
   display: block;
   font-size: 1.0625rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
 }
 
 .rch-champ span {
@@ -368,7 +368,7 @@
   margin: 0;
   color: hsl(var(--muted-foreground));
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
 }
 
 .rch-publications > li {
@@ -379,7 +379,7 @@
   margin: 0 0 0.35rem;
   max-width: 64ch;
   font-size: 1.0625rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   line-height: 1.45;
 }
 

@@ -47,7 +47,7 @@
 .acc-actions a:hover, .acc-actions a:focus-visible, .acc-propos a:hover, .acc-propos a:focus-visible { color: hsl(var(--miel)); }
 
 .acc-axes { padding: clamp(4rem, 10vh, 7rem) 0; border-top: 1px solid hsl(var(--foreground) / .14); }
-.acc-axes > h2 { margin: 0 0 2rem; color: hsl(var(--muted-foreground)); font-size: .75rem; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
+.acc-axes > h2 { margin: 0 0 2rem; color: hsl(var(--muted-foreground)); font-size: .75rem; font-weight: var(--graisse-texte); letter-spacing: .12em; text-transform: uppercase; }
 .acc-axes ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; border-top: 1px solid hsl(var(--foreground) / .12); }
 .acc-axes li { display: grid; grid-template-columns: 2.5rem 1fr; gap: .5rem 1rem; padding: clamp(1.5rem, 4vh, 2.5rem) 0; border-bottom: 1px solid hsl(var(--foreground) / .12); transition: background-color .3s ease; }
 .acc-axes li:nth-child(odd) { padding-right: clamp(1.5rem, 4vw, 4rem); }

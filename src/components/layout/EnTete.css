@@ -98,7 +98,7 @@
 
 .ent-tete-nom {
   font-size: 0.9375rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -132,7 +132,7 @@
   position: relative;
   padding-bottom: 0.35em;
   font-size: 0.75rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   letter-spacing: 0.11em;
   text-transform: uppercase;
   text-decoration: none;

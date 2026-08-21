@@ -182,7 +182,7 @@
   margin: 0;
   color: hsl(var(--muted-foreground));
   font-size: 0.75rem;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -193,7 +193,7 @@
      avant son bout. */
   max-width: 56ch;
   font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
-  font-weight: 300;
+  font-weight: var(--graisse-texte);
   line-height: 1.68;
 }
 

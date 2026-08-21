@@ -11,7 +11,7 @@
 .detail-infos { margin: 1rem 0 0; color: hsl(var(--foreground) / .78); font-size: .9375rem; }
 .detail-image { display: block; width: 100%; height: auto; margin-bottom: clamp(2.5rem, 6vh, 4rem); border: 1px solid hsl(var(--foreground) / .12); object-fit: cover; }
 .detail-collaborateurs { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1rem 2rem; margin-bottom: clamp(2.5rem, 6vh, 4rem); padding-bottom: clamp(2rem, 5vh, 3rem); border-bottom: 1px solid hsl(var(--foreground) / .14); }
-.detail-collaborateurs h2 { margin: 0; color: hsl(var(--muted-foreground)); font-size: .75rem; font-weight: 400; letter-spacing: .1em; text-transform: uppercase; }
+.detail-collaborateurs h2 { margin: 0; color: hsl(var(--muted-foreground)); font-size: .75rem; font-weight: var(--graisse-texte); letter-spacing: .1em; text-transform: uppercase; }
 .detail-collaborateurs ul { margin: 0; padding: 0; list-style: none; }
 .detail-collaborateurs li { padding: .35rem 0; font-size: 1rem; line-height: 1.5; }
 .detail-contenu .prose-lrsia { font-family: var(--font-sans); font-size: clamp(1.0625rem, 2vw, 1.2rem); }

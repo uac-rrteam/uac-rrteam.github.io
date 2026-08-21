@@ -55,7 +55,7 @@
   font-size: 0.875rem;
   font-style: normal;
   font-variant-numeric: tabular-nums;
-  font-weight: 400;
+  font-weight: var(--graisse-texte);
   letter-spacing: 0.12em;
 }
 

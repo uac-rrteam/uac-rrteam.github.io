@@ -20,7 +20,7 @@
   border-bottom: 1px solid hsl(var(--foreground) / .1);
 }
 .evt-entree:first-child { border-top: 1px solid hsl(var(--foreground) / .14); }
-.evt-annee { margin: 0; color: hsl(var(--foreground) / .82); font-size: 1.2rem; font-weight: 400; font-variant-numeric: tabular-nums; }
+.evt-annee { margin: 0; color: hsl(var(--foreground) / .82); font-size: 1.2rem; font-weight: var(--graisse-texte); font-variant-numeric: tabular-nums; }
 .evt-repere { display: flex; flex-direction: column; gap: .45rem; }
 .evt-date, .evt-lieu, .evt-resume { margin: 0; color: hsl(var(--muted-foreground)); font-size: 1rem; line-height: 1.62; }
 .evt-date { color: hsl(var(--miel)); font-size: .8125rem; letter-spacing: .05em; text-transform: uppercase; }
