@@ -67,8 +67,17 @@
 @keyframes acc-apparition { from { opacity: 0; transform: translateY(1rem); } }
 
 @media (max-width: 52rem) {
-  .acc-hero { grid-template-columns: 1fr; min-height: auto; }
+  .acc-hero { grid-template-columns: 1fr; min-height: auto; padding-top: clamp(6rem, 13vh, 8rem); }
   .acc-intro { max-width: 36rem; }
+  /* En une colonne, la mosaique posee en fond passait derriere le titre et les
+     mots se lisaient sur les carres de couleur. Elle reprend sa place dans le
+     flux, au-dessus du titre et contre la marge droite. */
+  .acc-geometrie {
+    position: static;
+    z-index: auto;
+    width: clamp(8rem, 40vw, 12rem);
+    margin: 0 0 clamp(1.75rem, 5vh, 2.75rem) auto;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .acc-geometrie span, .acc-hero h1 span, .acc-intro { animation: none; }

@@ -254,7 +254,9 @@ body::before {
    la signature de ces pages. */
 :is(.equ, .pro, .rch, .evt, .blg, .detail-contenu) {
   min-height: 100svh;
-  background-color: hsl(var(--background));
+  /* Pas de couleur de fond ici : c'est deja celle du corps, et depuis que la
+     page est bornee en largeur, une feuille opaque masquait le grain sur la
+     colonne centrale et le laissait voir sur les cotes. Le raccord se voyait. */
   background-image:
     linear-gradient(
       90deg,
@@ -266,6 +268,41 @@ body::before {
   background-position: calc(100% - var(--marge)) clamp(6.5rem, 14vh, 9rem);
   background-size: clamp(8rem, 18vw, 15rem) clamp(2.5rem, 5vw, 4rem);
   color: hsl(var(--foreground));
+}
+
+/* ==========================================================================
+   La largeur de lecture.
+
+   Les pages etaient posees pleine largeur : passe 1400 pixels, une ligne de
+   texte depassait cent caracteres et l'oeil perdait le debut de la suivante en
+   revenant a la ligne. La borne est posee sur la page elle-meme, pas sur ses
+   blocs, pour deux raisons : les mises en page a plusieurs colonnes gardent
+   leurs proportions, et le filet tricolore, qui est un fond de la page, reste
+   cale sur le bord du contenu au lieu de partir seul dans la marge.
+
+   En dessous d'environ 1500 pixels rien ne change : la borne n'est atteinte
+   qu'au-dela.
+   ========================================================================== */
+:is(.acc, .equ, .pro, .rch, .evt) {
+  max-width: calc(82rem + var(--marge) * 2);
+  margin-inline: auto;
+}
+
+/* Le blog et les pages de detail bornent deja leur colonne de texte ; on cale
+   la page sur cette meme colonne pour que le filet la suive. */
+.blg,
+.detail-contenu {
+  max-width: calc(62rem + var(--marge) * 2);
+  margin-inline: auto;
+}
+
+/* Sur telephone, le filet passait sous le titre de la page : il remonte se
+   ranger juste sous l'en-tete, et retrecit avec l'ecran. */
+@media (max-width: 46rem) {
+  :is(.equ, .pro, .rch, .evt, .blg, .detail-contenu) {
+    background-position: calc(100% - var(--marge)) 4.25rem;
+    background-size: clamp(6rem, 30vw, 9rem) 2.25rem;
+  }
 }
 
 /* Scrollbar masquee sur tout le site : le defilement reste actif, la barre

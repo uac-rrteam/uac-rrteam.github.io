@@ -160,7 +160,11 @@
   transform: scaleX(1);
 }
 
-@media (max-width: 46rem) {
+/* Le seuil est celui de la place reellement disponible, pas un chiffre rond :
+   mesure faite, le nom et les trois liens tiennent sur une ligne a partir de
+   860 pixels. En dessous ils passaient a la ligne et l'en-tete doublait de
+   hauteur, en travers du haut de la page. */
+@media (max-width: 54rem) {
   /* Les entrées passent toutes au menu : trois liens en capitales espacées ne
      tiennent pas sur la largeur d'un pouce, et n'en garder qu'un choisi au
      hasard ne renseignait personne. Restent le trait qui ouvre le menu et le
