@@ -3,7 +3,7 @@ nom: Merveilleux Gandaho AZIHOU
 statut: Étudiant en master et stagiaire de recherche
 sujet: Architectures logicielles pour l'orchestration de modèles appliqués à l'EEG
 arrivee: 2026
-portrait: merveilleux-azihou
+image: ./images/merveilleux-azihou.webp
 ordre: 7
 lien1: LinkedIn | https://www.linkedin.com/in/merveilleux-azihou/
 lien2: Google Scholar | https://scholar.google.com/citations?user=dWOzNV4AAAAJ&hl=fr

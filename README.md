@@ -76,8 +76,8 @@ tags: [evenement, IA]
 Le corps de l'article, en Markdown.
 ```
 
-L'article apparaît automatiquement sur la page Actualités. Aucun code a
-modifier.
+L'article apparaît automatiquement sur la page Événements & actualités. Aucun
+code à modifier.
 
 ## Structure
 
@@ -87,8 +87,8 @@ content/
   blog/           Billets de blog (code et mathématiques acceptés)
   events/         Événements et leurs pages de détail
   pages/          Pages À propos, Recherche et Événements
-  people/         Biographies des membres
-  projects/       Projets et leurs pages de détail
+  people/         Biographies et images des membres
+  projects/       Projets, images et pages de détail
 public/imgs/      Logos (LRSIA, IFRI, UAC) et portraits
 src/
   sections/       Sections de la page d'accueil (hero, laboratoire, membres...)

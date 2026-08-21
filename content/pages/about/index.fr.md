@@ -14,7 +14,3 @@ Les applications actuelles concernent la santé, l'agriculture, l'éducation et 
 L'équipe encadre des mémoires, des stages de recherche et des thèses. Les sujets proposés demandent généralement une formation en informatique ou en mathématiques et une pratique de la programmation ; les prérequis précis dépendent du projet.
 
 Elle collabore avec des équipes universitaires, des services hospitaliers, des organismes publics et des partenaires industriels lorsque leurs données ou leur expertise sont nécessaires aux travaux.
-
-## Nous rejoindre
-
-Les demandes de stage, de thèse ou de collaboration peuvent être adressées à [Vinasétan Ratheil Houndji](mailto:vratheilhoundji@gmail.com), avec un CV et quelques lignes sur le sujet envisagé.

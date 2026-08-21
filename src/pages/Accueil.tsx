@@ -22,7 +22,6 @@ const contenu = {
     apropos: "À propos de l'équipe",
   },
   en: {
-    repere: "LRSIA · IFRI · Université d'Abomey-Calavi",
     titre: ["Artificial intelligence", "and optimisation", "for societal impact"],
     introduction:
       "The Ratheil Research Team studies machine learning, constraint programming and combinatorial optimisation through problems encountered in Benin.",
@@ -53,7 +52,6 @@ export function Accueil() {
           <div className="acc-geometrie" aria-hidden="true">
             {Array.from({ length: 12 }, (_, rang) => <span key={rang} />)}
           </div>
-          <p className="acc-repere">{dit.repere}</p>
           <h1>
             {dit.titre.map((ligne) => <span key={ligne}>{ligne}</span>)}
           </h1>

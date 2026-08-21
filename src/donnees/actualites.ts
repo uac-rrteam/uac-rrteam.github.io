@@ -1,5 +1,6 @@
 import type { Lang } from "@/i18n/dictionary";
 import { champ, rassembler } from "./lireMarkdown";
+import { imageContenu } from "./imagesContenu";
 
 const FICHIERS = import.meta.glob("../../content/actualites/*/index.*.md", {
   eager: true,
@@ -9,13 +10,15 @@ const FICHIERS = import.meta.glob("../../content/actualites/*/index.*.md", {
 
 export interface Actualite {
   cle: string;
+  date: string;
   quand: string;
   titre: string;
+  image?: string;
   dit: string;
   liens?: { intitule: string; vers: string }[];
 }
 
-/** Les textes de page vivent dans content/pages/news ; ce module ne structure que les entrées. */
+/** Structure les nouvelles intégrées à la chronologie des événements. */
 export function actualites(lang: Lang): Actualite[] {
   return rassembler(FICHIERS, lang).map((article) => {
     const liens: { intitule: string; vers: string }[] = [];
@@ -27,8 +30,10 @@ export function actualites(lang: Lang): Actualite[] {
     }
     return {
       cle: article.slug,
+      date: champ(article.entete, "date"),
       quand: champ(article.entete, "periode") || champ(article.entete, "date"),
       titre: champ(article.entete, "titre") || champ(article.entete, "title") || article.slug,
+      image: imageContenu(article.entete, "actualites", article.slug),
       dit: article.corps,
       liens: liens.length ? liens : undefined,
     };

@@ -36,7 +36,7 @@ nom: Prénom NOM
 statut: Doctorante
 sujet: Sujet ou axe principal
 arrivee: 2026
-portrait: nom-du-fichier-sans-extension
+image: ./images/portrait.webp
 ordre: 3
 projets: [ai4ckd, stop-mnt]
 lien1: LinkedIn | https://linkedin.com/...
@@ -51,8 +51,9 @@ La biographie et les autres sections s'écrivent ici en Markdown.
 - Une autre
 ```
 
-Le portrait doit être placé dans `public/imgs/people/`. Le champ `portrait`
-ne contient ni dossier ni extension. Si aucun portrait n'est disponible, il
+Le portrait se place à côté des Markdown, dans le sous-dossier `images/` du
+membre : `content/people/mon-identifiant/images/portrait.webp`. Le champ
+`image` contient son chemin relatif. Si aucun portrait n'est disponible, il
 suffit de supprimer la ligne.
 
 `ordre` détermine la position dans l'annuaire. `projets` contient les
@@ -71,6 +72,7 @@ role: Coordonnateur
 financement: Organisme de financement
 collaborateurs: [Nom ou institution, Autre collaborateur]
 resume: Une phrase affichée dans la liste.
+image: ./images/illustration.webp
 ordre: 1
 lien1: Site du projet | https://example.com
 lien2: Dépôt GitHub | https://github.com/...
@@ -78,6 +80,10 @@ lien2: Dépôt GitHub | https://github.com/...
 
 Description complète du projet en Markdown.
 ```
+
+La même convention `images/` et `image: ./images/...` s'applique aux projets,
+événements, actualités et billets de blog. Une image déclarée sur une page de
+détail est affichée entre son en-tête et son texte.
 
 Chaque projet apparaît automatiquement sur `/research` et son titre mène à sa
 page de détail. Le champ `collaborateurs` accepte des personnes ou des
@@ -112,8 +118,10 @@ Markdown ordinaire.
 
 ## Actualités — `content/actualites/`
 
-La procédure spécifique, y compris les brouillons et les liens, est détaillée
-dans [PUBLIER.md](PUBLIER.md).
+Les actualités sont affichées dans la même chronologie que les événements. Si
+une actualité et un événement portent la même date, la page détaillée de
+l'événement fait foi afin d'éviter un doublon. La procédure spécifique, y
+compris les brouillons et les liens, est détaillée dans [PUBLIER.md](PUBLIER.md).
 
 ## Blog — `content/blog/`
 

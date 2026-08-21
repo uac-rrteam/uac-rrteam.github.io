@@ -21,6 +21,7 @@ export function Evenement() {
         <h1>{item.titre}</h1>
         <p className="detail-resume">{item.resume}</p>
       </header>
+      {item.image ? <img className="detail-image" src={item.image} alt={item.titre} /> : null}
       <Markdown>{item.corps}</Markdown>
       {item.liens.length ? (
         <p className="detail-liens">

@@ -14,7 +14,3 @@ Current applications include health, agriculture, education and logistics. Depen
 The team supervises dissertations, research internships and doctoral work. Projects generally require a background in computer science or mathematics and some programming experience; specific prerequisites vary by topic.
 
 Collaborations involve university groups, hospital departments, public bodies and industry partners when their data or expertise is relevant to the research.
-
-## Join us
-
-Enquiries about internships, PhD supervision or collaboration may be sent to [Vinasétan Ratheil Houndji](mailto:vratheilhoundji@gmail.com), together with a CV and a brief description of the proposed topic.

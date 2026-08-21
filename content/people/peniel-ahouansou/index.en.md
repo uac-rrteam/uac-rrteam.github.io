@@ -3,7 +3,7 @@ nom: Péniel AHOUANSOU
 statut: Bachelor's student and research intern
 sujet: Design of an EEG signal acquisition system
 arrivee: 2026
-portrait: peniel-ahouansou
+image: ./images/peniel-ahouansou.webp
 ordre: 10
 lien1: LinkedIn | https://www.linkedin.com/in/péniel-ahouansou-43b1482a1/
 lien2: GitHub | https://github.com/peniel-09

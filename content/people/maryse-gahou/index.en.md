@@ -3,7 +3,7 @@ nom: Maryse Fortune Doloresse GAHOU
 statut: PhD student
 sujet: Interpretable machine learning for early detection of chronic kidney disease
 arrivee: 2025
-portrait: maryse-gahou
+image: ./images/maryse-gahou.webp
 ordre: 3
 lien1: LinkedIn | https://www.linkedin.com/in/maryse-gahou/
 lien2: Google Scholar | https://scholar.google.com/citations?hl=fr&user=ipP515YAAAAJ

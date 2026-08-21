@@ -41,7 +41,6 @@ export function Menu({ ouvert, onFermer }: Props) {
     { vers: "/research", texte: t("nav.research") },
     { vers: "/people", texte: t("nav.people") },
     { vers: "/events", texte: t("nav.events") },
-    { vers: "/news", texte: t("nav.news") },
     { vers: "/blog", texte: t("nav.blog") },
   ];
 

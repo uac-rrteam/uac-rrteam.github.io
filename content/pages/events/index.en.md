@@ -1,6 +1,6 @@
 ---
-title: Events
-summary: Schools, conferences and workshops organised by the team or involving its members.
+title: Events & news
+summary: Scientific meetings, announcements and news from the team.
 ---
 
-This chronology covers announced events and selected past meetings. Future dates are updated when the organisers confirm their programmes.
+This chronology brings together announced events, selected past meetings and news related to the team's activities.

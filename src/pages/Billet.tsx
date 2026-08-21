@@ -19,6 +19,7 @@ export function Billet() {
         {article.resume ? <p className="detail-resume">{article.resume}</p> : null}
         {article.auteur ? <p className="detail-infos">{article.auteur}</p> : null}
       </header>
+      {article.image ? <img className="detail-image" src={article.image} alt={article.titre} /> : null}
       <Markdown>{article.corps}</Markdown>
     </article>
   );

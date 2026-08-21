@@ -2,7 +2,7 @@
 nom: Marianne Omonlola BALOGOUN
 statut: Doctorante
 sujet: Apprentissage automatique appliqué à la propagation des ondes électromagnétiques
-portrait: marianne-omonlola-balogoun
+image: ./images/marianne-omonlola-balogoun.webp
 ordre: 5
 lien1: LinkedIn | https://www.linkedin.com/in/marianne-a-omonlola-balogoun-3bbb00175/
 ---

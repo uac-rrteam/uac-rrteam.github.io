@@ -3,7 +3,7 @@ nom: Marie Mélène Sèmèvo TONOU
 statut: PhD student and research assistant
 sujet: Artificial intelligence applied to healthcare
 arrivee: 2025
-portrait: marie-melene-tonou
+image: ./images/marie-melene-tonou.webp
 ordre: 2
 lien1: LinkedIn | https://www.linkedin.com/in/marie-melene-tonou/
 lien2: GitHub | https://github.com/melene26

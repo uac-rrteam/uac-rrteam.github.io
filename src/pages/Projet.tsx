@@ -24,6 +24,7 @@ export function Projet() {
           <p className="detail-infos">{[item.role, item.financement].filter(Boolean).join(" · ")}</p>
         ) : null}
       </header>
+      {item.image ? <img className="detail-image" src={item.image} alt={item.titre} /> : null}
       {item.collaborateurs.length ? (
         <section className="detail-collaborateurs">
           <h2>{lang === "en" ? "Collaborators and partners" : "Collaborateurs et partenaires"}</h2>

@@ -1,6 +1,6 @@
 ---
-titre: Événements
-resume: Écoles, conférences et ateliers organisés par l'équipe ou auxquels ses membres contribuent.
+titre: Événements & actualités
+resume: Rencontres scientifiques, annonces et nouvelles de l'équipe.
 ---
 
-Cette chronologie rassemble les événements annoncés et les principales rencontres déjà tenues. Les dates à venir sont mises à jour lorsque le programme des organisateurs est confirmé.
+Cette chronologie rassemble les événements annoncés, les principales rencontres déjà tenues et les nouvelles liées aux activités de l'équipe.

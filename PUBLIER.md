@@ -148,6 +148,7 @@ format est `2027-02-10`, l'année d'abord, et rien d'autre sur la ligne.
 La recette est dans `.github/workflows/deployer.yml` et n'a pas besoin d'être
 modifiée pour ajouter du contenu.
 
+Les actualités paraissent dans la chronologie **Événements & actualités**.
 Les fichiers Markdown sont lus **au moment de la construction**, pas quand un
 visiteur ouvre la page. Une nouvelle mal écrite se voit donc dans l'onglet
 Actions, jamais chez le visiteur.

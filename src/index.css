@@ -53,7 +53,7 @@
 
   /* Le gris os du manteau : la matière des panneaux. */
   --panneau: 90 4% 91%;
-  --panneau-encre: 225 33% 7%;
+  --panneau-encre: 225 48% 3%;
 
   --card: 228 42% 12%;
   --card-foreground: 220 7% 92%;
@@ -151,16 +151,26 @@ body::before {
 
 /* Les pages de consultation utilisent le gris os du ratel comme une feuille.
    L'accueil et le menu conservent le bleu nuit de l'identité. */
-:is(.equ, .pro, .rch, .evt, .act, .blg, .detail-contenu) {
-  --foreground: 225 33% 7%;
-  --muted-foreground: 225 12% 38%;
-  --primary: 225 33% 7%;
+:is(.equ, .pro, .rch, .evt, .blg, .detail-contenu) {
+  --foreground: 225 48% 3%;
+  --muted-foreground: 225 18% 29%;
+  --primary: 225 48% 3%;
   --primary-foreground: 90 4% 91%;
   --border: 90 4% 78%;
   --miel: 33 79% 30%;
   --miel-encre: 33 79% 30%;
   min-height: 100svh;
-  background: hsl(var(--panneau));
+  background-color: hsl(var(--panneau));
+  background-image:
+    linear-gradient(
+      90deg,
+      hsl(var(--miel) / .15) 0 33.333%,
+      hsl(var(--assigne) / .13) 33.333% 66.666%,
+      hsl(var(--elague) / .13) 66.666%
+    );
+  background-repeat: no-repeat;
+  background-position: calc(100% - var(--marge)) clamp(6.5rem, 14vh, 9rem);
+  background-size: clamp(8rem, 18vw, 15rem) clamp(2.5rem, 5vw, 4rem);
   color: hsl(var(--panneau-encre));
 }
 
@@ -203,12 +213,15 @@ body::-webkit-scrollbar {
   margin-top: 1.15em;
 }
 .prose-lrsia h2 {
+  padding-left: .75rem;
+  border-left: 3px solid hsl(var(--assigne));
   margin-top: 2em;
   font-size: 1.5rem;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 .prose-lrsia h3 {
+  color: hsl(var(--miel));
   margin-top: 1.6em;
   font-size: 1.2rem;
   font-weight: 600;

@@ -14,7 +14,7 @@ const mots = {
   en: { retour: "The team", projets: "Related projects", ailleurs: "Links", suite: "Next" },
 };
 
-/** Une page membre entièrement alimentée par content/people/<slug>.<lang>.md. */
+/** Une page membre entièrement alimentée par content/people/<slug>/. */
 export function Profil() {
   const { lang, path } = useLang();
   const { slug } = useParams();
@@ -63,7 +63,7 @@ export function Profil() {
         <Link className="pro-retour pro-jour" to={path("/people")}>{dit.retour}</Link>
         <div
           className="pro-tete"
-          data-seul={membre.portrait ? undefined : ""}
+          data-seul={membre.image ? undefined : ""}
           style={{ "--pro-lignes": morceaux.length } as CSSProperties}
         >
           <div className="pro-mots">
@@ -75,13 +75,13 @@ export function Profil() {
             <p className="pro-statut pro-jour">{membre.statut}</p>
             <p className="pro-sujet pro-jour">{membre.sujet}</p>
           </div>
-          {membre.portrait ? (
+          {membre.image ? (
             <div className="pro-voile">
               <div className="pro-cadre">
                 <img
                   className="pro-portrait"
-                  src={`/imgs/people/${membre.portrait}.webp`}
-                  srcSet={`/imgs/people/${membre.portrait}-520.webp 520w, /imgs/people/${membre.portrait}.webp 852w`}
+                  src={membre.image}
+                  srcSet={membre.imagePetite ? `${membre.imagePetite} 520w, ${membre.image} 852w` : undefined}
                   sizes="(max-width: 46rem) 78vw, 34vw"
                   width={852}
                   height={990}

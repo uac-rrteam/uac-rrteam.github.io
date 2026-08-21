@@ -1,4 +1,3 @@
-import { Suspense, lazy } from "react";
 import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import { LangProvider } from "@/i18n/lang";
 import { SmoothScroll } from "@/providers/SmoothScroll";
@@ -15,13 +14,6 @@ import { Projet } from "@/pages/Projet";
 import { APropos } from "@/pages/APropos";
 import { Blog } from "@/pages/Blog";
 import { Billet } from "@/pages/Billet";
-/* La seule page qui rende du Markdown, donc la seule à charger le moteur qui
-   va avec : quarante-huit kilo-octets compressés que les autres pages n'ont
-   aucune raison de payer. Elle arrive en morceau séparé, au moment où on
-   l'ouvre. */
-const Actualites = lazy(() =>
-  import("@/pages/Actualites").then((module) => ({ default: module.Actualites })),
-);
 
 /**
  * Coquille commune à toutes les pages : la langue vient du préfixe d'URL.
@@ -59,14 +51,7 @@ export default function App() {
         <Route path="about" element={<APropos />} />
         <Route path="blog" element={<Blog />} />
         <Route path="blog/:slug" element={<Billet />} />
-        <Route
-          path="news"
-          element={
-            <Suspense fallback={null}>
-              <Actualites />
-            </Suspense>
-          }
-        />
+        <Route path="news" element={<Navigate to="../events" replace />} />
         <Route path="people" element={<Equipe />} />
         <Route path="people/:slug" element={<Profil />} />
       </Route>

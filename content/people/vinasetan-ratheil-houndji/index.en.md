@@ -3,7 +3,7 @@ name: Vinasétan Ratheil HOUNDJI
 nom: Vinasétan Ratheil HOUNDJI
 statut: Associate professor (CAMES) in artificial intelligence
 sujet: Constraint programming and combinatorial optimisation
-portrait: vinasetan-ratheil
+image: ./images/vinasetan-ratheil.webp
 ordre: 1
 projets: [mpvrp-cc, optiplan, opencs4dev, forces, stop-mnt, ai4ckd, iot4pest, path, ai4cardio]
 lien1: Personal website | https://ratheil.info

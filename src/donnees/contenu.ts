@@ -1,5 +1,6 @@
 import type { Lang } from "@/i18n/dictionary";
 import { champ, rassembler, type Article, type Entete } from "./lireMarkdown";
+import { imageContenu } from "./imagesContenu";
 
 const PERSONNES = import.meta.glob("../../content/people/*/index.*.md", {
   eager: true,
@@ -68,7 +69,8 @@ export interface PersonneContenu {
   statut: string;
   sujet: string;
   arrivee?: number;
-  portrait?: string;
+  image?: string;
+  imagePetite?: string;
   ordre: number;
   projets: string[];
   liens: LienContenu[];
@@ -85,7 +87,8 @@ export function personnes(lang: Lang): PersonneContenu[] {
       arrivee: champ(article.entete, "arrivee")
         ? nombre(article.entete, "arrivee")
         : undefined,
-      portrait: champ(article.entete, "portrait") || undefined,
+      image: imageContenu(article.entete, "people", article.slug),
+      imagePetite: imageContenu(article.entete, "people", article.slug, "-520"),
       ordre: nombre(article.entete, "ordre"),
       projets: Array.isArray(article.entete.projets) ? article.entete.projets : [],
       liens: liens(article.entete),
@@ -112,6 +115,7 @@ export interface ProjetContenu {
   financement?: string;
   collaborateurs: string[];
   resume: string;
+  image?: string;
   ordre: number;
   liens: LienContenu[];
   corps: string;
@@ -129,6 +133,7 @@ export function projets(lang: Lang): ProjetContenu[] {
         ? article.entete.collaborateurs
         : [],
       resume: champ(article.entete, "resume") || champ(article.entete, "summary"),
+      image: imageContenu(article.entete, "projects", article.slug),
       ordre: nombre(article.entete, "ordre"),
       liens: liens(article.entete),
       corps: article.corps,
@@ -147,6 +152,7 @@ export interface EvenementContenu {
   periode: string;
   lieu: string;
   resume: string;
+  image?: string;
   ordre: number;
   liens: LienContenu[];
   corps: string;
@@ -161,6 +167,7 @@ export function evenementsContenu(lang: Lang): EvenementContenu[] {
       periode: champ(article.entete, "periode") || champ(article.entete, "period"),
       lieu: champ(article.entete, "lieu") || champ(article.entete, "place"),
       resume: champ(article.entete, "resume") || champ(article.entete, "summary"),
+      image: imageContenu(article.entete, "events", article.slug),
       ordre: nombre(article.entete, "ordre", 0),
       liens: liens(article.entete),
       corps: article.corps,
@@ -194,6 +201,7 @@ export interface BilletContenu {
   date: string;
   resume: string;
   auteur?: string;
+  image?: string;
   motsCles: string[];
   corps: string;
 }
@@ -205,6 +213,7 @@ export function billets(lang: Lang): BilletContenu[] {
     date: champ(article.entete, "date"),
     resume: champ(article.entete, "resume") || champ(article.entete, "summary"),
     auteur: champ(article.entete, "auteur") || champ(article.entete, "author") || undefined,
+    image: imageContenu(article.entete, "blog", article.slug),
     motsCles: Array.isArray(article.entete.motsCles)
       ? article.entete.motsCles
       : Array.isArray(article.entete.tags)

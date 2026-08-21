@@ -3,7 +3,7 @@ nom: Maryse Fortune Doloresse GAHOU
 statut: Doctorante
 sujet: Apprentissage automatique interprétable pour la détection précoce de l'insuffisance rénale chronique
 arrivee: 2025
-portrait: maryse-gahou
+image: ./images/maryse-gahou.webp
 ordre: 3
 lien1: LinkedIn | https://www.linkedin.com/in/maryse-gahou/
 lien2: Google Scholar | https://scholar.google.com/citations?hl=fr&user=ipP515YAAAAJ

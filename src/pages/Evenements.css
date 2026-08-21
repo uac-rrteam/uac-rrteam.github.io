@@ -24,9 +24,12 @@
 .evt-repere { display: flex; flex-direction: column; gap: .45rem; }
 .evt-date, .evt-lieu, .evt-resume { margin: 0; color: hsl(var(--muted-foreground)); font-size: .9375rem; line-height: 1.55; }
 .evt-date { color: hsl(var(--miel)); font-size: .8125rem; letter-spacing: .05em; text-transform: uppercase; }
+.evt-type { width: fit-content; padding: .2rem .45rem; border: 1px solid hsl(var(--assigne) / .5); color: hsl(var(--foreground)); font-family: var(--font-tech); font-size: .65rem; letter-spacing: .06em; text-transform: uppercase; }
 .evt-entree h2 { margin: 0 0 .5rem; font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 300; }
 .evt-entree h2 a { color: hsl(var(--foreground)); text-decoration: none; }
 .evt-entree h2 a:hover { border-bottom: 1px solid hsl(var(--miel)); }
+.evt-entree:nth-child(3n + 2) .evt-type { border-color: hsl(var(--miel) / .6); }
+.evt-entree:nth-child(3n) .evt-type { border-color: hsl(var(--elague) / .6); }
 
 @media (max-width: 62rem) {
   .evt-entree { grid-template-columns: 4rem 11rem minmax(0, 1fr); }

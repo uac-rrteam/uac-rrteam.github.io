@@ -3,7 +3,7 @@ nom: Linuse Mevic Jézugnon TIKPON
 statut: PhD student
 sujet: Artificial intelligence applied to education and pedagogy
 arrivee: 2025
-portrait: linuse-tikpon
+image: ./images/linuse-tikpon.webp
 ordre: 4
 lien1: LinkedIn | https://www.linkedin.com/in/linuse-tikpon-80a1b81a5/
 lien2: GitHub | https://github.com/LinuseTikpon

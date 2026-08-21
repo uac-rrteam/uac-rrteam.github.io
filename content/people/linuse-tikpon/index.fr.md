@@ -3,7 +3,7 @@ nom: Linuse Mevic Jézugnon TIKPON
 statut: Doctorante
 sujet: Intelligence artificielle appliquée à l'éducation et à la pédagogie
 arrivee: 2025
-portrait: linuse-tikpon
+image: ./images/linuse-tikpon.webp
 ordre: 4
 lien1: LinkedIn | https://www.linkedin.com/in/linuse-tikpon-80a1b81a5/
 lien2: GitHub | https://github.com/LinuseTikpon

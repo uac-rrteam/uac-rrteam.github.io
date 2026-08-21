@@ -74,7 +74,7 @@
   line-height: 1.5;
 }
 
-.pied-github { margin-top: .8rem; }
+.pied-adresse > span:not(.pied-github) + .pied-github { margin-top: .8rem; }
 .pied-github a {
   display: inline-flex;
   align-items: center;

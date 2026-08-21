@@ -3,7 +3,7 @@ nom: Péniel AHOUANSOU
 statut: Étudiante en licence et stagiaire de recherche
 sujet: Conception d'un système d'acquisition de signaux EEG
 arrivee: 2026
-portrait: peniel-ahouansou
+image: ./images/peniel-ahouansou.webp
 ordre: 10
 lien1: LinkedIn | https://www.linkedin.com/in/péniel-ahouansou-43b1482a1/
 lien2: GitHub | https://github.com/peniel-09

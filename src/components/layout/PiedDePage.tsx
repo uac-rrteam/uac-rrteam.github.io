@@ -42,7 +42,6 @@ export function PiedDePage() {
     { vers: "/research", texte: t("nav.research") },
     { vers: "/people", texte: t("nav.people") },
     { vers: "/events", texte: t("nav.events") },
-    { vers: "/news", texte: t("nav.news") },
     { vers: "/blog", texte: t("nav.blog") },
   ];
 
@@ -105,6 +104,9 @@ export function PiedDePage() {
             ))}
             <span className="pied-github">
               <LienIcone intitule="GitHub" vers="https://github.com/uac-rrteam" />
+            </span>
+            <span className="pied-github">
+              <LienIcone intitule="vratheilhoundji@gmail.com" vers="mailto:vratheilhoundji@gmail.com" />
             </span>
           </address>
 

@@ -2,7 +2,7 @@
 nom: Marianne Omonlola BALOGOUN
 statut: PhD student
 sujet: Machine learning applied to electromagnetic wave propagation
-portrait: marianne-omonlola-balogoun
+image: ./images/marianne-omonlola-balogoun.webp
 ordre: 5
 lien1: LinkedIn | https://www.linkedin.com/in/marianne-a-omonlola-balogoun-3bbb00175/
 ---
