@@ -4,31 +4,15 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLang } from "@/i18n/lang";
-import { equipe } from "@/donnees/equipe";
+import { pageContenu, personnes } from "@/donnees/contenu";
+import { Markdown } from "@/components/content/Markdown";
 import { lignesQuiRemontent } from "@/animations/lignesQuiRemontent";
 import "./Equipe.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const mots = {
-  fr: {
-    titre: "L'équipe",
-    chapo:
-      "Une équipe de recherche se lit d'abord par les gens qui la font. Chacun travaille un sujet propre, à l'IFRI, sur le campus d'Abomey-Calavi.",
-    attente:
-      "Cette liste s'étoffe. Chaque page s'ouvrira sur les travaux, les publications et les encadrements de la personne.",
-  },
-  en: {
-    titre: "The team",
-    chapo:
-      "A research team is read first through the people who make it. Each works on their own subject, at IFRI, on the Abomey-Calavi campus.",
-    attente:
-      "This list is growing. Each page will open onto the person's work, publications and supervision.",
-  },
-};
-
 /**
- * L'équipe.
+ * L'équipe
  *
  * Un annuaire en lignes plutôt qu'une grille de vignettes : nous n'avons qu'un
  * portrait, et trois cadres vides à côté d'une photographie diraient surtout ce
@@ -42,8 +26,8 @@ const mots = {
 export function Equipe() {
   const zoneRef = useRef<HTMLDivElement>(null);
   const { lang, path } = useLang();
-  const membres = equipe(lang);
-  const dit = lang === "en" ? mots.en : mots.fr;
+  const membres = personnes(lang);
+  const page = pageContenu(lang, "people");
 
   useGSAP(
     () => {
@@ -80,29 +64,35 @@ export function Equipe() {
       <header className="equ-entete">
         <h1 className="equ-titre">
           <span className="equ-ligne">
-            <span>{dit.titre}</span>
+            <span>{page?.titre}</span>
           </span>
         </h1>
-        <p className="equ-chapo">{dit.chapo}</p>
+        <p className="equ-chapo">{page?.resume}</p>
       </header>
 
+      {page?.corps ? <div className="equ-note"><Markdown>{page.corps}</Markdown></div> : null}
+
+      <div className="equ-legende" aria-hidden="true">
+        <span />
+        <span>{lang === "en" ? "Member" : "Membre"}</span>
+        <span>{lang === "en" ? "Current topic" : "Sujet actuel"}</span>
+        <span>{lang === "en" ? "Joined" : "Arrivée"}</span>
+      </div>
       <ul className="equ-liste">
-        {membres.map((membre) => (
+        {membres.map((membre, rang) => (
           <li key={membre.slug} className="equ-membre">
             <Link className="equ-vers" to={path(`/people/${membre.slug}`)}>
-              <span className="equ-nom">{membre.nom}</span>
-              <span className="equ-statut">{membre.statut}</span>
-              <span className="equ-sujet">{membre.sujet}</span>
-              {/* La flèche tient lieu d'intitulé : le nom entier est le lien. */}
-              <span className="equ-fleche" aria-hidden="true">
-                →
+              <span className="equ-index" aria-hidden="true">{String(rang + 1).padStart(2, "0")}</span>
+              <span className="equ-identite">
+                <span className="equ-nom">{membre.nom}</span>
+                <span className="equ-statut">{membre.statut}</span>
               </span>
+              <span className="equ-sujet">{membre.sujet}</span>
+              <span className="equ-arrivee">{membre.arrivee ?? "—"}</span>
             </Link>
           </li>
         ))}
       </ul>
-
-      <p className="equ-attente">{dit.attente}</p>
     </div>
   );
 }

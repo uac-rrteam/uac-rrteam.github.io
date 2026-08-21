@@ -19,6 +19,14 @@
   pointer-events: none;
 }
 
+.ent-voile[data-clair] {
+  background: linear-gradient(
+    hsl(var(--panneau)) 38%,
+    hsl(var(--panneau) / 0.82) 66%,
+    transparent
+  );
+}
+
 .ent-tete {
   position: fixed;
   /* Au-dessus du menu : le même bouton l'ouvre et le referme. */

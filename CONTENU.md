@@ -1,0 +1,167 @@
+# Gérer le contenu du site
+
+À l'exception de la page d'accueil, le contenu éditorial du site se trouve
+dans `content/`. Vite lit tous les fichiers Markdown pendant la construction :
+ajouter un fichier suffit pour qu'il apparaisse dans la liste correspondante.
+
+## Convention commune
+
+Chaque contenu bilingue possède son propre dossier et deux fichiers de langue :
+
+```text
+mon-identifiant/
+  index.fr.md
+  index.en.md
+```
+
+L'identifiant devient l'adresse de la page. Par exemple :
+
+```text
+content/projects/ai4ckd/index.fr.md
+→ /fr/research/projects/ai4ckd
+```
+
+Chaque fichier commence par un en-tête placé entre deux lignes `---`, puis son
+corps en Markdown. Les champs inconnus sont ignorés et les champs facultatifs
+peuvent simplement être omis.
+
+## Membres — `content/people/`
+
+Chaque membre possède un dossier, par exemple
+`content/people/maryse-gahou/index.fr.md`.
+
+```markdown
+---
+nom: Prénom NOM
+statut: Doctorante
+sujet: Sujet ou axe principal
+arrivee: 2026
+image: ./images/portrait.webp
+image_position: 50% 35%
+image_scale: 1
+ordre: 3
+projets: [ai4ckd, stop-mnt]
+lien1: LinkedIn | https://linkedin.com/...
+lien2: E-mail | mailto:adresse@example.com
+---
+
+La biographie et les autres sections s'écrivent ici en Markdown.
+
+## Responsabilités
+
+- Une responsabilité
+- Une autre
+```
+
+Le portrait se place à côté des Markdown, dans le sous-dossier `images/` du
+membre : `content/people/mon-identifiant/images/portrait.webp`. Le champ
+`image` contient son chemin relatif. Si aucun portrait n'est disponible, il
+suffit de supprimer la ligne.
+
+Tous les portraits sont affichés dans un cadre vertical 4:5. Le champ facultatif
+`image_position` règle le recadrage horizontal et vertical, comme en CSS :
+`50% 20%` remonte le sujet, tandis que `40% 50%` le déplace légèrement vers la
+gauche. L'image originale reste intacte.
+
+`image_scale` agrandit le sujet à l'intérieur du cadre lorsque la photographie
+contient beaucoup d'arrière-plan. Sa valeur habituelle va de `1` à `1.5` ; le
+site la limite automatiquement entre `1` et `2`.
+
+`ordre` détermine la position dans l'annuaire. `projets` contient les
+identifiants des projets à afficher sur la page du membre.
+
+## Projets — `content/projects/`
+
+Chaque projet possède un dossier, par exemple
+`content/projects/ai4ckd/index.fr.md`.
+
+```markdown
+---
+titre: Nom du projet
+periode: Depuis 2026
+role: Coordonnateur
+financement: Organisme de financement
+collaborateurs: [Nom ou institution, Autre collaborateur]
+resume: Une phrase affichée dans la liste.
+image: ./images/illustration.webp
+ordre: 1
+lien1: Site du projet | https://example.com
+lien2: Dépôt GitHub | https://github.com/...
+---
+
+Description complète du projet en Markdown.
+```
+
+La même convention `images/` et `image: ./images/...` s'applique aux projets,
+événements, actualités et billets de blog. Une image déclarée sur une page de
+détail est affichée entre son en-tête et son texte.
+
+Chaque projet apparaît automatiquement sur `/research` et son titre mène à sa
+page de détail. Le champ `collaborateurs` accepte des personnes ou des
+institutions ; ne renseignez que les collaborations confirmées.
+
+## Événements — `content/events/`
+
+Chaque événement possède un dossier, par exemple
+`content/events/bwai-2026/index.fr.md`.
+
+```markdown
+---
+titre: Nom de l'événement
+date: 2027-05-12
+periode: 12 au 15 mai 2027
+lieu: Abomey-Calavi, Bénin
+resume: Une phrase affichée dans la liste.
+lien1: Site officiel | https://example.com
+---
+
+Présentation complète de l'événement en Markdown.
+```
+
+La date doit garder le format `AAAA-MM-JJ`, car elle sert au classement du plus
+récent au plus ancien.
+
+## Pages — `content/pages/`
+
+Les dossiers `about`, `research`, `events`, `people`, `news` et `blog` portent les textes généraux de
+leurs pages. Leur en-tête contient `titre` et `resume`; leur corps accepte le
+Markdown ordinaire.
+
+## Actualités — `content/actualites/`
+
+Les actualités sont affichées dans la même chronologie que les événements. Si
+une actualité et un événement portent la même date, la page détaillée de
+l'événement fait foi afin d'éviter un doublon. La procédure spécifique, y
+compris les brouillons et les liens, est détaillée dans [PUBLIER.md](PUBLIER.md).
+
+## Blog — `content/blog/`
+
+Un billet suit la même convention :
+`content/blog/mon-billet/index.fr.md` et `index.en.md`. Son en-tête accepte
+`title`/`titre`, `date`, `summary`/`resume`, `author`/`auteur` et `tags`.
+Ajoutez `brouillon: oui` pour le conserver sans le publier.
+
+Les blocs de code utilisent les clôtures Markdown et peuvent préciser le
+langage :
+
+````markdown
+```python
+def optimiser(instance):
+    return solve(instance)
+```
+````
+
+Les formules en ligne s'écrivent entre deux `$`, par exemple `$x \in X$`, et
+les formules isolées entre `$$` :
+
+```markdown
+$$
+\min_{x \in X} \sum_i c_i x_i
+$$
+```
+
+## Traductions et repli
+
+Le français est la langue de référence. Si la version anglaise d'un élément
+manque, le site affiche temporairement sa version française au lieu de masquer
+l'élément. Il reste préférable de créer les deux fichiers ensemble.

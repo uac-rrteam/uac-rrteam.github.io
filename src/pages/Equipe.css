@@ -41,8 +41,31 @@
   line-height: 1.65;
 }
 
+.equ-note {
+  margin-top: 1.4rem;
+  max-width: 54ch;
+  color: hsl(var(--muted-foreground));
+}
+
+.equ-note .prose-lrsia {
+  font-family: var(--font-sans);
+  font-size: .9375rem;
+}
+
+.equ-legende {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1.2fr) minmax(0, 1.5fr) 5rem;
+  gap: 1rem 2rem;
+  margin-top: clamp(3rem, 7vh, 5rem);
+  padding-bottom: .8rem;
+  color: hsl(var(--muted-foreground) / .75);
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
 .equ-liste {
-  margin: clamp(3rem, 7vh, 5rem) 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -63,7 +86,7 @@
   display: grid;
   align-items: baseline;
   gap: 1rem 2rem;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.7fr) minmax(0, 1.6fr) auto;
+  grid-template-columns: 3rem minmax(0, 1.2fr) minmax(0, 1.5fr) 5rem;
   padding: clamp(1.6rem, 3.4vh, 2.4rem) 0;
   color: inherit;
   text-decoration: none;
@@ -75,18 +98,15 @@
   padding-left: 0.8rem;
 }
 
-.equ-fleche {
-  align-self: center;
-  color: hsl(var(--muted-foreground));
-  font-size: 1.1rem;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.4s ease;
+.equ-index,
+.equ-arrivee {
+  color: hsl(var(--muted-foreground) / .72);
+  font-size: .75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .06em;
 }
 
-.equ-vers:hover .equ-fleche,
-.equ-vers:focus-visible .equ-fleche {
-  color: hsl(var(--miel));
-  transform: translateX(0.45rem);
-}
+.equ-identite { display: flex; flex-direction: column; gap: .45rem; }
 
 .equ-nom {
   margin: 0;
@@ -96,7 +116,7 @@
 
 .equ-statut {
   margin: 0;
-  color: hsl(var(--miel));
+  color: hsl(var(--muted-foreground));
   font-size: 0.75rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
@@ -109,22 +129,13 @@
   line-height: 1.55;
 }
 
-.equ-attente {
-  margin: clamp(3rem, 7vh, 5rem) 0 0;
-  max-width: 44ch;
-  color: hsl(var(--muted-foreground) / 0.8);
-  font-size: 0.9375rem;
-  line-height: 1.7;
-}
-
 @media (max-width: 46rem) {
+  .equ-legende { display: none; }
+  .equ-liste { margin-top: 2.5rem; }
   .equ-vers {
-    gap: 0.5rem;
-    grid-template-columns: 1fr;
+    gap: .75rem 1rem;
+    grid-template-columns: 2rem minmax(0, 1fr);
   }
-
-  /* La flèche remonte contre le nom : seule sur sa ligne, elle flotterait. */
-  .equ-fleche {
-    display: none;
-  }
+  .equ-identite, .equ-sujet { grid-column: 2; }
+  .equ-arrivee { grid-column: 1; grid-row: 2; }
 }

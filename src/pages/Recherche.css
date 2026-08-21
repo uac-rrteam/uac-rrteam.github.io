@@ -104,7 +104,7 @@
   display: grid;
   align-items: baseline;
   gap: 0.6rem 2rem;
-  grid-template-columns: 9rem minmax(0, 1fr) 15rem;
+  grid-template-columns: 3rem minmax(0, 1fr) 15rem;
   padding: clamp(1.4rem, 3vh, 2rem) 0;
   border-bottom: 1px solid hsl(var(--foreground) / 0.1);
 }
@@ -113,7 +113,7 @@
   border-top: 1px solid hsl(var(--foreground) / 0.14);
 }
 
-.rch-projet-quand,
+.rch-projet-index,
 .rch-projet-dit,
 .rch-projet-role {
   margin: 0;
@@ -122,11 +122,31 @@
   line-height: 1.55;
 }
 
+.rch-projet-index {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .06em;
+}
+
 .rch-projet-nom {
   margin: 0 0 0.4rem;
   font-size: 1.125rem;
   font-weight: 400;
   letter-spacing: 0.01em;
+}
+
+.rch-projet-nom a {
+  color: hsl(var(--foreground));
+  text-decoration: none;
+}
+
+.rch-projet-nom a:hover,
+.rch-projet-nom a:focus-visible {
+  border-bottom: 1px solid hsl(var(--miel));
+}
+
+.rch-page-md .prose-lrsia {
+  max-width: 62rem;
+  font-family: var(--font-sans);
 }
 
 .rch-projet-dit {
@@ -376,12 +396,20 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .rch-projets > li,
+  .rch-projets > li {
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+
+  .rch-projet-corps,
+  .rch-projet-role {
+    grid-column: 2;
+  }
+
   .rch-annee {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .rch-projet-quand,
+  .rch-projet-index,
   .rch-annee-nombre {
     color: hsl(var(--miel));
     font-size: 0.9375rem;

@@ -1,7 +1,7 @@
 # Ratheil Research Team, UAC
 
 
-> **Pour publier une actualité**, il suffit de déposer un fichier dans
+> **Pour publier une actualité**, il suffit de créer son dossier dans
 > `content/actualites/` et de l'envoyer : la marche à suivre tient dans
 > [PUBLIER.md](PUBLIER.md), et rien d'autre n'est à installer.
 
@@ -43,12 +43,24 @@ npm run build
 npm run preview
 ```
 
-## Publier un article (actualites)
+## Modifier le contenu
 
-Le site est pense pour etre maintenu sans toucher au code. Pour ajouter une
-actualité, il suffit de **déposer un fichier Markdown** dans
-[`content/blog/`](content/blog/), nomme `<slug>.<langue>.md`
-(exemple : `cp4sd-2025.fr.md`).
+Le site est pensé pour être maintenu sans toucher au code. Les biographies,
+projets, événements, pages institutionnelles et actualités vivent dans
+[`content/`](content/). La convention commune est `<slug>/index.<langue>.md`,
+par exemple `maryse-gahou/index.fr.md` et `maryse-gahou/index.en.md`.
+
+La structure complète et les champs disponibles sont expliqués dans
+[CONTENU.md](CONTENU.md). Pour publier uniquement une actualité, suivez
+[PUBLIER.md](PUBLIER.md).
+
+Une actualité se dépose dans [`content/actualites/`](content/actualites/) :
+
+```text
+content/actualites/2027-02-10-soutenance/
+  index.fr.md
+  index.en.md
+```
 
 Chaque fichier commence par un bloc d'informations (frontmatter) :
 
@@ -64,19 +76,26 @@ tags: [evenement, IA]
 Le corps de l'article, en Markdown.
 ```
 
-L'article apparaît automatiquement sur la page Actualités. Aucun code a
-modifier.
+L'article apparaît automatiquement sur la page Événements & actualités. Aucun
+code à modifier.
 
 ## Structure
 
 ```text
-content/blog/     Articles en Markdown (le contenu qui évolue)
+content/
+  actualites/     Actualités
+  blog/           Billets de blog (code et mathématiques acceptés)
+  events/         Événements et leurs pages de détail
+  pages/          Pages À propos, Recherche et Événements
+  people/         Biographies et images des membres
+  projects/       Projets, images et pages de détail
 public/imgs/      Logos (LRSIA, IFRI, UAC) et portraits
 src/
   sections/       Sections de la page d'accueil (hero, laboratoire, membres...)
   pages/          Pages du site
   components/     Composants réutilisables (mise en page, UI, contenu)
-  i18n/           Traductions FR / EN
+  donnees/        Lecture et structuration des fichiers Markdown
+  i18n/           Traductions de l'interface FR / EN
 ```
 
 ---

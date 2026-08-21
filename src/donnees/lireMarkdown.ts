@@ -13,7 +13,7 @@
 export type Entete = Record<string, string | string[]>;
 
 export interface Article {
-  /** Le nom du fichier sans sa langue ni son extension : il sert d'adresse. */
+  /** Le nom du dossier de contenu : il sert d'adresse. */
   slug: string;
   langue: string;
   entete: Entete;
@@ -78,7 +78,7 @@ export function champ(entete: Entete, cle: string, defaut = ""): string {
 /**
  * Rassemble les fichiers d'un dossier, rangés du plus récent au plus ancien.
  *
- * Le nom du fichier porte la langue : `mon-article.fr.md`. Sans elle, le
+ * Le nom du fichier porte la langue : `mon-article/index.fr.md`. Sans elle, le
  * fichier est servi dans les deux langues, ce qui vaut mieux que de le laisser
  * invisible parce qu'une extension manquait.
  */
@@ -86,16 +86,20 @@ export function rassembler(fichiers: Record<string, string>, langue: string): Ar
   const articles: Article[] = [];
 
   for (const [chemin, brut] of Object.entries(fichiers)) {
-    const nom = chemin.split("/").pop() ?? "";
+    const segments = chemin.split("/");
+    const nom = segments.pop() ?? "";
     const morceaux = nom.replace(/\.md$/, "").split(".");
     const langueDite = morceaux.length > 1 ? morceaux.pop()! : "";
     if (langueDite && langueDite !== langue) continue;
+
+    const base = morceaux.join(".");
+    const slug = base === "index" ? (segments.pop() ?? "") : base;
 
     const { entete, corps } = separer(brut);
     // Un brouillon reste dans le dépôt sans paraître sur le site.
     if (champ(entete, "brouillon") === "oui" || champ(entete, "draft") === "true") continue;
 
-    articles.push({ slug: morceaux.join("."), langue: langueDite || langue, entete, corps });
+    articles.push({ slug, langue: langueDite || langue, entete, corps });
   }
 
   // La date de l'en-tête décide de l'ordre ; à défaut, le nom du fichier, que

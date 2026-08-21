@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLang } from "@/i18n/lang";
+import portraitRatheil from "../../content/people/vinasetan-ratheil-houndji/images/vinasetan-ratheil.webp?url";
+import portraitRatheilPetit from "../../content/people/vinasetan-ratheil-houndji/images/vinasetan-ratheil-520.webp?url";
 import "./Direction.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -108,8 +110,8 @@ export function Direction({ meneur }: { meneur: Meneur }) {
       <div className="dir-cadre">
         <img
           className="dir-portrait"
-          src="/imgs/people/vinasetan-ratheil.webp"
-          srcSet="/imgs/people/vinasetan-ratheil-520.webp 520w, /imgs/people/vinasetan-ratheil.webp 852w"
+          src={portraitRatheil}
+          srcSet={`${portraitRatheilPetit} 520w, ${portraitRatheil} 852w`}
           sizes="(max-width: 46rem) 78vw, 42vw"
           width={852}
           height={990}
